@@ -19,7 +19,12 @@
 
 const http = require('http');
 
-process.stdout.write(JSON.stringify({
+// **`console.log`, nicht `process.stdout.write`.** Gefangen wird
+// `RuntimeState.output`, und dorthin schreibt nur `console.log`/`print`
+// (runtime/src/v2/exec/single.rs, `SingleBrickRunner::stdout`).
+// `process.stdout.write` geht am Puffer vorbei — das Tor antwortete 200
+// mit null Bytes, und die App hatte scheinbar nichts zu sagen.
+console.log(JSON.stringify({
   ok: true,
   app: 'hello-js',
   node: typeof http.createServer === 'function',
