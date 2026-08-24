@@ -1,0 +1,17 @@
+# Eine echte Abhaengigkeit, mit Absicht: sie beweist, dass der Cargo-Weg
+# auflöst, laedt und uebersetzt — nicht nur, dass rustc laeuft.
+#
+# `serde_json` statt tokio/axum: tokio verweigert auf wasm alles ausser
+# sync,macros,io-util,rt,time ("Only features ... are supported on
+# wasm"). Das ist keine Luecke der Kette, sondern eine Eigenschaft der
+# Abhaengigkeit — `apps/api-rust` laeuft genau da hinein.
+[package]
+name = "hello-rust"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde_json = "1"
+
+[profile.release]
+panic = "abort"
