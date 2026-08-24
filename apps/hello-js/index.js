@@ -1,24 +1,27 @@
 // Der kleinste Dienst, der die ganze Kette beweist.
 //
-// Absichtlich ohne Abhaengigkeiten und ohne Bauschritt: was hier
-// schiefgeht, liegt an der Kette, nicht an der Anwendung. Und `main` in
-// der package.json zeigt auf genau diese Datei — das Baurezept sucht
-// dort und nirgends sonst (workbench/src/build.rs, EXIT_ENTRY_MISSING).
+// **Der Vertrag der Cap ist: was die App nach stdout schreibt, ist die
+// Antwort.** Die App wird pro Anfrage gestartet, schreibt und endet —
+// so wie es die C-, C++- und Rust-Proben auch tun. Ein
+// `http.createServer(...).listen(...)` allein reicht NICHT: der
+// Listener existiert nur, solange der Lauf dauert, und niemand nimmt
+// darauf eine Verbindung an. Genau so kam vorher eine 200 mit null
+// Bytes zurueck — die App lief, sie sagte nur nichts.
+//
+// Der Node-Teil bleibt trotzdem stehen: er beweist, dass die fremde
+// Node-Flaeche (`require('http')` → `runtime::load_node_builtin`) in
+// der Cap geladen ist. Ohne sie starb dieses Modul frueher schon beim
+// Instanziieren.
 
 const http = require('http');
+const path = require('path');
 
-const PORT = Number(process.env.PORT || 8080);
+const antwort = {
+  ok: true,
+  app: 'hello-js',
+  node: typeof http.createServer === 'function',
+  pfad: path.join('/', 'hello-js'),
+  port: String(process.env.PORT || 8080),
+};
 
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { 'content-type': 'application/json' });
-  res.end(JSON.stringify({
-    ok: true,
-    app: 'hello-js',
-    pfad: req.url,
-    zeit: new Date().toISOString(),
-  }));
-});
-
-server.listen(PORT, '0.0.0.0', () => {
-  console.log(`hello-js hoert auf ${PORT}`);
-});
+process.stdout.write(JSON.stringify(antwort));
