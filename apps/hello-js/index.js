@@ -8,20 +8,20 @@
 // darauf eine Verbindung an. Genau so kam vorher eine 200 mit null
 // Bytes zurueck — die App lief, sie sagte nur nichts.
 //
-// Der Node-Teil bleibt trotzdem stehen: er beweist, dass die fremde
-// Node-Flaeche (`require('http')` → `runtime::load_node_builtin`) in
-// der Cap geladen ist. Ohne sie starb dieses Modul frueher schon beim
-// Instanziieren.
+// `require('http')` bleibt stehen: es beweist, dass die fremde
+// Node-Flaeche (`runtime::load_node_builtin`) in der Cap geladen ist.
+//
+// **`require('path')` steht bewusst NICHT hier.** Der Compiler in der
+// Bauzelle erzeugt dafuer `runtime::path_normalize_posix`, und die im
+// Cap gepinnte Runtime kennt diesen Import nicht — der Bau ist gruen,
+// die App stirbt beim Instanziieren. Das ist eine Drift zwischen
+// Compiler und Laufzeit, kein Fehler dieser Datei.
 
 const http = require('http');
-const path = require('path');
 
-const antwort = {
+process.stdout.write(JSON.stringify({
   ok: true,
   app: 'hello-js',
   node: typeof http.createServer === 'function',
-  pfad: path.join('/', 'hello-js'),
   port: String(process.env.PORT || 8080),
-};
-
-process.stdout.write(JSON.stringify(antwort));
+}));
