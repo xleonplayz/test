@@ -75,6 +75,16 @@ Was die Cap dabei vorgibt (Stand 27.08.2026):
 
 - **`console.log`, nicht `process.stdout.write`** — nur `console.log`
   wird als Antwort gefangen.
+- **Die Anfrage liest JS aus `/dev/stdin` — einmal, auf Modulebene.**
+  `readFileSync("/dev/stdin", "utf8")` liefert den ganzen Rumpf, aber
+  nur als Anweisung auf Modulebene (auch in einem `if`-Block); dieselbe
+  Zeile in einer Funktion liefert `undefined`, und `readFileSync(0)`
+  liefert immer `undefined` — beides ohne Ausnahme. Der zweite Leser
+  bekommt einen leeren Strom. Und ein Methodenaufruf auf `undefined` ist
+  auf der Cap ein **Trap** („Execution failed"), kein `TypeError`: wer
+  `raw.split(...)` ohne Typprüfung schreibt, sieht 502 und keinen Log.
+  Gemessen mit `nex-run` der Meryl-Kette; die Proben liegen in der
+  Git-Historie dieses Absatzes.
 - **Kein `require('path')`** in JS — der Compiler erzeugt dafür einen
   Import, den die in der Cap gepinnte Runtime nicht kennt.
 - **Die Antwort ist immer `200 text/html`.** Statuscode und

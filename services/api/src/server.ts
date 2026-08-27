@@ -149,27 +149,41 @@ export async function handle(method: string, rawPath: string): Promise<unknown> 
 }
 
 /** Die Anfragezeile einer rohen HTTP-Nachricht. */
-export function requestLine(raw: string): [string, string] {
-    const first = raw.split(/\r?\n/)[0] ?? ""
+export function requestLine(raw: unknown): [string, string] {
+    // Kein `raw.split` auf etwas, das kein String ist: auf der Cap gibt
+    // ein fehlgeschlagenes Lesen `undefined` zurueck, keine Ausnahme —
+    // und ein Methodenaufruf darauf ist dort ein Trap, kein TypeError.
+    const text = typeof raw === "string" ? raw : ""
+    const first = text.split(/\r?\n/)[0] ?? ""
     const [method = "GET", path = "/"] = first.split(/\s+/)
     return [method || "GET", path || "/"]
 }
 
-/** Cap-Modus: die Anfrage liegt auf stdin. Ist er nicht lesbar, gilt `/`. */
-function rawRequestFromStdin(): string {
+/*
+ * Cap-Modus: die Anfrage liegt auf stdin — und wird HIER gelesen, auf
+ * Modulebene, genau einmal.
+ *
+ * Drei Dinge, alle gemessen am JS-Gast (27.08.):
+ *   - `/dev/stdin`, nicht der Deskriptor 0: `readFileSync(0)` liefert
+ *     `undefined`, der Pfad liefert den ganzen Rumpf.
+ *   - Nur auf Modulebene: dieselbe Zeile in einer Funktion liefert
+ *     `undefined` (benannter Import) oder wirft (Namespace-Import).
+ *   - Nur einmal: der zweite Leser bekommt einen leeren Strom.
+ *
+ * Im `--serve`-Modus wird nicht gelesen — dort kaeme ein Terminal, und
+ * das blockiert.
+ */
+let RAW: unknown = ""
+if (!process.argv.includes("--serve")) {
     try {
-        return readFileSync(0, "utf8")
+        RAW = readFileSync("/dev/stdin", "utf8")
     } catch {
-        try {
-            return readFileSync("/dev/stdin", "utf8")
-        } catch {
-            return ""
-        }
+        RAW = ""
     }
 }
 
 async function once() {
-    const [method, path] = requestLine(rawRequestFromStdin())
+    const [method, path] = requestLine(RAW)
     console.log(JSON.stringify(await handle(method, path)))
 }
 
