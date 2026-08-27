@@ -1,0 +1,44 @@
+:root {
+    --tinte: #1c1a17;
+    --grund: #faf8f4;
+    --linie: #d9d3c7;
+    --akzent: #1f5f4a;
+    --warn: #a8452c;
+    --leise: #6b665d;
+    color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font: 15px/1.5 ui-sans-serif, system-ui, sans-serif;
+    color: var(--tinte);
+    background: var(--grund);
+}
+.kopf {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 0.9rem 1.5rem;
+    border-bottom: 1px solid var(--linie);
+}
+.kopf nav { display: flex; gap: 1.2rem; }
+.kopf a { color: var(--tinte); text-decoration: none; }
+.kopf a:hover { text-decoration: underline; }
+.marke { font-weight: 700; letter-spacing: 0.02em; }
+.inhalt { max-width: 64rem; margin: 0 auto; padding: 1.5rem; }
+.fuss { padding: 1rem 1.5rem; color: var(--leise); font-size: 0.85rem; border-top: 1px solid var(--linie); }
+h1 { font-size: 1.5rem; margin: 0 0 1rem; }
+h2 { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--linie); font-variant-numeric: tabular-nums; }
+th { color: var(--leise); font-weight: 600; font-size: 0.85rem; }
+td.zahl, th.zahl { text-align: right; }
+.karte { border: 1px solid var(--linie); border-radius: 6px; padding: 1rem 1.2rem; background: #fff; }
+.raster { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; }
+.pille { display: inline-block; padding: 0.1rem 0.55rem; border-radius: 999px; font-size: 0.8rem; border: 1px solid var(--linie); }
+.pille.gut { color: var(--akzent); border-color: var(--akzent); }
+.pille.schlecht { color: var(--warn); border-color: var(--warn); }
+.hinweis { color: var(--warn); margin: 0.6rem 0; }
+.leise { color: var(--leise); }
+a.zeile { color: var(--akzent); }

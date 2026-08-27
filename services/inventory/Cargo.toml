@@ -1,0 +1,21 @@
+# Der Lagerdienst — Rust, ohne Laufzeit-Framework.
+#
+# Kein tokio, kein axum: tokio verweigert auf wasm alles ausser
+# sync/macros/io-util/rt/time, und axum haengt daran. Ein Dienst, der
+# auf der Cap laufen soll, braucht auch keines: er wird PRO ANFRAGE
+# gestartet, liest die Anfrage von stdin und schreibt die Antwort nach
+# stdout. Der eingebaute `--serve`-Modus fuer die Entwicklermaschine
+# kommt mit `std::net` aus.
+#
+# `serde_json` bleibt: es beweist, dass der Cargo-Weg Abhaengigkeiten
+# aufloest, laedt und uebersetzt — nicht nur, dass rustc laeuft.
+[package]
+name = "inventory"
+version = "0.2.0"
+edition = "2021"
+
+[dependencies]
+serde_json = "1"
+
+[profile.release]
+panic = "abort"

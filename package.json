@@ -1,14 +1,15 @@
 {
   "name": "xleonplayz-monorepo",
   "private": true,
-  "version": "0.1.0",
-  "description": "Ein Monorepo mit vielen Apps in verschiedenen Sprachen — als Pruefstand fuer die Erkennung.",
+  "version": "0.2.0",
+  "description": "Vier Dienste in vier Sprachen, die miteinander reden — ein Pruefstand fuer Erkennung, Bau und Rollout.",
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "services/api"
   ],
   "scripts": {
     "build": "npm run build --workspaces --if-present",
-    "test": "npm run test --workspaces --if-present"
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "smoke": "bash tools/smoke.sh"
   }
 }

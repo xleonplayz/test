@@ -1,95 +1,66 @@
-# Das ganze System auf einmal — damit "die Apps reden miteinander" kein
-# Satz bleibt, sondern etwas ist, das man startet und ansieht.
-#
-#   docker compose up --build
-#   curl localhost:8081/uebersicht
-#
-# Die Adressen der Schwestern stehen HIER und nur hier. Kein Dienst
-# leitet den Namen einer anderen ab; jeder liest die Variable, die ihm
-# gegeben wird. Das ist der Grund, warum dieselben Binaerdateien in der
-# Zelle, im Container und auf einer Entwicklermaschine laufen.
-
+# Dieselben vier Dienste wie auf der Cap, nur mit Listenern: jeder laeuft
+# hier mit `--serve` (bzw. `next start`) und erreicht seine Schwestern
+# ueber die compose-Namen — genau die Vorgaben in den .env.example.
 services:
-  postgres:
-    image: postgres:16-alpine
+  inventory:
+    build:
+      context: ./services/inventory
+      dockerfile_inline: |
+        FROM rust:1.83-slim AS build
+        WORKDIR /src
+        COPY . .
+        RUN cargo build --release
+        FROM debian:bookworm-slim
+        COPY --from=build /src/target/release/inventory /usr/local/bin/inventory
+        CMD ["inventory", "--serve"]
     environment:
-      POSTGRES_USER: lily
-      POSTGRES_PASSWORD: geheim
-      POSTGRES_DB: lily
-    volumes:
-      - ./deploy/schema.sql:/docker-entrypoint-initdb.d/10-schema.sql:ro
-    healthcheck:
-      # Ohne diesen Test starten die Dienste, bevor die Datenbank
-      # Verbindungen annimmt — und geben dann Exit 75 zurueck, was nach
-      # einem Fehler aussieht und keiner ist.
-      test: ["CMD-SHELL", "pg_isready -U lily -d lily"]
-      interval: 2s
-      timeout: 3s
-      retries: 30
-
-  redis:
-    image: redis:7-alpine
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 2s
-      timeout: 3s
-      retries: 30
-
-  api-rust:
-    build: {context: ., dockerfile: apps/api-rust/Dockerfile}
-    environment:
-      DATABASE_URL: postgres://lily:geheim@postgres:5432/lily
-      API_RUST_PORT: "8082"
-      RUST_LOG: info
-    depends_on:
-      postgres: {condition: service_healthy}
+      PORT: "8082"
     ports: ["8082:8082"]
 
-  api-cpp:
-    build: {context: ., dockerfile: apps/api-cpp/Dockerfile}
+  pricing:
+    build:
+      context: ./services/pricing
+      dockerfile_inline: |
+        FROM gcc:14 AS build
+        WORKDIR /src
+        COPY . .
+        RUN gcc -O2 -o pricing src/main.c
+        FROM debian:bookworm-slim
+        COPY --from=build /src/pricing /usr/local/bin/pricing
+        CMD ["pricing", "--serve"]
     environment:
-      DATABASE_URL: postgres://lily:geheim@postgres:5432/lily
-      API_CPP_PORT: "8083"
-      LOG_LEVEL: info
-    depends_on:
-      postgres: {condition: service_healthy}
+      PORT: "8083"
     ports: ["8083:8083"]
 
-  api-python:
-    build: {context: ., dockerfile: services/api-python/Dockerfile}
+  api:
+    build:
+      context: ./services/api
+      dockerfile_inline: |
+        FROM node:22-alpine
+        WORKDIR /app
+        COPY package.json ./
+        RUN npm install
+        COPY . .
+        CMD ["npx", "tsx", "src/server.ts", "--serve"]
     environment:
-      DATABASE_URL: postgres://lily:geheim@postgres:5432/lily
-      PYTHON_API_PORT: "8084"
-      LOG_LEVEL: info
-      # Die eine Schwester, die dieser Dienst ruft.
-      API_CPP_URL: http://api-cpp:8083
-    depends_on:
-      postgres: {condition: service_healthy}
-    ports: ["8084:8084"]
-
-  worker-ts:
-    build: {context: ., dockerfile: apps/worker-ts/Dockerfile}
-    environment:
-      DATABASE_URL: postgres://lily:geheim@postgres:5432/lily
       PORT: "8081"
-      LOG_LEVEL: info
-      # Alle drei Schwestern, jede mit eigener Variable.
-      API_RUST_URL: http://api-rust:8082
-      API_CPP_URL: http://api-cpp:8083
-      API_PYTHON_URL: http://api-python:8084
-      REDIS_URL: redis://redis:6379
-      QUEUE_NAME: jobs
-    depends_on:
-      postgres: {condition: service_healthy}
-      redis: {condition: service_healthy}
+      INVENTORY_URL: http://inventory:8082
+      PRICING_URL: http://pricing:8083
+    depends_on: [inventory, pricing]
     ports: ["8081:8081"]
 
-  web-vue:
-    build: {context: ., dockerfile: apps/web-vue/Dockerfile}
+  web:
+    build:
+      context: ./apps/web
+      dockerfile_inline: |
+        FROM node:22-alpine
+        WORKDIR /app
+        COPY package.json ./
+        RUN npm install
+        COPY . .
+        RUN npm run build
+        CMD ["npm", "start"]
     environment:
-      # Die Oberflaeche kennt genau einen Dienst. Und weil sie im
-      # BROWSER laeuft, ist das die Adresse von aussen, nicht die im
-      # Docker-Netz.
-      WORKER_URL: http://localhost:8081
-    depends_on: [worker-ts]
-    ports: ["5173:5173"]
+      API_URL: http://api:8081
+    depends_on: [api]
+    ports: ["3000:3000"]

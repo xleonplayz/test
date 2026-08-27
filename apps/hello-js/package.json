@@ -1,7 +1,0 @@
-{
-  "name": "hello-js",
-  "version": "1.0.0",
-  "private": true,
-  "main": "index.js",
-  "description": "Der kleinste Dienst, der zum Baurezept passt: main zeigt auf eine Datei, die es gibt."
-}
