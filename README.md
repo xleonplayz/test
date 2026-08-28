@@ -129,6 +129,38 @@ Der Raptor füllt diese Werte **nicht** von selbst — er kennt die Kanten
 (aus den `.env.example`), aber eine Kante ist eine Erlaubnis, keine
 Adresse.
 
+### Gemessen am 28.08.2026 (Projekt `vierdienste`, phoenix)
+
+Alle vier erkannt (`nextjs`, `javascript`, `rust`, `cpp`), alle drei
+Kanten aus den `.env.example` gefunden, alle vier gebaut und ausgerollt.
+Dann, unter ihren Adressen:
+
+| App | Slug | Antwort |
+|---|---|---|
+| `services/inventory` | `cometsnow` | `/items/lamp-01` → `{"stock":12,…}` — liest die Anfrage von stdin, routet |
+| `services/pricing` | `kestrelworth` | `/price/desk-02?qty=3` → `{"discount_percent":5,"total_cents":156465}` |
+| `apps/web` | `wolfspark` | `/`, `/orders`, `/orders/o-1002`, `/health` rendern (SSR); **`/api/*` liefert 0 Byte** |
+| `services/api` | `bramblevine` | **502** — Trap beim Start (`Execution failed`) |
+
+Zwei Grenzen der Cap, die dieses Repo sichtbar macht — beide liegen in
+der Cap-Runtime, nicht in den Apps:
+
+1. **JS-Apps haben auf der Cap weder `fs` noch `http` noch `fetch`.**
+   Die Cap bindet `nex-runtime` ohne die „fremde Fläche"
+   (`nex-host-node`); deren Vermittlung bleibt ohne angemeldete Handler
+   „inert" (`host/dynamic/foreign_dispatch.rs`). `fetch()` liefert
+   `undefined` (die Seite sagt dann ehrlich „no response"),
+   `readFileSync` trappt. Eine JS-App kann die Anfrage nicht lesen und
+   keine Schwester rufen — sie kann nur eine feste Antwort schreiben.
+   `lly.app_call` gibt es nur für Wasm-Gäste (C/C++/Rust).
+2. **Next.js Route Handlers (`app/api/*/route.ts`) antworten leer**,
+   während Seiten (auch dynamische) rendern.
+
+Lokal (`npm run smoke`, `docker compose up`) läuft die Kette
+vollständig; unter `nex-run` der Meryl-Kette (mit fremder Fläche)
+beantwortet `api` jeden Pfad richtig. Was fehlt, ist die Fläche auf der
+Cap — eine Entscheidung, keine Reparatur an diesem Repo.
+
 ## Was dieser Prüfstand zutage gefördert hat
 
 Die Vorgeschichte (Erkennung leerer Vorschläge für Rust/C++, die Wurzel
