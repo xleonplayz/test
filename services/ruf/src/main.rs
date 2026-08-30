@@ -103,8 +103,13 @@ fn anfragezeile(roh: &str) -> (String, String) {
     (method, path)
 }
 
-fn antwort(method: &str, path: &str) -> serde_json::Value {
-    let path = path.split('?').next().unwrap_or(path);
+fn antwort(method: &str, voller_pfad: &str) -> serde_json::Value {
+    // Die Abfrage bleibt erhalten: sie ist die Marke, die durch den
+    // Aufruf hindurch wiederauftauchen muss.
+    let (path, abfrage) = match voller_pfad.split_once('?') {
+        Some((p, q)) => (p, q),
+        None => (voller_pfad, ""),
+    };
     match (method, path) {
         ("GET", "/health") => serde_json::json!({"ok": true, "app": "ruf"}),
         ("GET", "/topology") => serde_json::json!({
@@ -120,9 +125,22 @@ fn antwort(method: &str, path: &str) -> serde_json::Value {
                 });
             }
             // Eine vollstaendige Anfragezeile, damit der Gerufene sie
-            // genauso liest wie eine von aussen. Der Marker macht die
-            // Antwort eindeutig dieser Anfrage zuordenbar.
-            let marke = format!("/echo?marke={}", std::process::id());
+            // genauso liest wie eine von aussen.
+            //
+            // Die Marke ist die Abfrage der EIGENEN Anfrage. Damit haengt
+            // die Antwort des Gerufenen an dem, was der Besucher gerufen
+            // hat: `/via-echo?marke=abc` muss `/echo?marke=abc`
+            // zurueckbringen. Eine Marke, die die App selbst erzeugt,
+            // koennte auch aus einer alten Antwort stammen.
+            //
+            // KEIN `std::process::id()`: das gibt es auf WASI nicht und
+            // endet in `abort` — gemessen am 30.08.2026, die App trappte
+            // und das Gate meldete 502.
+            let marke = if abfrage.is_empty() {
+                "/echo?marke=ohne".to_string()
+            } else {
+                format!("/echo?{abfrage}")
+            };
             let eingabe = format!("GET {marke} HTTP/1.1\r\nHost: echo\r\n\r\n");
             let (code, aus) = rufe(&ziel, eingabe.as_bytes());
             serde_json::json!({
@@ -200,6 +218,16 @@ mod tests {
             ("GET".into(), "/via-echo".into())
         );
         assert_eq!(anfragezeile(""), ("GET".into(), "/".into()));
+    }
+
+    /// Die Marke des Besuchers muss unveraendert in den Aufruf gehen —
+    /// sonst beweist die Antwort nur, dass IRGENDEIN Ruf durchkam.
+    #[test]
+    fn die_marke_des_besuchers_reist_mit() {
+        std::env::set_var("ECHO_APP", "app_test");
+        let a = antwort("GET", "/via-echo?marke=abc");
+        assert_eq!(a["gesendet"], "/echo?marke=abc");
+        std::env::remove_var("ECHO_APP");
     }
 
     #[test]
