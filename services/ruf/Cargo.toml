@@ -1,0 +1,15 @@
+# Der Rufende — Rust, ohne Laufzeit-Framework.
+#
+# Wie inventory: kein tokio, kein axum. Auf der Cap wird pro Anfrage
+# gestartet; der `--serve`-Modus fuer die Entwicklermaschine kommt mit
+# `std::net` aus.
+[package]
+name = "ruf"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde_json = "1"
+
+[profile.release]
+panic = "abort"
