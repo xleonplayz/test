@@ -105,6 +105,10 @@ export async function handle(method: string, rawPath: string): Promise<unknown> 
         return {
             ok: true,
             app: "api",
+            // Die Fassung dieses Bauwerks — an ihr ist ein Redeploy von
+            // aussen nachweisbar. Ein Bundle-Gast (JS) ist genau der
+            // Fall, der bis zum 31.08. nicht getauscht werden konnte.
+            fassung: 2,
             upstreams: {
                 inventory: inv.ok ? "up" : `down: ${inv.reason}`,
                 pricing: pr.ok ? "up" : `down: ${pr.reason}`,

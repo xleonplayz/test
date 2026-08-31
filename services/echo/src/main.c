@@ -43,12 +43,19 @@ static void anfragezeile(const char *roh, char *method, size_t mk, char *path, s
     }
 }
 
+/* Die Fassung dieses Bauwerks. Sie steht in der Antwort, damit ein
+ * REDEPLOY von aussen nachweisbar ist: dieselbe App, dieselbe Adresse,
+ * eine andere Zahl. Ohne sie waere "es hat geantwortet" alles, was man
+ * ueber einen Tausch sagen koennte. */
+#define FASSUNG 2
+
 static void antwort(const char *method, const char *path, char *aus, size_t kap) {
     char m[64], p[600];
     json_escape(method, m, sizeof m);
     json_escape(path, p, sizeof p);
     snprintf(aus, kap,
-             "{\"app\":\"echo\",\"method\":\"%s\",\"path\":\"%s\"}", m, p);
+             "{\"app\":\"echo\",\"fassung\":%d,\"method\":\"%s\",\"path\":\"%s\"}",
+             FASSUNG, m, p);
 }
 
 static int einmal(void) {
