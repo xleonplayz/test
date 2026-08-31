@@ -1,0 +1,11 @@
+# Die Sonde: sie tut nichts ausser zu berichten, was sie sieht.
+[package]
+name = "sonde"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde_json = "1"
+
+[profile.release]
+panic = "abort"
