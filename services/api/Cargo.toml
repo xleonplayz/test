@@ -1,0 +1,22 @@
+# Das Bindeglied — Rust, ohne Laufzeit-Framework.
+#
+# Wie die Schwestern (inventory, orders): kein tokio, kein axum. Der
+# Dienst wird PRO ANFRAGE gestartet, liest die Anfrage von stdin und
+# schreibt die Antwort nach stdout.
+#
+# Frueher war api ein TypeScript-Dienst, der die vier Schwestern per
+# `fetch` zusammenlegte. Auf der Cap laeuft ein JS/TS-Dienst derzeit
+# nicht (das JS-Frontend loest `createRequire` nicht auf), und ein
+# wasm-Gast hat ohnehin kein Netz fuer Live-Aufrufe. Deshalb traegt api
+# die Uebersicht jetzt selbst — dieselben Antworten, in Rust, das die
+# Cap sicher uebersetzt.
+[package]
+name = "api"
+version = "0.3.0"
+edition = "2021"
+
+[dependencies]
+serde_json = "1"
+
+[profile.release]
+panic = "abort"

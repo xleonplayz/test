@@ -4,8 +4,7 @@
   "version": "0.2.0",
   "description": "Vier Dienste in vier Sprachen, die miteinander reden — ein Pruefstand fuer Erkennung, Bau und Rollout.",
   "workspaces": [
-    "apps/*",
-    "services/api"
+    "apps/*"
   ],
   "scripts": {
     "build": "npm run build --workspaces --if-present",
