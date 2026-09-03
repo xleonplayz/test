@@ -4,7 +4,7 @@ import "./globals.css"
 
 export const metadata = {
     title: "Lagerplattform",
-    description: "Artikel, Preise und Bestellungen — aus drei Diensten, ueber einen Draht.",
+    description: "Ein Laden aus fünf Diensten in vier Sprachen — über einen Draht.",
 }
 
 export default function RootLayout({children}: {children: ReactNode}) {
@@ -14,13 +14,14 @@ export default function RootLayout({children}: {children: ReactNode}) {
                 <header className="kopf">
                     <Link href="/" className="marke">Lagerplattform</Link>
                     <nav>
-                        <Link href="/">Uebersicht</Link>
+                        <Link href="/">Laden</Link>
+                        <Link href="/kasse">Kasse</Link>
                         <Link href="/orders">Bestellungen</Link>
                         <Link href="/health">Zustand</Link>
                     </nav>
                 </header>
                 <main className="inhalt">{children}</main>
-                <footer className="fuss">web → api → inventory · pricing</footer>
+                <footer className="fuss">web → api → inventory · pricing · orders · payments</footer>
             </body>
         </html>
     )

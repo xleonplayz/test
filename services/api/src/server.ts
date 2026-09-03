@@ -1,29 +1,36 @@
 /*
- * Das Bindeglied — die EINZIGE Adresse, die die Oberflaeche kennt.
+ * Das Bindeglied — die EINZIGE Adresse, die die Oberflaechen kennen.
  *
- *   web ──▶ api ──┬──▶ inventory   (Artikel und Bestand)
- *                 └──▶ pricing     (Preis je Artikel, mit Mengenrabatt)
+ *   web ────▶ api ──┬──▶ inventory   (Artikel und Bestand)
+ *   admin ──▶       ├──▶ pricing     (Preis je Artikel, mit Mengenrabatt)
+ *                   ├──▶ orders      (Bestellungen, Zustandsautomat)
+ *                   └──▶ payments    (autorisieren, einziehen, erstatten)
  *
- *   GET /health          {"ok":true,"app":"api","upstreams":{inventory,pricing}}
- *   GET /overview        Artikel + Preise + Bestellungen, in EINER Antwort
- *   GET /orders          alle Bestellungen, bepreist
- *   GET /orders/<id>     eine Bestellung, bepreist und gegen den Bestand geprueft
- *   GET /topology        wen er ruft, wer ihn ruft
+ *   GET  /health                {"ok":true,"app":"api","upstreams":{...}}
+ *   GET  /topology              wen er ruft, wer ihn ruft
+ *   GET  /catalog               Artikel mit Preis — was der Laden zeigt
+ *   GET  /overview              Katalog + Bestellungen + Zahlungen, EINE Antwort
+ *   GET  /orders                alle Bestellungen, bepreist und mit Zahlungsstand
+ *   GET  /orders/<id>           eine davon
+ *   POST /checkout              der ganze Kaufvorgang, orchestriert
+ *   POST /orders/<id>/fulfil    (Admin) Geld einziehen und ausliefern
+ *   POST /orders/<id>/cancel    (Admin) stornieren und Geld zurueck
  *
- * Warum ein Bindeglied und nicht zwei Aufrufe aus dem Browser: die zwei
+ * Warum ein Bindeglied und nicht vier Aufrufe aus dem Browser: die vier
  * Dienste dahinter haben keinen Grund, von aussen erreichbar zu sein,
- * und der Browser muesste sie ueber Origins hinweg rufen. Hier wird
- * einmal gefragt, einmal zusammengelegt.
+ * der Browser muesste sie ueber Origins hinweg rufen — und vor allem
+ * ist ein Kauf kein Aufruf, sondern eine REIHENFOLGE. Wer sie im
+ * Browser baut, hat sie beim ersten Verbindungsabbruch halb ausgefuehrt.
  *
  * Jede Schwester ueber ihre eigene Variable: `INVENTORY_URL`,
- * `PRICING_URL`. Kein abgeleiteter Name — in compose, in einer Zelle
- * und auf der Cap liegen sie an drei verschiedenen Orten, und nur die
- * Umgebung weiss, wo. Die Vorgaben unten sind die compose-Namen.
+ * `PRICING_URL`, `ORDERS_URL`, `PAYMENTS_URL`. Kein abgeleiteter Name —
+ * in compose, in einer Zelle und auf der Cap liegen sie an drei
+ * verschiedenen Orten, und nur die Umgebung weiss, wo.
  *
  * Ein Teilausfall ist eine Antwort, kein Fehler: faellt eine Schwester
- * aus (oder ist ihre Adresse nicht gesetzt), kommt die Uebersicht
- * trotzdem — das Feld auf null, der Name in `missing`, der Grund in
- * `reasons`. Eine Oberflaeche, die weiss WAS fehlt, kann es sagen.
+ * aus, kommt die Uebersicht trotzdem — das Feld auf null, der Name in
+ * `missing`, der Grund in `reasons`. Eine Oberflaeche, die weiss WAS
+ * fehlt, kann es sagen.
  *
  * Zwei Betriebsarten, EIN Handler:
  *   ohne Argument   Cap-Modus — rohe HTTP-Anfrage auf stdin, Antwort per console.log
@@ -32,25 +39,26 @@
  * `console.log`, nicht `process.stdout.write`: auf der Cap wird nur
  * `console.log` als Antwort gefangen.
  */
-import {createServer} from "node:http"
 import {readFileSync} from "node:fs"
 
 const INVENTORY_URL = process.env.INVENTORY_URL ?? "http://inventory:8082"
 const PRICING_URL = process.env.PRICING_URL ?? "http://pricing:8083"
-
-/** Bestellungen — im Code, nicht in einer Datenbank (siehe inventory). */
-const ORDERS = [
-    {id: "o-1001", customer: "Nordlicht GmbH", lines: [{sku: "lamp-01", qty: 4}, {sku: "cable-04", qty: 12}]},
-    {id: "o-1002", customer: "Atelier Sued", lines: [{sku: "desk-02", qty: 1}, {sku: "chair-03", qty: 2}]},
-    {id: "o-1003", customer: "Werkstatt West", lines: [{sku: "cable-04", qty: 60}]},
-]
+const ORDERS_URL = process.env.ORDERS_URL ?? "http://orders:8084"
+const PAYMENTS_URL = process.env.PAYMENTS_URL ?? "http://payments:8085"
 
 type Upstream = {ok: true; body: unknown} | {ok: false; reason: string}
 
 /** Ein Aufruf einer Schwester. Nie eine Ausnahme: der Ausfall ist ein Wert. */
-async function ask(base: string, path: string): Promise<Upstream> {
+async function ask(base: string, path: string, form?: Record<string, string>): Promise<Upstream> {
     try {
-        const res = await fetch(`${base}${path}`)
+        const init: RequestInit = form
+            ? {
+                  method: "POST",
+                  headers: {"content-type": "application/x-www-form-urlencoded"},
+                  body: new URLSearchParams(form).toString(),
+              }
+            : {}
+        const res = await fetch(`${base}${path}`, init)
         if (!res) return {ok: false, reason: "no response"}
         const text = await res.text()
         try {
@@ -63,89 +71,364 @@ async function ask(base: string, path: string): Promise<Upstream> {
     }
 }
 
-type Item = {sku: string; name: string; stock: number; available: boolean}
-type Price = {sku: string; unit_cents: number; qty: number; discount_percent: number; total_cents: number}
+export type Item = {sku: string; name: string; stock: number; available: boolean}
+export type Price = {sku: string; unit_cents: number; qty: number; discount_percent: number; total_cents: number}
+export type StoredOrder = {id: string; state: string; customer: string; created_at: number; lines: {sku: string; qty: number}[]}
+export type Payment = {order_id: string; state: string; amount_cents: number; method: string; reason: string}
+
+/*
+ * Die Dienste hinter api sprechen JSON, nehmen aber Formulare entgegen.
+ * Das ist kein Zufall und keine Altlast: `orders` ist C++ und `payments`
+ * ein Python ohne verlaesslichen JSON-Leser im Gast. Beide koennen JSON
+ * SCHREIBEN, ohne eine Bibliothek zu brauchen — lesen ist die teure
+ * Richtung. api ist der einzige Aufrufer und kann jede Kodierung
+ * erzeugen, also traegt api die Kosten und nicht die Dienste.
+ */
+
+// ------------------------------------------------------------ Einzelaufrufe
 
 async function items(): Promise<Upstream> {
     return ask(INVENTORY_URL, "/items")
 }
 
 async function price(sku: string, qty: number): Promise<Upstream> {
-    return ask(PRICING_URL, `/price/${sku}?qty=${qty}`)
+    return ask(PRICING_URL, `/price/${encodeURIComponent(sku)}?qty=${qty}`)
 }
 
-/** Eine Bestellung, bepreist und gegen den Bestand geprueft. */
-async function priced(order: (typeof ORDERS)[number], stock: Item[] | null) {
+async function storedOrders(): Promise<Upstream> {
+    return ask(ORDERS_URL, "/orders")
+}
+
+async function payments(): Promise<Upstream> {
+    return ask(PAYMENTS_URL, "/payments")
+}
+
+// -------------------------------------------------------------- Zusammenlegen
+
+/** Was eine Zeile kostet — und was der Bestand dazu sagt. */
+async function pricedLine(l: {sku: string; qty: number}, stock: Item[] | null) {
+    const p = await price(l.sku, l.qty)
+    const item = stock?.find((i) => i.sku === l.sku) ?? null
+    const pr = p.ok ? (p.body as Price) : null
+    return {
+        sku: l.sku,
+        qty: l.qty,
+        name: item?.name ?? null,
+        in_stock: item ? item.stock >= l.qty : null,
+        total_cents: pr?.total_cents ?? null,
+        discount_percent: pr?.discount_percent ?? null,
+        priced: p.ok,
+    }
+}
+
+/** Eine Bestellung, bepreist, gegen den Bestand geprueft, mit Zahlungsstand. */
+async function enrich(order: StoredOrder, stock: Item[] | null, pays: Payment[] | null) {
     const lines = []
     let total = 0
-    let missing: string[] = []
+    const missing: string[] = []
     for (const l of order.lines) {
-        const p = await price(l.sku, l.qty)
-        const item = stock?.find((i) => i.sku === l.sku) ?? null
-        if (p.ok) {
-            const pr = p.body as Price
-            total += pr.total_cents
-            lines.push({...l, name: item?.name ?? null, in_stock: item ? item.stock >= l.qty : null, total_cents: pr.total_cents, discount_percent: pr.discount_percent})
-        } else {
-            missing.push("pricing")
-            lines.push({...l, name: item?.name ?? null, in_stock: item ? item.stock >= l.qty : null, total_cents: null, discount_percent: null})
-        }
+        const pl = await pricedLine(l, stock)
+        if (pl.priced) total += pl.total_cents ?? 0
+        else missing.push("pricing")
+        lines.push(pl)
     }
     if (!stock) missing.push("inventory")
-    return {id: order.id, customer: order.customer, lines, total_cents: missing.includes("pricing") ? null : total, missing: [...new Set(missing)]}
+    if (!pays) missing.push("payments")
+    return {
+        id: order.id,
+        state: order.state,
+        customer: order.customer,
+        created_at: order.created_at,
+        lines,
+        total_cents: missing.includes("pricing") ? null : total,
+        payment: pays?.find((p) => p.order_id === order.id) ?? null,
+        missing: [...new Set(missing)],
+    }
 }
 
-/** Die eine Wahrheit: Methode und Pfad hinein, JSON heraus. */
-export async function handle(method: string, rawPath: string): Promise<unknown> {
-    const path = rawPath.split("?")[0]
-    if (method !== "GET") return {error: "method not allowed", method}
+/** Was eine Bestellung insgesamt kostet — ohne sie anzulegen. */
+async function sum(lines: {sku: string; qty: number}[]): Promise<{ok: true; cents: number} | {ok: false; reason: string}> {
+    let total = 0
+    for (const l of lines) {
+        const p = await price(l.sku, l.qty)
+        if (!p.ok) return {ok: false, reason: `pricing: ${p.reason}`}
+        const pr = p.body as Price & {error?: string}
+        if (pr.error) return {ok: false, reason: `pricing: ${pr.error} (${l.sku})`}
+        total += pr.total_cents
+    }
+    return {ok: true, cents: total}
+}
 
-    if (path === "/" || path === "/health") {
-        const [inv, pr] = await Promise.all([ask(INVENTORY_URL, "/health"), ask(PRICING_URL, "/health")])
+/** `lamp-01:4,cable-04:12` — die Schreibweise, in der Zeilen ueber den Draht gehen. */
+export function parseLines(raw: string): {sku: string; qty: number}[] {
+    const out: {sku: string; qty: number}[] = []
+    for (const pair of raw.split(",")) {
+        const [sku, qtyRaw] = pair.split(":")
+        const qty = Number(qtyRaw)
+        if (sku && Number.isFinite(qty) && qty > 0) out.push({sku: sku.trim(), qty})
+    }
+    return out
+}
+
+// ------------------------------------------------------------------- Checkout
+
+/*
+ * Der Kaufvorgang. Fuenf Schritte, und jeder kann scheitern:
+ *
+ *   1  Bestand pruefen        inventory
+ *   2  Summe rechnen          pricing
+ *   3  Bestellung anlegen     orders    (state=created)
+ *   4  Zahlung autorisieren   payments
+ *   5  Bestellung bezahlen    orders    (state=paid)
+ *
+ * Was diesen Ablauf von vier Aufrufen unterscheidet, ist Schritt 4:
+ * scheitert die Zahlung, liegt in `orders` bereits eine Bestellung. Sie
+ * dort stehen zu lassen hiesse, dem Laden eine Bestellung zu geben, die
+ * niemand bezahlt hat und die niemand storniert — sie wird deshalb
+ * ZURUECKGENOMMEN (state=cancelled), und dass das passiert ist, steht
+ * als eigener Schritt im Protokoll.
+ *
+ * Jeder Schritt wird protokolliert, auch der gelungene. Eine Oberflaeche
+ * kann dann sagen, WO es geklemmt hat, statt nur dass es klemmte — und
+ * beim Nachsehen muss niemand vier Dienstlogs nebeneinanderlegen.
+ */
+type Schritt = {step: string; ok: boolean; detail?: string}
+
+async function checkout(f: Record<string, string>) {
+    const steps: Schritt[] = []
+    const customer = (f.customer ?? "").trim()
+    const method = (f.method ?? "card").trim()
+    const lines = parseLines(f.lines ?? "")
+
+    if (!customer) return {ok: false, error: "customer fehlt", steps}
+    if (lines.length === 0) return {ok: false, error: "keine gueltige Zeile in `lines`", lines: f.lines ?? "", steps}
+
+    // 1 — Bestand. Ein Artikel, den es nicht gibt, ist ein anderer
+    //     Fehler als einer, der ausverkauft ist; beide werden benannt.
+    const inv = await items()
+    if (!inv.ok) {
+        steps.push({step: "inventory", ok: false, detail: inv.reason})
+        return {ok: false, error: "Bestand nicht pruefbar", steps}
+    }
+    const stock = ((inv.body as {items?: Item[]}).items ?? []) as Item[]
+    const problems: string[] = []
+    for (const l of lines) {
+        const item = stock.find((i) => i.sku === l.sku)
+        if (!item) problems.push(`${l.sku}: unbekannt`)
+        else if (item.stock < l.qty) problems.push(`${l.sku}: nur ${item.stock} von ${l.qty} da`)
+    }
+    if (problems.length) {
+        steps.push({step: "inventory", ok: false, detail: problems.join("; ")})
+        return {ok: false, error: "Bestand reicht nicht", steps}
+    }
+    steps.push({step: "inventory", ok: true, detail: `${lines.length} Zeilen gedeckt`})
+
+    // 2 — Summe.
+    const total = await sum(lines)
+    if (!total.ok) {
+        steps.push({step: "pricing", ok: false, detail: total.reason})
+        return {ok: false, error: "Preis nicht ermittelbar", steps}
+    }
+    steps.push({step: "pricing", ok: true, detail: `${total.cents} cents`})
+
+    // 3 — Bestellung anlegen.
+    const created = await ask(ORDERS_URL, "/orders", {
+        customer,
+        lines: lines.map((l) => `${l.sku}:${l.qty}`).join(","),
+    })
+    if (!created.ok) {
+        steps.push({step: "orders.create", ok: false, detail: created.reason})
+        return {ok: false, error: "Bestellung nicht anlegbar", steps}
+    }
+    const order = created.body as StoredOrder & {error?: string}
+    if (order.error) {
+        steps.push({step: "orders.create", ok: false, detail: order.error})
+        return {ok: false, error: "Bestellung abgewiesen", steps}
+    }
+    steps.push({step: "orders.create", ok: true, detail: order.id})
+
+    // 4 — Zahlung. Ab hier existiert etwas, das zurueckgenommen werden muss.
+    const auth = await ask(PAYMENTS_URL, "/payments/authorize", {
+        order_id: order.id,
+        amount_cents: String(total.cents),
+        method,
+    })
+    const pay = auth.ok ? (auth.body as Payment & {error?: string}) : null
+    if (!pay || pay.error || pay.state !== "authorized") {
+        const grund = !auth.ok ? auth.reason : (pay?.reason || pay?.error || pay?.state || "unbekannt")
+        steps.push({step: "payments.authorize", ok: false, detail: grund})
+        // Die Ruecknahme. Sie kann selbst scheitern — dann steht das
+        // ebenfalls im Protokoll, statt still verloren zu gehen.
+        const zurueck = await ask(ORDERS_URL, `/orders/${order.id}/state`, {state: "cancelled"})
+        steps.push({
+            step: "orders.cancel",
+            ok: zurueck.ok && !(zurueck.body as {error?: string}).error,
+            detail: zurueck.ok ? `${order.id} zurueckgenommen` : zurueck.reason,
+        })
+        return {ok: false, error: "Zahlung abgelehnt", reason: grund, order_id: order.id, steps}
+    }
+    steps.push({step: "payments.authorize", ok: true, detail: `${pay.amount_cents} cents ueber ${pay.method}`})
+
+    // 5 — Bestellung auf bezahlt.
+    const paid = await ask(ORDERS_URL, `/orders/${order.id}/state`, {state: "paid"})
+    const paidOrder = paid.ok ? (paid.body as StoredOrder & {error?: string}) : null
+    if (!paidOrder || paidOrder.error) {
+        steps.push({step: "orders.paid", ok: false, detail: paid.ok ? paidOrder?.error : paid.reason})
+        return {ok: false, error: "Zahlung ging durch, Bestellung blieb offen", order_id: order.id, steps}
+    }
+    steps.push({step: "orders.paid", ok: true})
+
+    return {ok: true, order: paidOrder, payment: pay, total_cents: total.cents, steps}
+}
+
+/*
+ * Ausliefern und Stornieren — die zwei Wege, die im Admin liegen.
+ *
+ * Beide fassen Geld an, BEVOR sie den Zustand der Bestellung aendern.
+ * Die Reihenfolge ist eine Entscheidung: geht der Geldschritt schief,
+ * steht die Bestellung noch da, wo sie war, und der Vorgang laesst sich
+ * wiederholen. Andersherum haette man eine ausgelieferte Bestellung
+ * ohne Einzug — und das faellt erst beim Kassensturz auf.
+ */
+async function fulfil(id: string) {
+    const steps: Schritt[] = []
+    const cap = await ask(PAYMENTS_URL, `/payments/${id}/capture`)
+    const capBody = cap.ok ? (cap.body as Payment & {error?: string}) : null
+    if (!capBody || capBody.error) {
+        steps.push({step: "payments.capture", ok: false, detail: cap.ok ? capBody?.error : cap.reason})
+        return {ok: false, error: "Einzug fehlgeschlagen", id, steps}
+    }
+    steps.push({step: "payments.capture", ok: true, detail: `${capBody.amount_cents} cents`})
+
+    const st = await ask(ORDERS_URL, `/orders/${id}/state`, {state: "fulfilled"})
+    const stBody = st.ok ? (st.body as StoredOrder & {error?: string}) : null
+    if (!stBody || stBody.error) {
+        steps.push({step: "orders.fulfilled", ok: false, detail: st.ok ? stBody?.error : st.reason})
+        return {ok: false, error: "Geld eingezogen, Bestellung nicht umgestellt", id, steps}
+    }
+    steps.push({step: "orders.fulfilled", ok: true})
+    return {ok: true, order: stBody, payment: capBody, steps}
+}
+
+async function cancel(id: string) {
+    const steps: Schritt[] = []
+    // `refund` waehlt beim Zahlungsdienst selbst zwischen Abbruch
+    // (noch kein Geld geflossen) und Erstattung (schon eingezogen).
+    // Diese Unterscheidung gehoert dorthin, wo die Buecher liegen.
+    const ref = await ask(PAYMENTS_URL, `/payments/${id}/refund`)
+    const refBody = ref.ok ? (ref.body as Payment & {error?: string}) : null
+    if (!refBody || refBody.error) {
+        // Eine Bestellung ohne Zahlung darf trotzdem storniert werden —
+        // sie ist nie ueber Schritt 3 hinausgekommen.
+        steps.push({step: "payments.refund", ok: false, detail: ref.ok ? refBody?.error : ref.reason})
+    } else {
+        steps.push({step: "payments.refund", ok: true, detail: refBody.state})
+    }
+
+    const st = await ask(ORDERS_URL, `/orders/${id}/state`, {state: "cancelled"})
+    const stBody = st.ok ? (st.body as StoredOrder & {error?: string}) : null
+    if (!stBody || stBody.error) {
+        steps.push({step: "orders.cancelled", ok: false, detail: st.ok ? stBody?.error : st.reason})
+        return {ok: false, error: "Storno nicht moeglich", id, steps}
+    }
+    steps.push({step: "orders.cancelled", ok: true})
+    return {ok: true, order: stBody, payment: refBody, steps}
+}
+
+// ------------------------------------------------------------------ Handler
+
+/** Die eine Wahrheit: Methode, Pfad und Rumpf hinein, JSON heraus. */
+export async function handle(method: string, rawPath: string, body = ""): Promise<unknown> {
+    const path = rawPath.split("?")[0]
+
+    if (method === "GET" && (path === "/" || path === "/health")) {
+        const [inv, pr, or, pa] = await Promise.all([
+            ask(INVENTORY_URL, "/health"),
+            ask(PRICING_URL, "/health"),
+            ask(ORDERS_URL, "/health"),
+            ask(PAYMENTS_URL, "/health"),
+        ])
         return {
             ok: true,
             app: "api",
             upstreams: {
                 inventory: inv.ok ? "up" : `down: ${inv.reason}`,
                 pricing: pr.ok ? "up" : `down: ${pr.reason}`,
+                orders: or.ok ? "up" : `down: ${or.reason}`,
+                payments: pa.ok ? "up" : `down: ${pa.reason}`,
             },
         }
     }
-    if (path === "/topology") {
-        return {app: "api", calls: ["inventory", "pricing"], called_by: ["web"]}
+    if (method === "GET" && path === "/topology") {
+        return {app: "api", calls: ["inventory", "pricing", "orders", "payments"], called_by: ["web", "admin"]}
     }
-    if (path === "/overview") {
+
+    if (method === "GET" && path === "/catalog") {
         const inv = await items()
-        const stock = inv.ok ? ((inv.body as {items: Item[]}).items ?? []) : null
-        const prices: Record<string, number | null> = {}
         const reasons: Record<string, string> = {}
         if (!inv.ok) reasons.inventory = inv.reason
-        for (const sku of stock?.map((i) => i.sku) ?? ["lamp-01", "desk-02", "chair-03", "cable-04"]) {
-            const p = await price(sku, 1)
-            prices[sku] = p.ok ? (p.body as Price).unit_cents : null
+        const stock = inv.ok ? ((inv.body as {items?: Item[]}).items ?? []) : null
+        const products = []
+        for (const i of stock ?? []) {
+            const p = await price(i.sku, 1)
+            if (!p.ok && !reasons.pricing) reasons.pricing = p.reason
+            products.push({...i, unit_cents: p.ok ? (p.body as Price).unit_cents : null})
+        }
+        return {app: "api", products, missing: Object.keys(reasons), reasons}
+    }
+
+    if (method === "GET" && (path === "/overview" || path === "/orders")) {
+        const [inv, ord, pay] = await Promise.all([items(), storedOrders(), payments()])
+        const reasons: Record<string, string> = {}
+        if (!inv.ok) reasons.inventory = inv.reason
+        if (!ord.ok) reasons.orders = ord.reason
+        if (!pay.ok) reasons.payments = pay.reason
+        const stock = inv.ok ? ((inv.body as {items?: Item[]}).items ?? []) : null
+        const pays = pay.ok ? ((pay.body as {payments?: Payment[]}).payments ?? []) : null
+        const raw = ord.ok ? ((ord.body as {orders?: StoredOrder[]}).orders ?? []) : []
+
+        const orders = []
+        for (const o of raw) orders.push(await enrich(o, stock, pays))
+
+        if (path === "/orders") return {app: "api", orders, missing: Object.keys(reasons), reasons}
+
+        const prices: Record<string, number | null> = {}
+        for (const i of stock ?? []) {
+            const p = await price(i.sku, 1)
+            prices[i.sku] = p.ok ? (p.body as Price).unit_cents : null
             if (!p.ok && !reasons.pricing) reasons.pricing = p.reason
         }
-        const orders = []
-        for (const o of ORDERS) orders.push(await priced(o, stock))
-        const missing = Object.keys(reasons)
-        return {app: "api", items: stock, prices, orders, missing, reasons}
+        return {app: "api", items: stock, prices, orders, payments: pays, missing: Object.keys(reasons), reasons}
     }
-    if (path === "/orders") {
-        const inv = await items()
-        const stock = inv.ok ? ((inv.body as {items: Item[]}).items ?? []) : null
-        const orders = []
-        for (const o of ORDERS) orders.push(await priced(o, stock))
-        return {app: "api", orders}
-    }
-    if (path.startsWith("/orders/")) {
+
+    if (method === "GET" && path.startsWith("/orders/")) {
         const id = path.slice("/orders/".length)
-        const order = ORDERS.find((o) => o.id === id)
-        if (!order) return {error: "unknown order", id}
-        const inv = await items()
-        const stock = inv.ok ? ((inv.body as {items: Item[]}).items ?? []) : null
-        return await priced(order, stock)
+        const [inv, one, pay] = await Promise.all([items(), ask(ORDERS_URL, `/orders/${id}`), payments()])
+        if (!one.ok) return {error: "orders nicht erreichbar", reason: one.reason, id}
+        const o = one.body as StoredOrder & {error?: string}
+        if (o.error) return {error: o.error, id}
+        const stock = inv.ok ? ((inv.body as {items?: Item[]}).items ?? []) : null
+        const pays = pay.ok ? ((pay.body as {payments?: Payment[]}).payments ?? []) : null
+        return await enrich(o, stock, pays)
     }
+
+    if (method === "POST" && path === "/checkout") return await checkout(form(body))
+
+    if (method === "POST" && path.startsWith("/orders/") && path.endsWith("/fulfil")) {
+        return await fulfil(path.slice("/orders/".length, -"/fulfil".length))
+    }
+    if (method === "POST" && path.startsWith("/orders/") && path.endsWith("/cancel")) {
+        return await cancel(path.slice("/orders/".length, -"/cancel".length))
+    }
+
     return {error: "not found", method, path}
+}
+
+/** `a=1&b=2` — dieselbe Kodierung, die api nach unten spricht. */
+export function form(raw: string): Record<string, string> {
+    const out: Record<string, string> = {}
+    for (const [k, v] of new URLSearchParams(raw)) out[k] = v
+    return out
 }
 
 /** Die Anfragezeile einer rohen HTTP-Nachricht. */
@@ -159,6 +442,15 @@ export function requestLine(raw: unknown): [string, string] {
     return [method || "GET", path || "/"]
 }
 
+/** Der Rumpf einer rohen HTTP-Nachricht: alles hinter der Leerzeile. */
+export function requestBody(raw: unknown): string {
+    const text = typeof raw === "string" ? raw : ""
+    const i = text.indexOf("\r\n\r\n")
+    if (i >= 0) return text.slice(i + 4)
+    const j = text.indexOf("\n\n")
+    return j >= 0 ? text.slice(j + 2) : ""
+}
+
 /*
  * Cap-Modus: die Anfrage liegt auf stdin — und wird HIER gelesen, auf
  * Modulebene, genau einmal.
@@ -169,6 +461,9 @@ export function requestLine(raw: unknown): [string, string] {
  *   - Nur auf Modulebene: dieselbe Zeile in einer Funktion liefert
  *     `undefined` (benannter Import) oder wirft (Namespace-Import).
  *   - Nur einmal: der zweite Leser bekommt einen leeren Strom.
+ *
+ * Seit es POST gibt, wird der GANZE Strom gebraucht, nicht nur die
+ * erste Zeile — der Rumpf steht dahinter.
  *
  * Im `--serve`-Modus wird nicht gelesen — dort kaeme ein Terminal, und
  * das blockiert.
@@ -184,17 +479,7 @@ if (!process.argv.includes("--serve")) {
 
 async function once() {
     const [method, path] = requestLine(RAW)
-    console.log(JSON.stringify(await handle(method, path)))
+    console.log(JSON.stringify(await handle(method, path, requestBody(RAW))))
 }
 
-function serve() {
-    const port = Number(process.env.PORT ?? 8081)
-    createServer(async (req, res) => {
-        const body = JSON.stringify(await handle(req.method ?? "GET", req.url ?? "/"))
-        res.writeHead(200, {"content-type": "application/json", "content-length": Buffer.byteLength(body)})
-        res.end(body)
-    }).listen(port, () => console.error(`api: listening on :${port} (inventory=${INVENTORY_URL}, pricing=${PRICING_URL})`))
-}
-
-if (process.argv.includes("--serve")) serve()
-else await once()
+await once()

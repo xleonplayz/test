@@ -1,76 +1,57 @@
-import Link from "next/link"
-import {euro, fromApi, type Overview} from "@/lib/api"
-import {LiveOverview} from "@/components/live-overview"
+import {fromApi, type Catalog} from "@/lib/api"
+import {Regal} from "@/components/regal"
 
-// Pro Anfrage rendern: die Uebersicht ist Livedaten, kein Bauartefakt.
+// Pro Anfrage rendern: Bestand und Preis sind Livedaten, kein Bauartefakt.
 export const dynamic = "force-dynamic"
 
 /*
- * Die Startseite: Server Component. Sie holt die Uebersicht EINMAL auf
- * dem Server (SSR), damit die Seite mit Inhalt ankommt — und uebergibt
- * sie an eine Client Component, die ueber den eigenen Route Handler
- * `/api/overview` weiterliest.
+ * Der Laden. Server Component: der Katalog wird EINMAL auf dem Server
+ * geholt, damit die Seite mit Ware ankommt — Suchmaschinen und ein
+ * langsames Netz sehen dasselbe wie ein schneller Browser.
+ *
+ * `/catalog` ist EIN Aufruf, obwohl dahinter zwei Dienste stehen
+ * (inventory fuer den Bestand, pricing fuer den Preis). Das
+ * Zusammenlegen macht api; der Laden kennt nur einen Draht.
  */
-export default async function Home() {
-    const reach = await fromApi<Overview>("/overview")
+export default async function Laden() {
+    const reach = await fromApi<Catalog>("/catalog")
+
     if (!reach.ok) {
         return (
             <>
-                <h1>Uebersicht</h1>
+                <h1>Laden</h1>
                 <p className="hinweis">api antwortet nicht: {reach.reason}</p>
                 <p className="leise">
-                    Die Plattform kennt nur <code>API_URL</code>. Ist sie gesetzt und antwortet der Dienst, steht hier der Bestand.
+                    Die Plattform kennt nur <code>API_URL</code>. Ist sie gesetzt und antwortet der Dienst, steht hier die Ware.
                 </p>
             </>
         )
     }
-    const o = reach.data
+
+    const k = reach.data
     return (
         <>
-            <h1>Uebersicht</h1>
-            {o.missing.length > 0 && (
+            <div className="seitenkopf">
+                <h1>Laden</h1>
+                <p className="leise">
+                    {k.products.length} Artikel · Bestand aus <code>inventory</code>, Preise aus <code>pricing</code>
+                </p>
+            </div>
+
+            {/* Ein Teilausfall ist eine Antwort, kein Fehler: der Laden bleibt
+                offen und sagt, was fehlt. Ohne pricing stehen die Preise auf
+                „–“, ohne inventory ist das Regal leer — beides sichtbar. */}
+            {k.missing.length > 0 && (
                 <p className="hinweis">
-                    Teilausfall — es fehlen: {o.missing.join(", ")} ({Object.values(o.reasons).join("; ")})
+                    Teilausfall — es fehlen: {k.missing.join(", ")} ({Object.values(k.reasons).join("; ")})
                 </p>
             )}
-            <section className="raster">
-                <div className="karte">
-                    <h2 style={{marginTop: 0}}>Artikel</h2>
-                    {o.items ? (
-                        <table>
-                            <thead><tr><th>SKU</th><th>Name</th><th className="zahl">Bestand</th><th className="zahl">Preis</th></tr></thead>
-                            <tbody>
-                                {o.items.map((i) => (
-                                    <tr key={i.sku}>
-                                        <td><code>{i.sku}</code></td>
-                                        <td>{i.name}</td>
-                                        <td className="zahl">{i.stock}</td>
-                                        <td className="zahl">{euro(o.prices[i.sku])}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    ) : (
-                        <p className="leise">inventory nicht erreichbar.</p>
-                    )}
-                </div>
-                <div className="karte">
-                    <h2 style={{marginTop: 0}}>Bestellungen</h2>
-                    <table>
-                        <thead><tr><th>Nr.</th><th>Kunde</th><th className="zahl">Summe</th></tr></thead>
-                        <tbody>
-                            {o.orders.map((b) => (
-                                <tr key={b.id}>
-                                    <td><Link className="zeile" href={`/orders/${b.id}`}>{b.id}</Link></td>
-                                    <td>{b.customer}</td>
-                                    <td className="zahl">{euro(b.total_cents)}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-            <LiveOverview initial={o} />
+
+            {k.products.length > 0 ? (
+                <Regal produkte={k.products} />
+            ) : (
+                <p className="leise">Zurzeit ist nichts im Regal.</p>
+            )}
         </>
     )
 }

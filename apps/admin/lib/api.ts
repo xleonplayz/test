@@ -1,22 +1,26 @@
 /*
- * Der eine Draht der Oberflaeche: `api`.
+ * Der eine Draht des Admins: `api` — dieselbe Adresse, die der Laden
+ * benutzt, und dieselben Regeln.
  *
- * Die Plattform kennt genau EINE Adresse. inventory, pricing, orders und
- * payments stehen dahinter; wer sie hier riefe, muesste sie oeffnen und
- * viermal pruefen, was api einmal prueft — und beim Kauf ausserdem eine
- * Reihenfolge im Browser nachbauen, die dort beim ersten
- * Verbindungsabbruch halb ausgefuehrt liegen bliebe.
+ * # Warum diese Datei neben der des Ladens steht und nicht in einem
+ *   gemeinsamen Paket
  *
- * Nur auf dem Server benutzt (Server Components und Route Handlers):
- * `API_URL` ist keine NEXT_PUBLIC_-Variable und gehoert nicht ins
- * Browser-Bundle. Der Browser spricht mit den eigenen Route Handlers
- * unter `/api/*` — derselbe Origin, kein CORS.
+ * Ein `packages/plattform`, aus dem beide Anwendungen laesen, waere die
+ * Lehrbuchantwort. Er kostet hier aber genau das, was dieses Repo misst:
+ * Next.js muesste ein Workspace-Paket ueber einen Symlink aufloesen und
+ * transpilieren — derselbe Weg, an dem die pnpm-Frage haengt. Ein
+ * Pruefstand fuer den Bau soll seine eigene Kette nicht als Erstes mit
+ * dem schwierigsten Fall belasten.
+ *
+ * Die Doppelung ist deshalb bewusst und ihre Kosten sind benannt: was
+ * api antwortet, steht an zwei Stellen als Typ. Waechst die Plattform,
+ * ist das gemeinsame Paket der richtige naechste Schritt — dann aber als
+ * eigene Aufgabe, mit einem Bau, den man messen kann.
  */
 export const API_URL = process.env.API_URL ?? "http://api:8081"
 
 export type Item = {sku: string; name: string; stock: number; available: boolean}
 export type Product = Item & {unit_cents: number | null}
-export type Catalog = {app: "api"; products: Product[]; missing: string[]; reasons: Record<string, string>}
 
 export type OrderLine = {
     sku: string
@@ -27,8 +31,6 @@ export type OrderLine = {
     discount_percent: number | null
 }
 export type Payment = {order_id: string; state: string; amount_cents: number; method: string; reason: string}
-
-/** Der Zustand einer Bestellung. Die Wahrheit darueber steht in `orders`. */
 export type OrderState = "created" | "paid" | "fulfilled" | "cancelled"
 
 export type Order = {
@@ -51,22 +53,17 @@ export type Overview = {
     missing: string[]
     reasons: Record<string, string>
 }
-export type Orders = {app: "api"; orders: Order[]; missing: string[]; reasons: Record<string, string>}
-
 export type Health = {
     ok: boolean
     app: "api"
     upstreams: {inventory: string; pricing: string; orders: string; payments: string}
 }
 
-/** Ein Schritt des Kaufvorgangs, so wie api ihn protokolliert. */
 export type Schritt = {step: string; ok: boolean; detail?: string}
+export type Aktionsergebnis =
+    | {ok: true; order: Order; payment: Payment | null; steps: Schritt[]}
+    | {ok: false; error: string; id?: string; steps: Schritt[]}
 
-export type CheckoutResult =
-    | {ok: true; order: {id: string; state: OrderState}; payment: Payment; total_cents: number; steps: Schritt[]}
-    | {ok: false; error: string; reason?: string; order_id?: string; steps: Schritt[]}
-
-/** Was die Oberflaeche zeigt, wenn api selbst nicht antwortet. */
 export type Reach<T> = {ok: true; data: T} | {ok: false; reason: string}
 
 export async function fromApi<T>(path: string): Promise<Reach<T>> {
@@ -84,13 +81,7 @@ export async function fromApi<T>(path: string): Promise<Reach<T>> {
     }
 }
 
-/**
- * Ein schreibender Aufruf. Formularkodierung, nicht JSON: api spricht
- * nach unten mit `orders` (C++) und `payments` (Python), und die nehmen
- * Formulare — eine Kodierung mehr auf diesem kurzen Weg brauchte
- * niemand.
- */
-export async function toApi<T>(path: string, form: Record<string, string>): Promise<Reach<T>> {
+export async function toApi<T>(path: string, form: Record<string, string> = {}): Promise<Reach<T>> {
     try {
         const res = await fetch(`${API_URL}${path}`, {
             method: "POST",
@@ -115,7 +106,18 @@ export function euro(cents: number | null | undefined): string {
     return `${(cents / 100).toFixed(2).replace(".", ",")} €`
 }
 
-/** Wie ein Zustand heisst, wenn ihn ein Mensch liest. */
+/** Ein Zeitstempel aus `orders` (Unix-Sekunden) als Datum. */
+export function datum(sekunden: number): string {
+    if (!sekunden) return "–"
+    return new Date(sekunden * 1000).toLocaleString("de-DE", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+    })
+}
+
 export const ZUSTAND: Record<string, string> = {
     created: "offen",
     paid: "bezahlt",
@@ -126,4 +128,19 @@ export const ZUSTAND: Record<string, string> = {
     refunded: "erstattet",
     voided: "abgebrochen",
     declined: "abgelehnt",
+}
+
+/**
+ * Welche Handlung eine Bestellung in ihrem Zustand zulaesst.
+ *
+ * Die Wahrheit darueber steht in `orders` und wird dort auch
+ * durchgesetzt — hier steht sie nur, damit das Admin keinen Knopf
+ * anbietet, der sicher abgewiesen wird. Ein Knopf, der immer da ist und
+ * manchmal einen Fehler bringt, erzieht dazu, Fehler zu ueberlesen.
+ */
+export function moeglich(state: string): {fulfil: boolean; cancel: boolean} {
+    return {
+        fulfil: state === "paid",
+        cancel: state === "created" || state === "paid",
+    }
 }

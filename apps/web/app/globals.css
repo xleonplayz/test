@@ -42,3 +42,109 @@ td.zahl, th.zahl { text-align: right; }
 .hinweis { color: var(--warn); margin: 0.6rem 0; }
 .leise { color: var(--leise); }
 a.zeile { color: var(--akzent); }
+
+/* ---------------------------------------------------------------- Laden
+ *
+ * Die Palette darueber bleibt unveraendert: Tinte auf warmem Papier, ein
+ * gruener Akzent, ein roter Warnton. Was hier dazukommt, sind Formen —
+ * Regal, Korb, Kasse, Protokoll — keine neuen Farben.
+ */
+.seitenkopf { margin-bottom: 1.2rem; }
+.seitenkopf h1 { margin-bottom: 0.2rem; }
+.seitenkopf p { margin: 0; }
+
+.regal {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 1rem;
+}
+.ware {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    border: 1px solid var(--linie);
+    border-radius: 6px;
+    padding: 1rem 1.1rem;
+    background: #fff;
+}
+/* Ausverkauftes wird gezeigt, nicht versteckt — nur zurueckgenommen. */
+.ware.leer { background: #f6f4ef; }
+.ware.leer .preis { color: var(--leise); }
+.ware-kopf { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; }
+.ware h3 { margin: 0; font-size: 1rem; }
+.preis { margin: 0; font-size: 1.35rem; font-variant-numeric: tabular-nums; }
+.bestandszeile { margin: 0; font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem; }
+.ware .knopf { margin-top: auto; }
+
+.knopf {
+    display: inline-block;
+    border: 1px solid var(--akzent);
+    background: var(--akzent);
+    color: #fff;
+    border-radius: 5px;
+    padding: 0.45rem 0.9rem;
+    font: inherit;
+    font-size: 0.9rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+.knopf:hover { filter: brightness(1.12); }
+.knopf.hell { background: #fff; color: var(--akzent); }
+.knopf:disabled { background: #fff; color: var(--leise); border-color: var(--linie); cursor: default; filter: none; }
+/* Tastaturbedienung braucht einen sichtbaren Fokus — ohne das ist die
+ * Seite mit der Tastatur benutzbar, aber nicht bedienbar. */
+.knopf:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--akzent); outline-offset: 2px; }
+
+.pille.warnung { color: var(--warn); border-color: var(--warn); font-size: 0.75rem; }
+
+.korbleiste {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.2rem;
+    padding: 0.8rem 1.1rem;
+    border: 1px solid var(--akzent);
+    border-radius: 6px;
+    background: #fff;
+}
+.mitteilung { margin-top: 0.5rem; font-size: 0.85rem; }
+
+/* -------------------------------------------------------------- Kasse */
+.kassenraster { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 1rem; align-items: start; }
+.feld { display: block; margin-bottom: 0.9rem; }
+.feld span { display: block; color: var(--leise); font-size: 0.85rem; margin-bottom: 0.25rem; }
+.feld input, .feld select {
+    width: 100%;
+    padding: 0.45rem 0.6rem;
+    border: 1px solid var(--linie);
+    border-radius: 5px;
+    font: inherit;
+    background: #fff;
+    color: var(--tinte);
+}
+.menge { width: 4.5rem; text-align: right; padding: 0.25rem 0.4rem; border: 1px solid var(--linie); border-radius: 4px; font: inherit; font-variant-numeric: tabular-nums; }
+.loeschen { border: 0; background: none; color: var(--leise); font-size: 1.1rem; cursor: pointer; line-height: 1; padding: 0 0.2rem; }
+.loeschen:hover { color: var(--warn); }
+.summe { margin: 0.9rem 0 0; font-variant-numeric: tabular-nums; }
+
+/* ---------------------------------------------------------- Protokoll
+ *
+ * Was api getan hat, Schritt fuer Schritt. Der wichtigste Eintrag ist
+ * `orders.cancel` nach einer abgelehnten Zahlung: er belegt, dass die
+ * schon angelegte Bestellung zurueckgenommen wurde. Deshalb steht das
+ * Protokoll auch im Erfolgsfall da — sonst waere es ein Fehlerkasten,
+ * und niemand lernte, wie der Ablauf normalerweise aussieht.
+ */
+.protokoll { margin: 0.8rem 0; padding-left: 1.3rem; font-size: 0.88rem; }
+.protokoll li { margin: 0.2rem 0; }
+.protokoll li::marker { color: var(--leise); }
+.protokoll li.gut::marker { content: "✓ "; color: var(--akzent); }
+.protokoll li.schlecht { color: var(--warn); }
+.protokoll li.schlecht::marker { content: "✕ "; color: var(--warn); }
+
+/* Tabellen mit vielen Spalten duerfen das Fenster nicht seitlich
+ * schieben — sie scrollen in ihrem eigenen Kasten. */
+.breit { overflow-x: auto; }
