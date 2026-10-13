@@ -9,12 +9,14 @@
 //!
 //! # Zwei Betriebsarten, EIN Handler
 //!
-//! Auf der Cap: die rohe HTTP-Anfrage liegt auf stdin, was die App nach
-//! stdout schreibt, ist der Antwortrumpf. Kein Listener.
+//! Auf der Cap: die rohe HTTP-Anfrage liegt auf stdin, die App schreibt
+//! eine vollstaendige HTTP/1.1-Antwort nach stdout (Statuszeile, Header,
+//! Leerzeile, Rumpf). Das setzt in der App-Konfiguration
+//! `"http_stdio": {"response": "http1"}` voraus (Vertrag v1.4.2); ohne
+//! diese Angabe erwartet die Cap reines JSON. Kein Listener.
 //!
 //! Lokal: `cargo run -- --serve` startet einen HTTP-Server auf `PORT`
-//! (Standard 8080), mit echtem Status und `Content-Type`.
-//! Beide Wege rufen `antwort(method, path)`.
+//! (Standard 8080). Beide Wege schreiben dieselben Antwortbytes.
 use std::io::{BufRead, BufReader, Read, Write};
 
 const SEITE: &str = r#"<!doctype html>
@@ -99,14 +101,40 @@ fn anfragezeile(zeile: &str) -> (String, String) {
     (method, path)
 }
 
-/// Cap-Modus: eine Anfrage von stdin, der Rumpf nach stdout, Ende.
+/// Die Antwort als HTTP/1.1-Bytes. Bei HEAD bleibt der Rumpf leer und
+/// es gibt keine Laenge (Vertrag v1.4.2, Abschnitt 4). Verbotene Header
+/// wie `Connection` oder `Set-Cookie` schreibt die App nie.
+fn http1(a: &Antwort, head: bool) -> Vec<u8> {
+    let grund = match a.status {
+        200 => "OK",
+        404 => "Not Found",
+        405 => "Method Not Allowed",
+        _ => "Error",
+    };
+    let mut kopf = format!("HTTP/1.1 {} {grund}\r\nContent-Type: {}\r\n", a.status, a.typ);
+    if !head {
+        kopf.push_str(&format!("Content-Length: {}\r\n", a.rumpf.len()));
+    }
+    kopf.push_str("\r\n");
+    let mut bytes = kopf.into_bytes();
+    if !head {
+        bytes.extend_from_slice(a.rumpf.as_bytes());
+    }
+    bytes
+}
+
+/// Cap-Modus: eine Anfrage von stdin, eine HTTP/1.1-Antwort nach stdout, Ende.
 fn cap() {
     let mut roh = String::new();
     // Ein leerer oder unlesbarer stdin ist kein Fehler: dann ist es ein
     // Aufruf ohne Anfrage, und die Seite ist die Antwort.
     let _ = std::io::stdin().read_to_string(&mut roh);
     let (method, path) = anfragezeile(roh.lines().next().unwrap_or(""));
-    print!("{}", antwort(&method, &path, "cap").rumpf);
+    let head = method == "HEAD";
+    let a = antwort(if head { "GET" } else { &method }, &path, "cap");
+    let mut aus = std::io::stdout();
+    let _ = aus.write_all(&http1(&a, head));
+    let _ = aus.flush();
 }
 
 /// Entwicklermodus: gewoehnlicher HTTP-Server auf `PORT`.
@@ -120,17 +148,10 @@ fn serve() {
             continue;
         }
         let (method, path) = anfragezeile(&zeile);
-        let a = antwort(&method, &path, "serve");
-        let grund = if a.status == 200 { "OK" } else { "Error" };
+        let head = method == "HEAD";
+        let a = antwort(if head { "GET" } else { &method }, &path, "serve");
         let mut schreiber = &verbindung;
-        let _ = write!(
-            schreiber,
-            "HTTP/1.1 {} {grund}\r\nContent-Type: {}\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{}",
-            a.status,
-            a.typ,
-            a.rumpf.len(),
-            a.rumpf
-        );
+        let _ = schreiber.write_all(&http1(&a, head));
     }
 }
 

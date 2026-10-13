@@ -10,5 +10,14 @@ eine kleine JSON-Route ausliefert, ohne Framework und ohne Abhängigkeiten.
 | `/health` | `{"ok":true,"app":"rust-web"}` |
 
 **Auf der Cap** wird die App pro Anfrage gestartet: die rohe HTTP-Anfrage
-liegt auf stdin, der Antwortrumpf geht nach stdout (wie die Dienste auf
-`main`). **Lokal:** `PORT=8080 cargo run --release -- --serve`.
+liegt auf stdin, die App schreibt eine vollständige HTTP/1.1-Antwort nach
+stdout. Damit die Cap Status und `Content-Type` übernimmt, braucht die App
+in ihrer Konfiguration:
+
+```json
+"http_stdio": { "response": "http1" }
+```
+
+(Vertrag v1.4.2). Ohne diese Angabe erwartet die Cap reines JSON.
+
+**Lokal:** `PORT=8080 cargo run --release -- --serve`.
