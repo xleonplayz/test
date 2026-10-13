@@ -1,66 +1,16 @@
-# Dieselben vier Dienste wie auf der Cap, nur mit Listenern: jeder laeuft
-# hier mit `--serve` (bzw. `next start`) und erreicht seine Schwestern
-# ueber die compose-Namen — genau die Vorgaben in den .env.example.
 services:
-  inventory:
-    build:
-      context: ./services/inventory
-      dockerfile_inline: |
-        FROM rust:1.83-slim AS build
-        WORKDIR /src
-        COPY . .
-        RUN cargo build --release
-        FROM debian:bookworm-slim
-        COPY --from=build /src/target/release/inventory /usr/local/bin/inventory
-        CMD ["inventory", "--serve"]
-    environment:
-      PORT: "8082"
-    ports: ["8082:8082"]
-
-  pricing:
-    build:
-      context: ./services/pricing
-      dockerfile_inline: |
-        FROM gcc:14 AS build
-        WORKDIR /src
-        COPY . .
-        RUN gcc -O2 -o pricing src/main.c
-        FROM debian:bookworm-slim
-        COPY --from=build /src/pricing /usr/local/bin/pricing
-        CMD ["pricing", "--serve"]
-    environment:
-      PORT: "8083"
-    ports: ["8083:8083"]
-
-  api:
-    build:
-      context: ./services/api
-      dockerfile_inline: |
-        FROM node:22-alpine
-        WORKDIR /app
-        COPY package.json ./
-        RUN npm install
-        COPY . .
-        CMD ["npx", "tsx", "src/server.ts", "--serve"]
-    environment:
-      PORT: "8081"
-      INVENTORY_URL: http://inventory:8082
-      PRICING_URL: http://pricing:8083
-    depends_on: [inventory, pricing]
+  backend:
+    image: rust:1.83
+    working_dir: /app
+    volumes: ["./services/backend:/app"]
+    command: cargo run --release -- --serve
     ports: ["8081:8081"]
-
   web:
-    build:
-      context: ./apps/web
-      dockerfile_inline: |
-        FROM node:22-alpine
-        WORKDIR /app
-        COPY package.json ./
-        RUN npm install
-        COPY . .
-        RUN npm run build
-        CMD ["npm", "start"]
+    image: node:22
+    working_dir: /app
+    volumes: ["./apps/web:/app"]
+    command: sh -c "npm install && npm run dev"
     environment:
-      API_URL: http://api:8081
-    depends_on: [api]
+      BACKEND_URL: http://backend:8081
     ports: ["3000:3000"]
+    depends_on: [backend]

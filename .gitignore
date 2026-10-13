@@ -1,23 +1,6 @@
-# Node
 node_modules/
 .next/
-dist/
-*.tsbuildinfo
-
-# Rust
 target/
-
-# C++
-build/
-CMakeCache.txt
-CMakeFiles/
-
-# Python
-__pycache__/
-*.egg-info/
-.venv/
-
-# Umgebung — .env.example gehoert INS Repo, .env nie.
 .env
 .env.local
-.env.*.local
+*.tsbuildinfo
