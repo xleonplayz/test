@@ -1,0 +1,12 @@
+# Ein Rust-Frontend fuer die Cap — nur die Standardbibliothek.
+#
+# Wie die Dienste auf `main` wird die App auf der Cap PRO ANFRAGE
+# gestartet: rohe HTTP-Anfrage auf stdin, Antwort nach stdout. Mit
+# `--serve` laeuft dieselbe Datei lokal als HTTP-Server auf `PORT`.
+[package]
+name = "rust-web"
+version = "0.1.0"
+edition = "2021"
+
+[profile.release]
+panic = "abort"
