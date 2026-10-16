@@ -26,8 +26,10 @@
  * `reasons`. Eine Oberflaeche, die weiss WAS fehlt, kann es sagen.
  *
  * Zwei Betriebsarten, EIN Handler:
- *   ohne Argument   Cap-Modus — rohe HTTP-Anfrage auf stdin, Antwort per console.log
- *   --serve         Entwicklermodus — HTTP-Server auf PORT
+ *   ohne Argument   HTTP-Server (`createServer().listen()` auf Modulebene) — so
+ *                   startet die Plattform JS-Apps seit Release 1; dort oeffnet
+ *                   `listen` keinen Socket, sondern registriert den Handler
+ *   --once          alter Cap-Modus — rohe HTTP-Anfrage auf stdin, Antwort per console.log
  *
  * `console.log`, nicht `process.stdout.write`: auf der Cap wird nur
  * `console.log` als Antwort gefangen.
@@ -170,11 +172,11 @@ export function requestLine(raw: unknown): [string, string] {
  *     `undefined` (benannter Import) oder wirft (Namespace-Import).
  *   - Nur einmal: der zweite Leser bekommt einen leeren Strom.
  *
- * Im `--serve`-Modus wird nicht gelesen — dort kaeme ein Terminal, und
- * das blockiert.
+ * Ohne `--once` wird nicht gelesen — im Servermodus kaeme dort ein Terminal
+ * (lokal) bzw. kein Rumpf (Plattform), und das blockiert.
  */
 let RAW: unknown = ""
-if (!process.argv.includes("--serve")) {
+if (process.argv.includes("--once")) {
     try {
         RAW = readFileSync("/dev/stdin", "utf8")
     } catch {
@@ -196,5 +198,5 @@ function serve() {
     }).listen(port, () => console.error(`api: listening on :${port} (inventory=${INVENTORY_URL}, pricing=${PRICING_URL})`))
 }
 
-if (process.argv.includes("--serve")) serve()
-else await once()
+if (process.argv.includes("--once")) await once()
+else serve()
