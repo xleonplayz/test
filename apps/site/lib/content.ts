@@ -1,6 +1,6 @@
-// The documentation, bundled as JSON by scripts/sync-docs.sh. Nothing here
+// The documentation, bundled as a module by scripts/sync-docs.sh. Nothing here
 // reads files, so the pages also work where the app has no file access.
-import raw from "./docs.json";
+import raw from "./docs.generated";
 import { renderMarkdown } from "./markdown";
 
 export type DocMeta = { slug: string; title: string; section: string; order: number };

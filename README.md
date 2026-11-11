@@ -15,7 +15,7 @@ browser ──► site (Next.js) ──► search (Hono, :4000) ──► indexe
 | `indexer` | `services/indexer/` | Rust: embeds the Markdown at compile time, tokenizes, stems, counts term and document frequencies, serves the index | private, port 5000 |
 
 The documentation lives in `docs/`. `scripts/sync-docs.sh` copies it into the
-two apps that need it (the site gets one JSON module, the indexer the files);
+two apps that need it (the site gets one generated module, the indexer the files);
 run it after editing `docs/` and commit the result. Neither app reads files at
 run time.
 
