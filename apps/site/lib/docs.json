@@ -1,0 +1,65 @@
+[
+ {
+  "slug": "authentication",
+  "title": "Authentication",
+  "section": "Basics",
+  "order": 2,
+  "body": "# Authentication\n\nReading the catalog needs no key. Creating carts, placing orders and reading orders\nneed an API key sent as a bearer token:\n\n```\nAuthorization: Bearer lk_live_...\n```\n\n## Keys\n\nKeys start with `lk_test_` in the sandbox and `lk_live_` in production. A test key never\ntouches real stock or payments. Rotate a key from the console; the old key keeps working\nfor 24 hours so you can roll out the new one without downtime.\n\n## Scopes\n\nA key carries scopes: `catalog:read`, `cart:write`, `orders:read` and `orders:write`.\nA call outside the key's scopes answers `403 forbidden` with the missing scope in the\n`error` field. Give storefront servers `cart:write` only; keep `orders:read` for your\nback office.\n"
+ },
+ {
+  "slug": "carts",
+  "title": "Carts",
+  "section": "Ordering",
+  "order": 4,
+  "body": "# Carts\n\nA cart collects products before checkout. Create one, add items, and ask for a quote\nat any time.\n\n```\nPOST /carts                          -> {\"id\": \"cart-...\"}\nPOST /carts/{id}/items  {\"sku\": \"TEA-001\", \"qty\": 2}\nDELETE /carts/{id}/items/{sku}\nGET  /carts/{id}?country=AT&promo=WELCOME10\n```\n\nEvery change answers with a fresh quote, so your page can redraw totals right away.\nA negative `qty` removes pieces; reaching zero drops the line.\n\n## Stock\n\nAdding more pieces than are in stock answers `409 conflict` with the number available.\nStock is reserved only at checkout, not while items sit in a cart.\n\n## Lifetime\n\nCarts live in memory for 24 hours. An unknown cart id answers `404`; create a new cart\nand add the items again.\n"
+ },
+ {
+  "slug": "checkout",
+  "title": "Checkout",
+  "section": "Ordering",
+  "order": 5,
+  "body": "# Checkout\n\n`POST /carts/{id}/checkout` turns a cart into an order. Send the destination country and\nan optional promo code:\n\n```\n{\"country\": \"DE\", \"promo\": \"TEA20\"}\n```\n\nThe answer is the order with its final quote: lines, discount, VAT, shipping and the\ntotal in cents. The cart is gone afterwards; checking out the same cart twice answers\n`404`.\n\n## Failures\n\nAn empty cart answers `400`. A country we do not ship to answers `422` with\n`we do not ship to XX`. If the pricing service is unreachable the API answers `502`\nand nothing is charged; retry with exponential backoff.\n"
+ },
+ {
+  "slug": "errors",
+  "title": "Errors",
+  "section": "Reference",
+  "order": 7,
+  "body": "# Errors\n\nErrors answer with a status code and a JSON body `{\"error\": \"...\"}` that explains the\nproblem in one sentence.\n\n| Status | When |\n|---|---|\n| `400` | The request body is malformed or the cart is empty |\n| `403` | The key lacks a scope |\n| `404` | Unknown product, cart or route |\n| `409` | Not enough stock |\n| `422` | The pricing service refused the quote, for example an unknown country |\n| `429` | Too many requests; see [Rate limits](/docs/rate-limits) |\n| `502` | A service behind the API did not answer; retry later |\n\nRetry only `429` and `502`, and only with backoff. Every other error needs a changed\nrequest.\n"
+ },
+ {
+  "slug": "getting-started",
+  "title": "Getting started",
+  "section": "Basics",
+  "order": 1,
+  "body": "# Getting started\n\nThe Leaf & Kettle API lets you list teas, fill carts and place orders from your own\nstorefront. Every endpoint speaks JSON over HTTPS and answers within a few milliseconds.\n\n## Your first request\n\nList the catalog with a plain `GET`:\n\n```\ncurl https://api.leafandkettle.example/products\n```\n\nThe answer holds an `items` array. Each product has a `sku`, a `name`, a `category`\nand a net `priceCents`. Prices never include VAT; the pricing service adds tax for the\ndestination country when you ask for a quote.\n\n## Next steps\n\n- Read [Authentication](/docs/authentication) to get a key for write calls.\n- Walk through [Carts](/docs/carts) to build a checkout.\n- Check [Pricing and taxes](/docs/pricing-and-taxes) before you show totals to shoppers.\n"
+ },
+ {
+  "slug": "pricing-and-taxes",
+  "title": "Pricing and taxes",
+  "section": "Ordering",
+  "order": 6,
+  "body": "# Pricing and taxes\n\nThe pricing service computes every total. It applies, in this order:\n\n1. **Volume discount**: 10 % off a line from three pieces of the same product.\n2. **Promo code**: `WELCOME10` takes 10 %, `TEA20` takes 20 % off what is left.\n3. **VAT** per country and category.\n4. **Shipping**: free from 50 EUR of discounted goods, otherwise 4.90 EUR within\n   Germany and 9.90 EUR elsewhere.\n\n## VAT rates\n\n| Country | Standard | Reduced (food, books) |\n|---|---|---|\n| DE | 19 % | 7 % |\n| AT | 20 % | 10 % |\n| FR | 20 % | 5.5 % |\n| NL | 21 % | 9 % |\n| CH | 0 % | 0 % |\n\nAmounts are rounded half up per line, in cents. Show the quote's `totalCents`\nunchanged; never recompute taxes in the browser.\n"
+ },
+ {
+  "slug": "products",
+  "title": "Products",
+  "section": "Catalog",
+  "order": 3,
+  "body": "# Products\n\n`GET /products` returns the whole catalog; `GET /products/{sku}` returns one product or\n`404` when the SKU is unknown.\n\n## Fields\n\n| Field | Meaning |\n|---|---|\n| `sku` | Stable product id, for example `POT-020` |\n| `name` | Display name |\n| `category` | `food`, `books` or `goods`; it decides the VAT rate |\n| `priceCents` | Net price in euro cents |\n| `stock` | Pieces available right now |\n\n## Categories and tax\n\nTea counts as `food` and books as `books`; both take the reduced VAT rate in most\ncountries. Cups, pots and kits are `goods` at the standard rate. See\n[Pricing and taxes](/docs/pricing-and-taxes).\n"
+ },
+ {
+  "slug": "rate-limits",
+  "title": "Rate limits",
+  "section": "Reference",
+  "order": 8,
+  "body": "# Rate limits\n\nEach key may send 50 requests per second with bursts up to 100. Reads of the catalog\nare cached at the edge and do not count.\n\nWhen you exceed the limit the API answers `429 too many requests` with a\n`retry-after` header in seconds. Wait at least that long before the next call.\n\n## Tips\n\n- Cache the catalog for a minute instead of loading it on every page view.\n- Batch cart changes on the client and send them when the shopper pauses.\n- Use one cart per shopper session, not one per page.\n"
+ },
+ {
+  "slug": "webhooks",
+  "title": "Webhooks",
+  "section": "Reference",
+  "order": 9,
+  "body": "# Webhooks\n\nRegister an HTTPS endpoint to hear about orders without polling. We send a `POST` with\na JSON event for `order.placed`, `order.shipped` and `order.refunded`.\n\n## Verifying signatures\n\nEach delivery carries a `lk-signature` header: an HMAC-SHA256 of the raw body with\nyour webhook secret. Compute it on your side and compare in constant time; drop the\ndelivery when it does not match.\n\n## Retries\n\nA delivery counts as received when your endpoint answers `2xx` within ten seconds.\nOtherwise we retry with exponential backoff for up to three days. Make your handler\nidempotent: the event `id` stays the same across retries.\n"
+ }
+]

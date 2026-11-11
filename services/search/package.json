@@ -1,0 +1,9 @@
+{
+  "name": "docs-search",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": { "start": "node src/server.js", "test": "node --test" },
+  "dependencies": { "@hono/node-server": "1.19.19", "hono": "4.9.12" }
+}
