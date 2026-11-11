@@ -11,7 +11,7 @@ browser ──► site (Next.js) ──► search (Hono, :4000) ──► indexe
 | App | Path | What it does | Reachable |
 |---|---|---|---|
 | `site` | `apps/site/` | Next.js 15: every doc page prerendered at build time, a search page and search-as-you-type | public |
-| `search` | `services/search/` | Hono on Node: loads the index from the indexer (refresh every minute), BM25 ranking, snippets, prefix suggestions | private, port 4000 |
+| `search` | `services/search/` | Hono (served with node:http): loads the index from the indexer (refresh every minute), BM25 ranking, snippets, prefix suggestions | private, port 4000 |
 | `indexer` | `services/indexer/` | Rust: embeds the Markdown at compile time, tokenizes, stems, counts term and document frequencies, serves the index | private, port 5000 |
 
 The documentation lives in `docs/`. `scripts/sync-docs.sh` copies it into the
