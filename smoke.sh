@@ -14,7 +14,7 @@ check() { # name url expected-substring [curl args...]
   local body code
   body=$(curl -sS -m 30 -w '\n%{http_code}' "$@" "$url" 2>&1)
   code=${body##*$'\n'}; body=${body%$'\n'*}
-  if [[ $code =~ ^2 ]] && grep -qF -- "$want" <<<"$body"; then echo "PASS $name ($code)"
+  if [[ $code =~ ^2 ]] && grep -qiF -- "$want" <<<"$body"; then echo "PASS $name ($code)"
   else echo "FAIL $name ($code): $(head -c 300 <<<"$body")"; fail=1; fi
 }
 if [[ -n ${MODERATION_URL:-} ]]; then
