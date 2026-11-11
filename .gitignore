@@ -1,0 +1,8 @@
+node_modules/
+.next/
+target/
+dist/
+*.log
+.env
+.env.*
+build/
