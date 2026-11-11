@@ -10,7 +10,7 @@ browser ──► web (Next.js) ──► api (Hono, :4000) ──► pricing (R
 | App | Path | What it does | Reachable |
 |---|---|---|---|
 | `web` | `apps/web/` | Next.js 15 storefront: catalog, product pages, cart, checkout, status page | public |
-| `api` | `services/api/` | Hono on Node: catalog, carts and orders (in memory) | private, port 4000 |
+| `api` | `services/api/` | Hono (served with node:http): catalog, carts and orders (in memory) | private, port 4000 |
 | `pricing` | `services/pricing/` | Rust (axum): volume discounts, promo codes, VAT per country and category, shipping | private, port 5000 |
 
 The storefront's browser code never calls the API directly; Next.js route
