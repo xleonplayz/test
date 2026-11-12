@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Copies the documentation in docs/ into the two apps that need it: the site
-# gets one JSON module (apps/site/lib/docs.generated.ts), the indexer embeds the files
+# gets one generated module (apps/site/lib/docs.generated.ts), the indexer embeds the files
 # (services/indexer/docs/). Run after editing docs/ and commit the results.
 set -euo pipefail
 root=$(cd "$(dirname "$0")/.." && pwd)
