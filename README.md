@@ -11,7 +11,7 @@ browser ──► web (Nuxt 3) ──► api (Express, :4000) ──► worker (
 
 | App | Path | What it does | Reachable |
 |---|---|---|---|
-| `web` | `apps/web/` | Nuxt 3 dashboard: metric cards, sparklines, recent events, worker job runs; refreshes every 5 s | public |
+| `web` | `apps/web/` | Nuxt 3 dashboard (vue comes with nuxt; a second pinned vue makes Nitro write a symlinked multi-version tree): metric cards, sparklines, recent events, worker job runs; refreshes every 5 s | public |
 | `api` | `services/api/` | Express: ingests events, stores the raw events, forwards them to the worker, serves summaries; sends demo traffic | private, port 4000 |
 | `worker` | `services/worker/` | Rust: queues events, folds them every 2 s into one-minute buckets (count, sum, min, max, p50, p95), keeps two hours | private, port 5000 |
 
