@@ -1,0 +1,10 @@
+{
+  "id": "B2",
+  "directory": "b02-network",
+  "description": "Frontend Wasm → Backend Node (gleiche Cap) über Kante",
+  "expected": "`/api` 200 (mit Schalter), sonst ehrliche Meldung „not carried“",
+  "origin": "Jan tally",
+  "priority": "P0",
+  "port": 5131,
+  "platform_validation": "not_run"
+}

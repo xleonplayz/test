@@ -1,0 +1,8 @@
+{
+  "name": "web",
+  "requested_runtime": "node",
+  "role": "frontend",
+  "project_marker": "B11-frontend",
+  "exposed": true,
+  "port": 8080
+}

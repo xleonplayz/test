@@ -1,0 +1,8 @@
+{
+  "name": "api",
+  "requested_runtime": "node",
+  "role": "backend",
+  "project_marker": "B3-project-a",
+  "exposed": false,
+  "port": 8080
+}

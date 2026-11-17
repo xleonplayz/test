@@ -1,0 +1,10 @@
+{
+  "id": "A1",
+  "directory": "a01-next-app-router",
+  "description": "Next.js App Router, statisch und dynamisch, auf Wasm",
+  "expected": "`/`, dynamische Route, API-Route 200",
+  "origin": "Grundfall",
+  "priority": "P0",
+  "port": 5100,
+  "platform_validation": "not_run"
+}

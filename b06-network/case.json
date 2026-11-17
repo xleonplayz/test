@@ -1,0 +1,10 @@
+{
+  "id": "B6",
+  "directory": "b06-network",
+  "description": "Fremdes Projekt ruft ein Backend unter demselben Namen",
+  "expected": "abgewiesen",
+  "origin": "MIXEDGE",
+  "priority": "P0",
+  "port": 5135,
+  "platform_validation": "not_run"
+}

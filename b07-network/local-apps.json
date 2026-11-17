@@ -1,0 +1,17 @@
+[
+  {
+    "path": "api",
+    "start": [
+      "npm",
+      "start"
+    ]
+  },
+  {
+    "path": "web",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "peer": "api"
+  }
+]

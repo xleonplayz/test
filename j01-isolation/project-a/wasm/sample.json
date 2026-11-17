@@ -1,0 +1,12 @@
+{
+  "path": "j01-isolation/project-a/wasm",
+  "framework": "next",
+  "install": "npm ci",
+  "build": "npm run build",
+  "start": [
+    "npm",
+    "start"
+  ],
+  "test": "npm test",
+  "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+}

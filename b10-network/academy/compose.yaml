@@ -1,0 +1,10 @@
+services:
+  campus:
+    build: .
+    ports:
+      - "127.0.0.1:4502:8080"
+    volumes:
+      - campus_data:/app/data
+    restart: unless-stopped
+volumes:
+  campus_data:

@@ -1,0 +1,10 @@
+services:
+  funkraum:
+    build: .
+    ports:
+      - "127.0.0.1:4402:8080"
+    volumes:
+      - funkraum_data:/app/data
+    restart: unless-stopped
+volumes:
+  funkraum_data:
