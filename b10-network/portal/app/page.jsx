@@ -1,1 +1,0 @@
-import Desk from '../components/Desk';export default function Page(){return <><header><h1>Commerce · Betriebsportal</h1><p>Bestellungen, Lager, Weiterbildung, Support und Produktionsplanung</p></header><Desk/></>;}

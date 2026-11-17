@@ -1,8 +1,0 @@
-{
-  "name": "orders",
-  "requested_runtime": "node",
-  "role": "backend",
-  "project_marker": "commerce-orders",
-  "exposed": false,
-  "port": 8080
-}

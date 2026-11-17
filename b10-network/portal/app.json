@@ -1,8 +1,0 @@
-{
-  "name": "portal",
-  "requested_runtime": "wasm",
-  "role": "frontend",
-  "project_marker": "commerce-portal",
-  "exposed": true,
-  "port": 8080
-}

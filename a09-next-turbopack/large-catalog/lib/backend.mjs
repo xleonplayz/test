@@ -1,1 +1,0 @@
-import {createService} from '../service.mjs';import {seed} from '../domain.mjs';import {products} from '../catalog/index.mjs';const initial=seed();initial.products=products;initial.sequence=100000;globalThis.__largeKontor??=createService({state:initial});export const handle=globalThis.__largeKontor;

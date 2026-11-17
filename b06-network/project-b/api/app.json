@@ -1,8 +1,0 @@
-{
-  "name": "api",
-  "requested_runtime": "node",
-  "role": "backend",
-  "project_marker": "B6-project-b-private",
-  "exposed": false,
-  "port": 8080
-}

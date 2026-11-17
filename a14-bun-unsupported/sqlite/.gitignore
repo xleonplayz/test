@@ -1,8 +1,0 @@
-node_modules/
-.next/
-.output/
-dist/
-data/
-build/
-target/
-*.log

@@ -1,8 +1,0 @@
-{
-  "name": "node",
-  "requested_runtime": "node",
-  "role": "backend",
-  "project_marker": "project-a-node",
-  "exposed": false,
-  "port": 8080
-}

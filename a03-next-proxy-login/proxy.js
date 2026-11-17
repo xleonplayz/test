@@ -1,1 +1,0 @@
-import {NextResponse} from 'next/server';export function proxy(request){if(request.cookies.get('sample-session')?.value!=='demo')return NextResponse.redirect(new URL('/login',request.url),307);return NextResponse.next();}export const config={matcher:['/','/orders/:path*']};

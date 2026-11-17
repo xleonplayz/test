@@ -1,1 +1,0 @@
-import Link from 'next/link';export default function Guide(){return <main><h1>Leitfaden</h1><div style={{height:'100vh'}}>Auftragsablauf</div><section id='section'><h2>Versand</h2><Link href='/#faq'>Zur FAQ</Link></section></main>;}

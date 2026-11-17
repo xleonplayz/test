@@ -1,8 +1,0 @@
-{
-  "name": "web",
-  "requested_runtime": "wasm",
-  "role": "frontend",
-  "project_marker": "B2-frontend",
-  "exposed": true,
-  "port": 8080
-}
