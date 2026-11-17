@@ -1,0 +1,25 @@
+{
+  "id": "D1",
+  "directory": "d01-lifecycle",
+  "description": "Erst-Deploy aus GitHub mit Branch, mit `HEAD` (Repo ohne auflösbares HEAD), mit Tag und Commit",
+  "expected": "geht bzw. klare Meldung bei `HEAD`",
+  "origin": "Robin cacher 404",
+  "priority": "P0",
+  "port": 5149,
+  "platform_validation": "not_run",
+  "template": "node-buehne",
+  "persistence": "sqlite",
+  "capabilities": [
+    "full-domain-workflow",
+    "health",
+    "version",
+    "readiness-delay",
+    "start-failure",
+    "peer-fetch",
+    "bounded-egress",
+    "byte-stream",
+    "secret-proof",
+    "metrics",
+    "append-journal"
+  ]
+}

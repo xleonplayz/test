@@ -1,0 +1,1826 @@
+{
+  "generated_at": "2026-11-17T08:54:51.614133+00:00",
+  "cases": 103,
+  "new_apps": 142,
+  "original_apps": 24,
+  "total_apps": 166,
+  "toolchains": {
+    "node": "v22.22.1",
+    "npm": "11.17.0",
+    "rust": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+    "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
+    "cmake": "cmake version 3.28.3",
+    "cxx": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+    "go": "go version go1.22.2 linux/amd64",
+    "java": "javac 21.0.13.0.3",
+    "python": "Python 3.12.3"
+  },
+  "builds": {
+    "passed": 142,
+    "total": 142,
+    "results": "artifacts/corpus-20261117T084226.937389Z/results.json"
+  },
+  "http": {
+    "passed": 142,
+    "total": 142,
+    "results": [
+      "artifacts/http-20261117T084531.092280Z/results.json",
+      "artifacts/postgres-http/results.json"
+    ]
+  },
+  "browser": {
+    "passed": 33,
+    "total": 33,
+    "results": "artifacts/browser-corpus/results.json"
+  },
+  "original": {
+    "passed": 24,
+    "total": 24,
+    "results": "artifacts/checks-20261117T075348.688254Z/results.json"
+  },
+  "behavioral_groups": {
+    "behavior-corpus": {
+      "passed": 9,
+      "results": "artifacts/behavior-corpus/results.json"
+    },
+    "special-corpus": {
+      "passed": 4,
+      "results": "artifacts/special-corpus/results.json"
+    },
+    "protocol-corpus": {
+      "passed": 2,
+      "results": "artifacts/protocol-corpus/results.json"
+    },
+    "launcher-corpus": {
+      "passed": 1,
+      "results": "artifacts/launcher-corpus/results.json"
+    }
+  },
+  "platform": {
+    "status": "not_run",
+    "cases": 103,
+    "scope": [
+      "Lily compiler/Wasm",
+      "Raptor/Cap placement",
+      "edge/public ingress",
+      "billing",
+      "platform UI/CLI",
+      "pre-fix regression controls",
+      "Docker/Compose"
+    ]
+  },
+  "apps": [
+    {
+      "path": "a01-next-app-router",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a01-next-app-router.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a02-next-pages-router",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a02-next-pages-router.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a03-next-proxy-login",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a03-next-proxy-login.log",
+      "http_checks": [
+        "proxy 307 and login 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a04-next-static-image",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a04-next-static-image.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export",
+        "static image"
+      ]
+    },
+    {
+      "path": "a05-next-async-finally",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a05-next-async-finally.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export",
+        "async catch/finally execution"
+      ]
+    },
+    {
+      "path": "a06-next-runtime-files",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a06-next-runtime-files.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export",
+        "runtime JSON read"
+      ]
+    },
+    {
+      "path": "a07-next-public-env",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a07-next-public-env.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a08-next-hash-navigation",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a08-next-hash-navigation.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a09-next-turbopack",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a09-next-turbopack.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a09-next-turbopack/large-catalog",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a09-next-turbopack__large-catalog.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a10-nuxt-nitro/nuxt3",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a10-nuxt-nitro__nuxt3.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a10-nuxt-nitro/nuxt4",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a10-nuxt-nitro__nuxt4.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a11-vite-astro-static/astro",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a11-vite-astro-static__astro.log",
+      "http_checks": [
+        "root HTML 200",
+        "static output served; browser workflow checked separately"
+      ]
+    },
+    {
+      "path": "a11-vite-astro-static/vite",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a11-vite-astro-static__vite.log",
+      "http_checks": [
+        "root HTML 200",
+        "static output served; browser workflow checked separately"
+      ]
+    },
+    {
+      "path": "a12-bun-routes",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a12-bun-routes.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export",
+        "Bun nested route, params, PUT"
+      ]
+    },
+    {
+      "path": "a13-bun-deep-assets",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a13-bun-deep-assets.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export",
+        "Bun nested route, params, PUT"
+      ]
+    },
+    {
+      "path": "a14-bun-unsupported/shell",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a14-bun-unsupported__shell.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export",
+        "native Bun API"
+      ]
+    },
+    {
+      "path": "a14-bun-unsupported/spawn",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a14-bun-unsupported__spawn.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export",
+        "native Bun API"
+      ]
+    },
+    {
+      "path": "a14-bun-unsupported/sqlite",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a14-bun-unsupported__sqlite.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export",
+        "native Bun API"
+      ]
+    },
+    {
+      "path": "a14-bun-unsupported/websocket",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a14-bun-unsupported__websocket.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a15-bun-lockfiles/bun-lock",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a15-bun-lockfiles__bun-lock.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export",
+        "Bun nested route, params, PUT"
+      ]
+    },
+    {
+      "path": "a15-bun-lockfiles/npm-lock",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a15-bun-lockfiles__npm-lock.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export",
+        "Bun nested route, params, PUT"
+      ]
+    },
+    {
+      "path": "a16-tsx-server",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a16-tsx-server.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a17-node-frameworks/express",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a17-node-frameworks__express.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a17-node-frameworks/fastify",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a17-node-frameworks__fastify.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a17-node-frameworks/hono",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a17-node-frameworks__hono.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a17-node-frameworks/koa",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a17-node-frameworks__koa.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a17-node-frameworks/node-http",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a17-node-frameworks__node-http.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a18-node-missing-start",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a18-node-missing-start.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a19-node-file-journal",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a19-node-file-journal.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a20-rust-servers/actix",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a20-rust-servers__actix.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a20-rust-servers/actix-memory",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a20-rust-servers__actix-memory.log",
+      "http_checks": [
+        "root HTML 200",
+        "task API"
+      ]
+    },
+    {
+      "path": "a20-rust-servers/axum",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a20-rust-servers__axum.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a20-rust-servers/axum-memory",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a20-rust-servers__axum-memory.log",
+      "http_checks": [
+        "root HTML 200",
+        "task API"
+      ]
+    },
+    {
+      "path": "a20-rust-servers/native-fallback",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a20-rust-servers__native-fallback.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a21-cpp-postgres-static",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a21-cpp-postgres-static.log",
+      "http_checks": [
+        "root HTML 200",
+        "planning, validation, SVG, DNS"
+      ]
+    },
+    {
+      "path": "a22-cpp-shared-library",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a22-cpp-shared-library.log",
+      "http_checks": [
+        "root HTML 200",
+        "planning, validation, SVG, DNS"
+      ]
+    },
+    {
+      "path": "a23-cpp-httplib-dns",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a23-cpp-httplib-dns.log",
+      "http_checks": [
+        "root HTML 200",
+        "planning, validation, SVG, DNS"
+      ]
+    },
+    {
+      "path": "a24-cpp-backend-layout/backend",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a24-cpp-backend-layout__backend.log",
+      "http_checks": [
+        "root HTML 200",
+        "planning, validation, SVG, DNS"
+      ]
+    },
+    {
+      "path": "a25-c-build-layouts/makefile",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a25-c-build-layouts__makefile.log",
+      "http_checks": [
+        "root HTML 200",
+        "task API"
+      ]
+    },
+    {
+      "path": "a25-c-build-layouts/plain",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a25-c-build-layouts__plain.log",
+      "http_checks": [
+        "root HTML 200",
+        "task API"
+      ]
+    },
+    {
+      "path": "a26-prisma-databases/postgres",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a26-prisma-databases__postgres.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export",
+        "data persisted across process restart",
+        "actual PostgreSQL TLS session"
+      ]
+    },
+    {
+      "path": "a26-prisma-databases/sqlite",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a26-prisma-databases__sqlite.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a27-puppeteer-reports",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a27-puppeteer-reports.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export",
+        "clear missing-browser response"
+      ]
+    },
+    {
+      "path": "a28-node-large-package",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a28-node-large-package.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "a29-node-start-incomplete",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a29-node-start-incomplete.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export",
+        "dynamic mandatory module"
+      ]
+    },
+    {
+      "path": "a30-unsupported-languages/go",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a30-unsupported-languages__go.log",
+      "http_checks": [
+        "root HTML 200",
+        "task API"
+      ]
+    },
+    {
+      "path": "a30-unsupported-languages/java",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a30-unsupported-languages__java.log",
+      "http_checks": [
+        "root HTML 200",
+        "task API"
+      ]
+    },
+    {
+      "path": "a30-unsupported-languages/python",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/a30-unsupported-languages__python.log",
+      "http_checks": [
+        "root HTML 200",
+        "task API"
+      ]
+    },
+    {
+      "path": "b01-network/api",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b01-network__api.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b01-network/web",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b01-network__web.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b02-network/api",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b02-network__api.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b02-network/web",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b02-network__web.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b03-network/api",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b03-network__api.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b03-network/web",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b03-network__web.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b04-network/api",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b04-network__api.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b04-network/web",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b04-network__web.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b05-network/api",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b05-network__api.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b05-network/web",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b05-network__web.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b06-network/project-a/api",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b06-network__project-a__api.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b06-network/project-a/web",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b06-network__project-a__web.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b06-network/project-b/api",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b06-network__project-b__api.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b07-network/api",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b07-network__api.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b07-network/web",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b07-network__web.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b08-network",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b08-network.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b09-network",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b09-network.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b10-network/academy",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b10-network__academy.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b10-network/orders",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b10-network__orders.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b10-network/planning",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b10-network__planning.log",
+      "http_checks": [
+        "root HTML 200",
+        "planning, validation, SVG, DNS"
+      ]
+    },
+    {
+      "path": "b10-network/portal",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b10-network__portal.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b10-network/support",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b10-network__support.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b10-network/warehouse",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b10-network__warehouse.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b11-network/api",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b11-network__api.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b11-network/web",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b11-network__web.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "b12-network/pg",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b12-network__pg.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export",
+        "data persisted across process restart",
+        "actual PostgreSQL TLS session"
+      ]
+    },
+    {
+      "path": "b12-network/prisma-postgres",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/b12-network__prisma-postgres.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export",
+        "data persisted across process restart",
+        "actual PostgreSQL TLS session"
+      ]
+    },
+    {
+      "path": "c01-configuration",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/c01-configuration.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "c02-configuration",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/c02-configuration.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "c03-configuration",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/c03-configuration.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "c03-configuration/public-client",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/c03-configuration__public-client.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "c04-configuration",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/c04-configuration.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "c05-configuration",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/c05-configuration.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "c06-configuration",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/c06-configuration.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "c07-configuration",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/c07-configuration.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "d01-lifecycle",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/d01-lifecycle.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "d02-lifecycle",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/d02-lifecycle.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "d03-lifecycle",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/d03-lifecycle.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "d04-lifecycle",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/d04-lifecycle.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "d05-lifecycle",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/d05-lifecycle.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "d06-lifecycle",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/d06-lifecycle.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "d07-lifecycle",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/d07-lifecycle.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "d08-lifecycle",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/d08-lifecycle.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "d09-lifecycle",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/d09-lifecycle.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "d10-lifecycle",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/d10-lifecycle.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "d11-lifecycle",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/d11-lifecycle.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "d12-lifecycle",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/d12-lifecycle.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "d13-lifecycle",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/d13-lifecycle.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "d14-lifecycle",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/d14-lifecycle.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "d15-lifecycle",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/d15-lifecycle.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "d16-lifecycle",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/d16-lifecycle.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "d17-lifecycle",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/d17-lifecycle.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "e01-routing",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/e01-routing.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "e02-routing",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/e02-routing.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "e03-routing",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/e03-routing.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "e04-routing",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/e04-routing.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "e05-routing",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/e05-routing.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "f01-capacity",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/f01-capacity.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "f02-capacity",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/f02-capacity.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "f03-capacity",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/f03-capacity.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "f04-capacity",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/f04-capacity.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "f05-capacity",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/f05-capacity.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "f06-capacity",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/f06-capacity.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "f07-capacity",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/f07-capacity.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "f08-capacity",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/f08-capacity.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "g01-metering",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/g01-metering.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "g02-metering",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/g02-metering.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "g03-metering",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/g03-metering.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "g04-metering",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/g04-metering.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "g05-metering",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/g05-metering.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "h01-cli",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/h01-cli.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "h02-cli",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/h02-cli.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "h03-cli",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/h03-cli.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "h04-cli",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/h04-cli.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "h05-cli",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/h05-cli.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "i01-platform",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/i01-platform.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "i01-platform/public-client",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/i01-platform__public-client.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "i02-platform",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/i02-platform.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "i03-platform",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/i03-platform.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "i04-platform",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/i04-platform.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "j01-isolation/project-a/node",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/j01-isolation__project-a__node.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "j01-isolation/project-a/wasm",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/j01-isolation__project-a__wasm.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "j01-isolation/project-b/node",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/j01-isolation__project-b__node.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "j01-isolation/project-b/wasm",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/j01-isolation__project-b__wasm.log",
+      "http_checks": [
+        "root HTML 200",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "j02-isolation",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/j02-isolation.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "j03-isolation",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/j03-isolation.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "j04-isolation",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/j04-isolation.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "k01-operations",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/k01-operations.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "k02-operations",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/k02-operations.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "k03-operations",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/k03-operations.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "k04-operations",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/k04-operations.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "k05-operations",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/k05-operations.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    },
+    {
+      "path": "k06-operations",
+      "build_passed": true,
+      "http_passed": true,
+      "build_log": "artifacts/corpus-20261117T084226.937389Z/k06-operations.log",
+      "http_checks": [
+        "root HTML 200",
+        "case and release identity",
+        "owned 502/504 and exact byte count",
+        "unconfigured peer fails explicitly",
+        "real HTTP mutation and stale revision rejection",
+        "export"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "path": "c07-configuration",
+  "framework": "node",
+  "install": "npm ci",
+  "build": "npm run build",
+  "start": [
+    "npm",
+    "start"
+  ],
+  "test": "npm test",
+  "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+}

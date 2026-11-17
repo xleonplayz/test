@@ -1,0 +1,25 @@
+{
+  "id": "G3",
+  "directory": "g03-metering",
+  "description": "Pause bzw. Resume",
+  "expected": "ab Pause 0 gebucht",
+  "origin": "PAUSEBILL",
+  "priority": "P1",
+  "port": 5181,
+  "platform_validation": "not_run",
+  "template": "node-depot",
+  "persistence": "memory",
+  "capabilities": [
+    "full-domain-workflow",
+    "health",
+    "version",
+    "readiness-delay",
+    "start-failure",
+    "peer-fetch",
+    "bounded-egress",
+    "byte-stream",
+    "secret-proof",
+    "metrics",
+    "append-journal"
+  ]
+}

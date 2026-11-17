@@ -1,0 +1,23 @@
+{
+  "case": "H3",
+  "source": "SOURCE-USE-CASES.md",
+  "description": "`lly app` nach `redeploy --ref`",
+  "expected": "zeigt neue Commit-Angabe",
+  "priority": "P2",
+  "fixture": "h03-cli",
+  "platform_result": "not_run",
+  "observation": "HTTP status AND response body; deployment status alone is insufficient",
+  "regression_control": "Run the same scenario against the affected pre-fix compiler/platform and retain the failing observation. No pre-fix deployment has been performed.",
+  "private_sources": "Synthetic fixtures only; no private repositories cloned",
+  "steps": [
+    "`lly app` nach `redeploy --ref`",
+    "Exercise this transition against the real test platform while observing the fixture externally.",
+    "Assert: zeigt neue Commit-Angabe"
+  ],
+  "negative_control": {
+    "method": "same scenario against the known affected pre-fix platform/compiler",
+    "status": "not_run",
+    "required_evidence": "failing HTTP status, response body, or explicit diagnostic; no inferred success"
+  },
+  "local_fixture_scope": "Native/upstream build and HTTP functionality; no assertion of Lily deployment, placement, billing or isolation."
+}

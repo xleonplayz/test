@@ -1,0 +1,10 @@
+{
+  "id": "A13",
+  "directory": "a13-bun-deep-assets",
+  "description": "Bun-Server: Assets auf Unterpfaden (`/a/b/c` lädt `chunk-*.css`)",
+  "expected": "Assets 200 (absolute URLs)",
+  "origin": "Robin walnutbrook",
+  "priority": "P0",
+  "port": 5112,
+  "platform_validation": "not_run"
+}

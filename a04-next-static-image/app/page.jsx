@@ -1,0 +1,1 @@
+import Image from 'next/image';import picture from '@/public/a.png';import Desk from '../components/Desk';export default function Page(){return <><aside><Image src={picture} alt='Katalog-Muster' width={48} height={48}/><img src={picture.src} alt='Statischer Import' width={24} height={24}/></aside><Desk/></>;}

@@ -1,0 +1,25 @@
+{
+  "id": "H5",
+  "directory": "h05-cli",
+  "description": "Profile `prod` und `dev`, Login gegen `void.lilylabs.io`",
+  "expected": "geht",
+  "origin": "CLEANENV",
+  "priority": "P1",
+  "port": 5188,
+  "platform_validation": "not_run",
+  "template": "node-buehne",
+  "persistence": "sqlite",
+  "capabilities": [
+    "full-domain-workflow",
+    "health",
+    "version",
+    "readiness-delay",
+    "start-failure",
+    "peer-fetch",
+    "bounded-egress",
+    "byte-stream",
+    "secret-proof",
+    "metrics",
+    "append-journal"
+  ]
+}

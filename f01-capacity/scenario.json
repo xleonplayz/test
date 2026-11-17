@@ -1,0 +1,22 @@
+{
+  "case": "F1",
+  "source": "SOURCE-USE-CASES.md",
+  "description": "Cap mit langer Historie (300+ Installationen), Deploy-Welle",
+  "expected": "runtime-data unter 1 s, Cap bleibt erreichbar, `controller_step` p90 unter 2 s",
+  "priority": "P0",
+  "fixture": "f01-capacity",
+  "platform_result": "not_run",
+  "observation": "HTTP status AND response body; deployment status alone is insufficient",
+  "regression_control": "Run the same scenario against the affected pre-fix compiler/platform and retain the failing observation. No pre-fix deployment has been performed.",
+  "private_sources": "Synthetic fixtures only; no private repositories cloned",
+  "steps": [
+    "Install 300 successive synthetic RELEASE values, then perform a deploy wave.",
+    "Measure actual runtime-data latency and controller_step p90 while probing app health."
+  ],
+  "negative_control": {
+    "method": "same scenario against the known affected pre-fix platform/compiler",
+    "status": "not_run",
+    "required_evidence": "failing HTTP status, response body, or explicit diagnostic; no inferred success"
+  },
+  "local_fixture_scope": "Native/upstream build and HTTP functionality; no assertion of Lily deployment, placement, billing or isolation."
+}

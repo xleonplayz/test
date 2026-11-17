@@ -1,0 +1,10 @@
+{
+  "id": "B3",
+  "directory": "b03-network",
+  "description": "Frontend Node → Backend Node auf derselben Cap",
+  "expected": "200",
+  "origin": "Jan nach Umstellung",
+  "priority": "P0",
+  "port": 5132,
+  "platform_validation": "not_run"
+}

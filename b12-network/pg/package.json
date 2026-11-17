@@ -1,0 +1,14 @@
+{
+  "name": "b12-pg",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "build": "node --check server.mjs",
+    "test": "node --test *.test.mjs"
+  },
+  "dependencies": {
+    "pg": "8.23.1"
+  }
+}

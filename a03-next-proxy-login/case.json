@@ -1,0 +1,10 @@
+{
+  "id": "A3",
+  "directory": "a03-next-proxy-login",
+  "description": "Next.js mit Middleware bzw. Proxy, Redirect auf `/login`",
+  "expected": "307 auf `/login`, Login-Seite 200",
+  "origin": "Milans Dataroom",
+  "priority": "P0",
+  "port": 5102,
+  "platform_validation": "not_run"
+}

@@ -1,0 +1,25 @@
+{
+  "id": "F2",
+  "directory": "f02-capacity",
+  "description": "Raptor meldet Cap erst nach drei Fehlschlägen unerreichbar",
+  "expected": "kein Flattern",
+  "origin": "SLOWREAD",
+  "priority": "P0",
+  "port": 5172,
+  "platform_validation": "not_run",
+  "template": "node-werkstatt",
+  "persistence": "memory",
+  "capabilities": [
+    "full-domain-workflow",
+    "health",
+    "version",
+    "readiness-delay",
+    "start-failure",
+    "peer-fetch",
+    "bounded-egress",
+    "byte-stream",
+    "secret-proof",
+    "metrics",
+    "append-journal"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "A21",
+  "directory": "a21-cpp-postgres-static",
+  "description": "C++ mit CMake, statisch, mit `libpq` (`find_package(PostgreSQL)`)",
+  "expected": "statisch gelinkt, 200",
+  "origin": "Jan L2 statisch",
+  "priority": "P0",
+  "port": 5120,
+  "platform_validation": "not_run"
+}

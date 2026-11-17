@@ -1,0 +1,25 @@
+{
+  "id": "D10",
+  "directory": "d10-lifecycle",
+  "description": "Wechsel auf andere Cap",
+  "expected": "alte Kopie wird nach Drain entfernt, nicht vorher; Bestand stimmig",
+  "origin": "08c88e21, b4cf3c3d",
+  "priority": "P0",
+  "port": 5158,
+  "platform_validation": "not_run",
+  "template": "node-werkstatt",
+  "persistence": "memory",
+  "capabilities": [
+    "full-domain-workflow",
+    "health",
+    "version",
+    "readiness-delay",
+    "start-failure",
+    "peer-fetch",
+    "bounded-egress",
+    "byte-stream",
+    "secret-proof",
+    "metrics",
+    "append-journal"
+  ]
+}

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Funkraum · Gute Antworten beginnen hier.</title>
+    <link rel="stylesheet" href="/app.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Zum Inhalt</a>
+    <aside>
+      <a class="brand" href="/"
+        ><span>◉</span> funkraum<span class="dot">.</span></a
+      >
+      <p class="aside-label">DEIN SUPPORT</p>
+      <nav aria-label="Bereiche">
+        <button data-view="overview">◫ <span>Überblick</span></button
+        ><button data-view="tickets">≡ <span>Tickets</span></button
+        ><button data-view="customers">◎ <span>Kunden</span></button
+        ><button data-view="team">♧ <span>Team & Bereiche</span></button
+        ><button data-view="macros">▤ <span>Textbausteine</span></button
+        ><button data-view="audit">◷ <span>Aktionsverlauf</span></button>
+      </nav>
+      <div class="aside-bottom">
+        <span class="warehouse">↗</span
+        ><strong>Ein Team. Ein guter Draht.</strong
+        ><small>Vom ersten Kontakt bis zur Lösung.</small
+        ><span class="online">● Lokaler Arbeitsbereich</span>
+      </div>
+    </aside>
+    <div class="shell">
+      <header>
+        <span>Support <i>/</i> <strong id="breadcrumb">Überblick</strong></span>
+        <div>
+          <a href="/api/export" download>Daten exportieren ↗</a
+          ><button id="refresh">Aktualisieren ↻</button
+          ><span class="avatar">DU</span>
+        </div>
+      </header>
+      <main id="main">
+        <div class="title-row">
+          <div>
+            <p class="eyebrow">ZUHÖREN. VERSTEHEN. WEITERHELFEN.</p>
+            <h1 id="title">Gute Antworten beginnen hier.</h1>
+            <p id="subtitle"></p>
+          </div>
+          <button id="create" class="primary">＋ Neues Ticket</button>
+        </div>
+        <p id="error" role="alert" hidden></p>
+        <section id="content" aria-live="polite">
+          Der Support-Desk wird geladen …
+        </section>
+      </main>
+      <footer>
+        <span>Funkraum / Zusammen eine gute Antwort finden.</span
+        ><span>Antworten werden lokal protokolliert. Kein E-Mail-Versand.</span>
+      </footer>
+    </div>
+    <dialog id="dialog">
+      <div class="dialog-head">
+        <div>
+          <p class="eyebrow">DEIN NÄCHSTER SCHRITT</p>
+          <h2 id="dialog-title"></h2>
+        </div>
+        <button id="close" aria-label="Dialog schließen">×</button>
+      </div>
+      <p id="dialog-description"></p>
+      <form id="form">
+        <div id="fields"></div>
+        <p id="form-error" role="alert" hidden></p>
+        <div class="form-actions">
+          <span>Änderungen erscheinen im Verlauf.</span
+          ><button type="submit" class="primary" id="submit">
+            Speichern ↗
+          </button>
+        </div>
+      </form>
+    </dialog>
+    <div id="toast" role="status" hidden></div>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "id": "A27",
+  "directory": "a27-puppeteer-reports",
+  "description": "Puppeteer bzw. Headless-Chrome-App",
+  "expected": "entweder läuft sie, oder es kommt eine klare Meldung",
+  "origin": "slug117 (Teil)",
+  "priority": "P2",
+  "port": 5126,
+  "platform_validation": "not_run"
+}

@@ -1,0 +1,23 @@
+{
+  "case": "C3",
+  "source": "SOURCE-USE-CASES.md",
+  "description": "`NEXT_PUBLIC_*` ändern bei laufender App",
+  "expected": "UI bzw. CLI bietet Rebuild an, neuer Wert danach im Client",
+  "priority": "P0",
+  "fixture": "c03-configuration",
+  "platform_result": "not_run",
+  "observation": "HTTP status AND response body; deployment status alone is insufficient",
+  "regression_control": "Run the same scenario against the affected pre-fix compiler/platform and retain the failing observation. No pre-fix deployment has been performed.",
+  "private_sources": "Synthetic fixtures only; no private repositories cloned",
+  "steps": [
+    "Build public-client with NEXT_PUBLIC_REGION=north.",
+    "Change value to south while running; require offered rebuild.",
+    "After rebuild inspect rendered #public-config and built browser assets."
+  ],
+  "negative_control": {
+    "method": "same scenario against the known affected pre-fix platform/compiler",
+    "status": "not_run",
+    "required_evidence": "failing HTTP status, response body, or explicit diagnostic; no inferred success"
+  },
+  "local_fixture_scope": "Native/upstream build and HTTP functionality; no assertion of Lily deployment, placement, billing or isolation."
+}

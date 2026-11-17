@@ -1,0 +1,10 @@
+{
+  "id": "A22",
+  "directory": "a22-cpp-shared-library",
+  "description": "C++ mit CMake, Shared-Fallback (eine Bibliothek ohne `.a`)",
+  "expected": "startet mit gebündelten `.so`, kein „failed to map segment“",
+  "origin": "Jan L2 shared",
+  "priority": "P0",
+  "port": 5121,
+  "platform_validation": "not_run"
+}

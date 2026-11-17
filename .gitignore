@@ -1,0 +1,12 @@
+**/node_modules/
+**/.next/
+**/.output/
+**/dist/
+**/target/
+**/build/
+**/.deps/
+**/data/
+**/__pycache__/
+**/*.class
+**/fokus
+**/prisma/*.sqlite*

@@ -1,0 +1,25 @@
+{
+  "id": "C5",
+  "directory": "c05-configuration",
+  "description": "Reservierte Namen (`NODE_ENV`, `PORT`)",
+  "expected": "dokumentiertes Verhalten, sichtbare Warnung, `NODE_ENV=production` gesetzt",
+  "origin": "Milan",
+  "priority": "P0",
+  "port": 5146,
+  "platform_validation": "not_run",
+  "template": "node-buehne",
+  "persistence": "sqlite",
+  "capabilities": [
+    "full-domain-workflow",
+    "health",
+    "version",
+    "readiness-delay",
+    "start-failure",
+    "peer-fetch",
+    "bounded-egress",
+    "byte-stream",
+    "secret-proof",
+    "metrics",
+    "append-journal"
+  ]
+}

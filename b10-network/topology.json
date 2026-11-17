@@ -1,0 +1,78 @@
+{
+  "case": "B10",
+  "apps": [
+    {
+      "name": "portal",
+      "path": "portal",
+      "language": "next",
+      "port": 8080,
+      "exposed": true
+    },
+    {
+      "name": "orders",
+      "path": "orders",
+      "language": "node",
+      "port": 8081,
+      "exposed": false
+    },
+    {
+      "name": "warehouse",
+      "path": "warehouse",
+      "language": "node",
+      "port": 8082,
+      "exposed": false
+    },
+    {
+      "name": "academy",
+      "path": "academy",
+      "language": "node",
+      "port": 8083,
+      "exposed": false
+    },
+    {
+      "name": "support",
+      "path": "support",
+      "language": "rust",
+      "port": 8084,
+      "exposed": false
+    },
+    {
+      "name": "planning",
+      "path": "planning",
+      "language": "cpp",
+      "port": 8085,
+      "exposed": false
+    }
+  ],
+  "edges": [
+    {
+      "from": "portal",
+      "to": "orders",
+      "port": 8080
+    },
+    {
+      "from": "portal",
+      "to": "warehouse",
+      "port": 8080
+    },
+    {
+      "from": "portal",
+      "to": "academy",
+      "port": 8080
+    },
+    {
+      "from": "portal",
+      "to": "support",
+      "port": 8080
+    },
+    {
+      "from": "portal",
+      "to": "planning",
+      "port": 8080
+    }
+  ],
+  "catalog": {
+    "products": 32768,
+    "importedModules": 128
+  }
+}

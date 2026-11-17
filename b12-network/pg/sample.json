@@ -1,0 +1,12 @@
+{
+  "path": "b12-network/pg",
+  "framework": "pg",
+  "install": "npm ci",
+  "build": "npm run build",
+  "start": [
+    "npm",
+    "start"
+  ],
+  "test": "npm test",
+  "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+}

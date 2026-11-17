@@ -1,0 +1,17 @@
+{
+  "name": "astro",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "astro preview --host 127.0.0.1",
+    "build": "astro build",
+    "test": "node --test *.test.mjs"
+  },
+  "dependencies": {
+    "astro": "6.0.0"
+  }
+}

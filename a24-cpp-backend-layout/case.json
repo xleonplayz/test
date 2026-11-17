@@ -1,0 +1,10 @@
+{
+  "id": "A24",
+  "directory": "a24-cpp-backend-layout",
+  "description": "C++-Layout `backend/CMakeLists.txt` + `backend/src/main.cpp`",
+  "expected": "Root ist `backend`",
+  "origin": "Jan L7",
+  "priority": "P1",
+  "port": 5123,
+  "platform_validation": "not_run"
+}

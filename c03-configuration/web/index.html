@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Depot · Alles am richtigen Platz.</title>
+    <link rel="stylesheet" href="/app.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Zum Inhalt</a>
+    <aside>
+      <a class="brand" href="/"
+        ><span>▦</span> depot<span class="dot">.</span></a
+      >
+      <p class="aside-label">DEIN BETRIEB</p>
+      <nav id="nav" aria-label="Bereiche">
+        <button data-view="overview">◫ <span>Übersicht</span></button
+        ><button data-view="stock">▦ <span>Artikel & Bestand</span></button
+        ><button data-view="orders">↓ <span>Einkauf</span></button
+        ><button data-view="reservations">↗ <span>Auslieferung</span></button
+        ><button data-view="suppliers">⌂ <span>Lieferanten</span></button
+        ><button data-view="journal">≡ <span>Bewegungsjournal</span></button>
+      </nav>
+      <div class="aside-bottom">
+        <span class="warehouse">⌑</span><strong>Hauptlager</strong
+        ><small>Ein Standort. Alles im Blick.</small
+        ><span class="online">● Lokaler Arbeitsbereich</span>
+      </div>
+    </aside>
+    <div class="shell">
+      <header>
+        <span
+          >Hauptlager <i>/</i> <strong id="breadcrumb">Übersicht</strong></span
+        >
+        <div>
+          <a href="/api/inventory.csv" download>Bestand als CSV ↗</a
+          ><button id="refresh">Aktualisieren ↻</button
+          ><span class="avatar">DU</span>
+        </div>
+      </header>
+      <main id="main">
+        <div class="title-row">
+          <div>
+            <p class="eyebrow">GUT ORGANISIERT. GUT VORBEREITET.</p>
+            <h1 id="title">Alles am richtigen Platz.</h1>
+            <p id="subtitle"></p>
+          </div>
+          <button id="create" class="primary">＋ Artikel anlegen</button>
+        </div>
+        <div id="error" role="alert" hidden></div>
+        <section id="content" aria-live="polite">
+          <p>Das Lager wird geladen …</p>
+        </section>
+      </main>
+      <footer>
+        <span>Depot / Von der Bestellung bis zur Auslieferung.</span
+        ><a href="/api/export" download>Daten exportieren ↗</a>
+      </footer>
+    </div>
+    <dialog id="dialog">
+      <div class="dialog-head">
+        <div>
+          <p class="eyebrow">DEIN NÄCHSTER SCHRITT</p>
+          <h2 id="dialog-title"></h2>
+        </div>
+        <button id="close" aria-label="Dialog schließen">×</button>
+      </div>
+      <p id="dialog-description"></p>
+      <form id="form">
+        <div id="fields"></div>
+        <div id="form-error" role="alert" hidden></div>
+        <div class="form-actions">
+          <span>Wird im Bewegungsjournal erfasst.</span
+          ><button type="submit" class="primary" id="submit">
+            Speichern ↗
+          </button>
+        </div>
+      </form>
+    </dialog>
+    <div id="toast" role="status" hidden></div>
+  </body>
+</html>

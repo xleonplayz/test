@@ -1,0 +1,12 @@
+{
+  "path": "b10-network/academy",
+  "framework": "node",
+  "install": "npm ci",
+  "build": null,
+  "start": [
+    "npm",
+    "start"
+  ],
+  "test": "npm test",
+  "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+}

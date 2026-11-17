@@ -1,0 +1,1 @@
+'use client';export default function Login(){return <main><h1>Kontor anmelden</h1><p>Lokales Demo-Konto für die Proxy-Prüfung.</p><button onClick={()=>{document.cookie='sample-session=demo; Path=/; SameSite=Lax';location.href='/';}}>Demo-Arbeitsbereich öffnen</button></main>;}

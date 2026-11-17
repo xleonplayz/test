@@ -1,0 +1,1 @@
+import {readFile} from 'node:fs/promises';import path from 'node:path';export const dynamic='force-dynamic';export async function GET(){try{return Response.json(JSON.parse(await readFile(path.join(process.cwd(),'data-source/catalog.json'),'utf8')));}catch{return Response.json({error:'catalog_unavailable'},{status:503});}}

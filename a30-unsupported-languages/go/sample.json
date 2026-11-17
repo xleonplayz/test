@@ -1,0 +1,11 @@
+{
+  "path": "a30-unsupported-languages/go",
+  "framework": "go",
+  "install": null,
+  "build": "go build -o fokus .",
+  "start": [
+    "./fokus"
+  ],
+  "test": "python3 test.py",
+  "workflow": "Aufgaben anlegen, priorisieren, filtern, abschließen, wieder öffnen und löschen"
+}

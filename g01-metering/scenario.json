@@ -1,0 +1,23 @@
+{
+  "case": "G1",
+  "source": "SOURCE-USE-CASES.md",
+  "description": "Requests und Egress je App gemessen und gebucht",
+  "expected": "stimmt mit Last überein, keine Doppelbuchung",
+  "priority": "P0",
+  "fixture": "g01-metering",
+  "platform_result": "not_run",
+  "observation": "HTTP status AND response body; deployment status alone is insufficient",
+  "regression_control": "Run the same scenario against the affected pre-fix compiler/platform and retain the failing observation. No pre-fix deployment has been performed.",
+  "private_sources": "Synthetic fixtures only; no private repositories cloned",
+  "steps": [
+    "Request /__fixture/bytes?n=1048576 exactly N times and record client bytes.",
+    "Compare platform request/egress ledger after accounting for probes.",
+    "Require exact-once records for the app."
+  ],
+  "negative_control": {
+    "method": "same scenario against the known affected pre-fix platform/compiler",
+    "status": "not_run",
+    "required_evidence": "failing HTTP status, response body, or explicit diagnostic; no inferred success"
+  },
+  "local_fixture_scope": "Native/upstream build and HTTP functionality; no assertion of Lily deployment, placement, billing or isolation."
+}

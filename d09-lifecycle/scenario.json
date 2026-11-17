@@ -1,0 +1,23 @@
+{
+  "case": "D9",
+  "source": "SOURCE-USE-CASES.md",
+  "description": "Wechsel Wasm → Node auf derselben Cap",
+  "expected": "kein `command_conflict`, keine 60-min-Queue, kein 404",
+  "priority": "P0",
+  "fixture": "d09-lifecycle",
+  "platform_result": "not_run",
+  "observation": "HTTP status AND response body; deployment status alone is insufficient",
+  "regression_control": "Run the same scenario against the affected pre-fix compiler/platform and retain the failing observation. No pre-fix deployment has been performed.",
+  "private_sources": "Synthetic fixtures only; no private repositories cloned",
+  "steps": [
+    "Deploy an app on Wasm, then change the same app to a Node workload.",
+    "Observe actual responses and command queue duration.",
+    "Require no command_conflict, no long stalled command and no 404."
+  ],
+  "negative_control": {
+    "method": "same scenario against the known affected pre-fix platform/compiler",
+    "status": "not_run",
+    "required_evidence": "failing HTTP status, response body, or explicit diagnostic; no inferred success"
+  },
+  "local_fixture_scope": "Native/upstream build and HTTP functionality; no assertion of Lily deployment, placement, billing or isolation."
+}

@@ -1,0 +1,25 @@
+{
+  "id": "H3",
+  "directory": "h03-cli",
+  "description": "`lly app` nach `redeploy --ref`",
+  "expected": "zeigt neue Commit-Angabe",
+  "origin": "Jan L8",
+  "priority": "P2",
+  "port": 5186,
+  "platform_validation": "not_run",
+  "template": "node-depot",
+  "persistence": "sqlite",
+  "capabilities": [
+    "full-domain-workflow",
+    "health",
+    "version",
+    "readiness-delay",
+    "start-failure",
+    "peer-fetch",
+    "bounded-egress",
+    "byte-stream",
+    "secret-proof",
+    "metrics",
+    "append-journal"
+  ]
+}

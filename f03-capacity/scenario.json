@@ -1,0 +1,22 @@
+{
+  "case": "F3",
+  "source": "SOURCE-USE-CASES.md",
+  "description": "Volles Artefaktlager",
+  "expected": "GC räumt, kein 429 bzw. „Cap not ready“",
+  "priority": "P0",
+  "fixture": "f03-capacity",
+  "platform_result": "not_run",
+  "observation": "HTTP status AND response body; deployment status alone is insufficient",
+  "regression_control": "Run the same scenario against the affected pre-fix compiler/platform and retain the failing observation. No pre-fix deployment has been performed.",
+  "private_sources": "Synthetic fixtures only; no private repositories cloned",
+  "steps": [
+    "Fill only the test artifact store with versions of the large A28 workload.",
+    "Deploy another app; verify GC behavior and actual HTTP response."
+  ],
+  "negative_control": {
+    "method": "same scenario against the known affected pre-fix platform/compiler",
+    "status": "not_run",
+    "required_evidence": "failing HTTP status, response body, or explicit diagnostic; no inferred success"
+  },
+  "local_fixture_scope": "Native/upstream build and HTTP functionality; no assertion of Lily deployment, placement, billing or isolation."
+}

@@ -1,0 +1,1 @@
+import {readFile} from 'node:fs/promises';const config=JSON.parse(await readFile('runtime.json','utf8'));try{await import('./runtime-modules/'+config.module+'.mjs');}catch{console.error('START INCOMPLETE: runtime-modules/'+config.module+'.mjs');process.exit(1);}

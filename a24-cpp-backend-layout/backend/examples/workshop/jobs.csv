@@ -1,0 +1,11 @@
+job,release,due,route
+ST-101,0,150,zuschnitt:24|schleifen:18|lack:35|montage:30|versand:8
+ST-102,0,110,zuschnitt:12|schleifen:14|montage:20|versand:6
+ST-103,10,180,zuschnitt:30|schleifen:22|lack:45|montage:25|versand:8
+ST-104,15,100,zuschnitt:10|montage:15|versand:5
+ST-105,20,160,zuschnitt:18|schleifen:16|lack:28|montage:24|versand:7
+ST-106,30,210,zuschnitt:28|schleifen:20|lack:40|montage:32|versand:8
+ST-107,35,125,zuschnitt:14|schleifen:12|montage:18|versand:6
+ST-108,45,220,zuschnitt:20|schleifen:15|lack:30|montage:20|versand:6
+ST-109,60,260,zuschnitt:35|schleifen:25|lack:45|montage:35|versand:10
+ST-110,65,170,zuschnitt:12|montage:18|versand:5

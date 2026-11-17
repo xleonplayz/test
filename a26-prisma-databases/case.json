@@ -1,0 +1,10 @@
+{
+  "id": "A26",
+  "directory": "a26-prisma-databases",
+  "description": "Prisma mit SQLite (relativer Pfad) und mit Postgres",
+  "expected": "Schema-Engine startet (OpenSSL 3 erkannt, kein Download ins Paket)",
+  "origin": "slug117",
+  "priority": "P0",
+  "port": 5125,
+  "platform_validation": "not_run"
+}

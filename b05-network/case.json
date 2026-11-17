@@ -1,0 +1,10 @@
+{
+  "id": "B5",
+  "directory": "b05-network",
+  "description": "Node → Wasm",
+  "expected": "200",
+  "origin": "caec2625",
+  "priority": "P1",
+  "port": 5134,
+  "platform_validation": "not_run"
+}

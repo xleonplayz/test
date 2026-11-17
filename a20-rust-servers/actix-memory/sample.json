@@ -1,0 +1,11 @@
+{
+  "path": "a20-rust-servers/actix-memory",
+  "framework": "rust",
+  "install": null,
+  "build": "cargo build --locked",
+  "start": [
+    "./target/debug/fokus"
+  ],
+  "test": "cargo test --locked",
+  "workflow": "Aufgaben mit Prioritäten und Fortschritt"
+}

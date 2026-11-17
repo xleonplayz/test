@@ -1,0 +1,25 @@
+{
+  "id": "G1",
+  "directory": "g01-metering",
+  "description": "Requests und Egress je App gemessen und gebucht",
+  "expected": "stimmt mit Last überein, keine Doppelbuchung",
+  "origin": "TRAFFIC2, e71e98ae",
+  "priority": "P0",
+  "port": 5179,
+  "platform_validation": "not_run",
+  "template": "node-buehne",
+  "persistence": "memory",
+  "capabilities": [
+    "full-domain-workflow",
+    "health",
+    "version",
+    "readiness-delay",
+    "start-failure",
+    "peer-fetch",
+    "bounded-egress",
+    "byte-stream",
+    "secret-proof",
+    "metrics",
+    "append-journal"
+  ]
+}

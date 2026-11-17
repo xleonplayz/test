@@ -1,0 +1,17 @@
+{
+  "name": "fastify",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node entry.mjs",
+    "build": "node --check server.mjs",
+    "test": "node --test *.test.mjs"
+  },
+  "dependencies": {
+    "fastify": "5.12.8"
+  }
+}

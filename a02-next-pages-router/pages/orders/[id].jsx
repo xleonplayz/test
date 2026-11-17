@@ -1,0 +1,1 @@
+import Link from 'next/link';export default function Order({id}){return <main><h1>Auftrag {id}</h1><Link href='/'>Zur Warenwirtschaft</Link></main>;}export async function getServerSideProps({params}){return {props:{id:params.id}};}

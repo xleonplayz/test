@@ -1,0 +1,1692 @@
+[
+  {
+    "path": "a28-node-large-package",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "f05-capacity",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "b07-network/api",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "b07-network/web",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "b02-network/api",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "b02-network/web",
+    "framework": "next",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a20-rust-servers/native-fallback",
+    "framework": "rust",
+    "install": null,
+    "build": "cargo build --locked",
+    "start": [
+      "./target/debug/funkraum"
+    ],
+    "test": "cargo test --locked",
+    "workflow": "Support-Desk mit Kunden, Tickets, Antworten, Zuständigkeiten, Fristen und Audit"
+  },
+  {
+    "path": "a20-rust-servers/axum-memory",
+    "framework": "rust",
+    "install": null,
+    "build": "cargo build --locked",
+    "start": [
+      "./target/debug/fokus"
+    ],
+    "test": "cargo test --locked",
+    "workflow": "Aufgaben mit Prioritäten und Fortschritt"
+  },
+  {
+    "path": "a20-rust-servers/actix-memory",
+    "framework": "rust",
+    "install": null,
+    "build": "cargo build --locked",
+    "start": [
+      "./target/debug/fokus"
+    ],
+    "test": "cargo test --locked",
+    "workflow": "Aufgaben mit Prioritäten und Fortschritt"
+  },
+  {
+    "path": "a20-rust-servers/axum",
+    "framework": "rust",
+    "install": null,
+    "build": "cargo build --locked",
+    "start": [
+      "./target/debug/funkraum"
+    ],
+    "test": "cargo test --locked",
+    "workflow": "Support-Desk mit Kunden, Tickets, Antworten, Zuständigkeiten, Fristen und Audit"
+  },
+  {
+    "path": "a20-rust-servers/actix",
+    "framework": "rust",
+    "install": null,
+    "build": "cargo build --locked",
+    "start": [
+      "./target/debug/funkraum"
+    ],
+    "test": "cargo test --locked",
+    "workflow": "Support-Desk mit Kunden, Tickets, Antworten, Zuständigkeiten, Fristen und Audit"
+  },
+  {
+    "path": "g03-metering",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "c07-configuration",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "a21-cpp-postgres-static",
+    "framework": "cpp",
+    "install": "sh prepare-libpq.sh",
+    "build": "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release\ncmake --build build -j 2",
+    "start": [
+      "./build/sample_server"
+    ],
+    "test": "ctest --test-dir build --output-on-failure",
+    "workflow": "Produktionsplanung, Wartung, drei Heuristiken, Kapazitätsvergleich, Gantt, SVG/CSV/JSON und CLI"
+  },
+  {
+    "path": "a07-next-public-env",
+    "framework": "next",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "f04-capacity",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "b03-network/api",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "b03-network/web",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a18-node-missing-start",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "node",
+      "workbench.mjs"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "b10-network/planning",
+    "framework": "cpp",
+    "install": null,
+    "build": "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release\ncmake --build build -j 2",
+    "start": [
+      "./build/sample_server"
+    ],
+    "test": "ctest --test-dir build --output-on-failure",
+    "workflow": "Produktionsplanung, Wartung, drei Heuristiken, Kapazitätsvergleich, Gantt, SVG/CSV/JSON und CLI"
+  },
+  {
+    "path": "b10-network/orders",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "b10-network/portal",
+    "framework": "next",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "b10-network/support",
+    "framework": "rust",
+    "install": null,
+    "build": "cargo build --locked",
+    "start": [
+      "./target/debug/funkraum"
+    ],
+    "test": "cargo test --locked",
+    "workflow": "Support-Desk mit Kunden, Tickets, Antworten, Zuständigkeiten, Fristen und Audit"
+  },
+  {
+    "path": "b10-network/warehouse",
+    "framework": "node",
+    "install": "npm ci",
+    "build": null,
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "b10-network/academy",
+    "framework": "node",
+    "install": "npm ci",
+    "build": null,
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "i01-platform",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "i01-platform/public-client",
+    "framework": "next",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "g05-metering",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "e02-routing",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "d15-lifecycle",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "d14-lifecycle",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "d01-lifecycle",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "k03-operations",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "a14-bun-unsupported/websocket",
+    "framework": "bun",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a14-bun-unsupported/shell",
+    "framework": "bun",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a14-bun-unsupported/spawn",
+    "framework": "bun",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a14-bun-unsupported/sqlite",
+    "framework": "bun",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "e01-routing",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "b01-network/api",
+    "framework": "next",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "b01-network/web",
+    "framework": "next",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "d05-lifecycle",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "d08-lifecycle",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "a19-node-file-journal",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "d13-lifecycle",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "a12-bun-routes",
+    "framework": "bun",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a13-bun-deep-assets",
+    "framework": "bun",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "k06-operations",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "h03-cli",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "c02-configuration",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "a30-unsupported-languages/python",
+    "framework": "python",
+    "install": null,
+    "build": "python3 -m py_compile server.py",
+    "start": [
+      "python3",
+      "server.py"
+    ],
+    "test": "python3 test.py",
+    "workflow": "Aufgaben anlegen, priorisieren, filtern, abschließen, wieder öffnen und löschen"
+  },
+  {
+    "path": "a30-unsupported-languages/java",
+    "framework": "java",
+    "install": null,
+    "build": "javac Main.java",
+    "start": [
+      "java",
+      "Main"
+    ],
+    "test": "python3 test.py",
+    "workflow": "Aufgaben anlegen, priorisieren, filtern, abschließen, wieder öffnen und löschen"
+  },
+  {
+    "path": "a30-unsupported-languages/go",
+    "framework": "go",
+    "install": null,
+    "build": "go build -o fokus .",
+    "start": [
+      "./fokus"
+    ],
+    "test": "python3 test.py",
+    "workflow": "Aufgaben anlegen, priorisieren, filtern, abschließen, wieder öffnen und löschen"
+  },
+  {
+    "path": "f01-capacity",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "a16-tsx-server",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a08-next-hash-navigation",
+    "framework": "next",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "d09-lifecycle",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "j04-isolation",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "d10-lifecycle",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "a02-next-pages-router",
+    "framework": "next",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "g04-metering",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "j01-isolation/project-a/node",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "j01-isolation/project-a/wasm",
+    "framework": "next",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "j01-isolation/project-b/node",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "j01-isolation/project-b/wasm",
+    "framework": "next",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a01-next-app-router",
+    "framework": "next",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a03-next-proxy-login",
+    "framework": "next",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a24-cpp-backend-layout/backend",
+    "framework": "cpp",
+    "install": null,
+    "build": "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release\ncmake --build build -j 2",
+    "start": [
+      "./build/sample_server"
+    ],
+    "test": "ctest --test-dir build --output-on-failure",
+    "workflow": "Produktionsplanung, Wartung, drei Heuristiken, Kapazitätsvergleich, Gantt, SVG/CSV/JSON und CLI"
+  },
+  {
+    "path": "d04-lifecycle",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "b05-network/api",
+    "framework": "next",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "b05-network/web",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a11-vite-astro-static/vite",
+    "framework": "vite",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a11-vite-astro-static/astro",
+    "framework": "astro",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "g01-metering",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "a23-cpp-httplib-dns",
+    "framework": "cpp",
+    "install": null,
+    "build": "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release\ncmake --build build -j 2",
+    "start": [
+      "./build/sample_server"
+    ],
+    "test": "ctest --test-dir build --output-on-failure",
+    "workflow": "Produktionsplanung, Wartung, drei Heuristiken, Kapazitätsvergleich, Gantt, SVG/CSV/JSON und CLI"
+  },
+  {
+    "path": "a05-next-async-finally",
+    "framework": "next",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a09-next-turbopack",
+    "framework": "next",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a09-next-turbopack/large-catalog",
+    "framework": "next",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "k04-operations",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "c01-configuration",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "a15-bun-lockfiles/bun-lock",
+    "framework": "bun",
+    "install": "bun install --frozen-lockfile",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a15-bun-lockfiles/npm-lock",
+    "framework": "bun",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "e04-routing",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "a10-nuxt-nitro/nuxt3",
+    "framework": "nuxt",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a10-nuxt-nitro/nuxt4",
+    "framework": "nuxt",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "f02-capacity",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "e05-routing",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "a06-next-runtime-files",
+    "framework": "next",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a17-node-frameworks/hono",
+    "framework": "hono",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a17-node-frameworks/koa",
+    "framework": "koa",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a17-node-frameworks/fastify",
+    "framework": "fastify",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a17-node-frameworks/express",
+    "framework": "express",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a17-node-frameworks/node-http",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "c06-configuration",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "d12-lifecycle",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "a27-puppeteer-reports",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "e03-routing",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "k05-operations",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "h01-cli",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "c03-configuration",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "c03-configuration/public-client",
+    "framework": "next",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "f06-capacity",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "j02-isolation",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "b04-network/api",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "b04-network/web",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "g02-metering",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "b12-network/prisma-postgres",
+    "framework": "prisma",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "b12-network/pg",
+    "framework": "pg",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "b08-network",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "d03-lifecycle",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "d07-lifecycle",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "d02-lifecycle",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "h04-cli",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "d16-lifecycle",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "d11-lifecycle",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "i04-platform",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "c05-configuration",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "k02-operations",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "h05-cli",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "d17-lifecycle",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "a25-c-build-layouts/plain",
+    "framework": "c",
+    "install": null,
+    "build": "sh compile.sh",
+    "start": [
+      "./fokus"
+    ],
+    "test": "python3 test.py",
+    "workflow": "Aufgaben anlegen, priorisieren, filtern, abschließen, wieder öffnen und löschen"
+  },
+  {
+    "path": "a25-c-build-layouts/makefile",
+    "framework": "c",
+    "install": null,
+    "build": "make",
+    "start": [
+      "./fokus"
+    ],
+    "test": "python3 test.py",
+    "workflow": "Aufgaben anlegen, priorisieren, filtern, abschließen, wieder öffnen und löschen"
+  },
+  {
+    "path": "b11-network/api",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "b11-network/web",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "c04-configuration",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "k01-operations",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "d06-lifecycle",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "b06-network/project-a/api",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "b06-network/project-a/web",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "b06-network/project-b/api",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "i02-platform",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "b09-network",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "f03-capacity",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "a22-cpp-shared-library",
+    "framework": "cpp",
+    "install": null,
+    "build": "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release\ncmake --build build -j 2",
+    "start": [
+      "./build/sample_server"
+    ],
+    "test": "ctest --test-dir build --output-on-failure",
+    "workflow": "Produktionsplanung, Wartung, drei Heuristiken, Kapazitätsvergleich, Gantt, SVG/CSV/JSON und CLI"
+  },
+  {
+    "path": "i03-platform",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "a29-node-start-incomplete",
+    "framework": "node",
+    "install": null,
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "j03-isolation",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "f08-capacity",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "a26-prisma-databases/sqlite",
+    "framework": "prisma",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "a26-prisma-databases/postgres",
+    "framework": "prisma",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  },
+  {
+    "path": "h02-cli",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "f07-capacity",
+    "framework": "node",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+  },
+  {
+    "path": "a04-next-static-image",
+    "framework": "next",
+    "install": "npm ci",
+    "build": "npm run build",
+    "start": [
+      "npm",
+      "start"
+    ],
+    "test": "npm test",
+    "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+  }
+]

@@ -1,0 +1,1 @@
+export async function refreshSession(fail=false){const events=[];try{await Promise.resolve();events.push('try');if(fail)throw Error('expired');return {source:'primary',events};}catch{await Promise.resolve();events.push('catch');return {source:'recovered',events};}finally{await Promise.resolve();events.push('finally');}}

@@ -1,0 +1,25 @@
+{
+  "id": "G4",
+  "directory": "g04-metering",
+  "description": "Raptor-Neustart",
+  "expected": "Requests einmal gebucht",
+  "origin": "TRAFFIC2",
+  "priority": "P1",
+  "port": 5182,
+  "platform_validation": "not_run",
+  "template": "node-campus",
+  "persistence": "memory",
+  "capabilities": [
+    "full-domain-workflow",
+    "health",
+    "version",
+    "readiness-delay",
+    "start-failure",
+    "peer-fetch",
+    "bounded-egress",
+    "byte-stream",
+    "secret-proof",
+    "metrics",
+    "append-journal"
+  ]
+}

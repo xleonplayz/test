@@ -1,0 +1,10 @@
+{
+  "id": "A16",
+  "directory": "a16-tsx-server",
+  "description": "TypeScript-Server über `tsx` (Start-Skript `NODE_ENV=production tsx src/index.ts`)",
+  "expected": "`tsx` samt esbuild im Paket, Start ok",
+  "origin": "Robin cacher",
+  "priority": "P0",
+  "port": 5115,
+  "platform_validation": "not_run"
+}

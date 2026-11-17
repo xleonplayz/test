@@ -1,0 +1,25 @@
+{
+  "id": "F6",
+  "directory": "f06-capacity",
+  "description": "Cap-Neustart mit Node-Zellen",
+  "expected": "alle Node-Apps wieder live",
+  "origin": "summitmoor 503",
+  "priority": "P0",
+  "port": 5176,
+  "platform_validation": "not_run",
+  "template": "node-werkstatt",
+  "persistence": "memory",
+  "capabilities": [
+    "full-domain-workflow",
+    "health",
+    "version",
+    "readiness-delay",
+    "start-failure",
+    "peer-fetch",
+    "bounded-egress",
+    "byte-stream",
+    "secret-proof",
+    "metrics",
+    "append-journal"
+  ]
+}

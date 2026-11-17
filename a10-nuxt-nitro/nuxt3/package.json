@@ -1,0 +1,21 @@
+{
+  "name": "nuxt3",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node .output/server/index.mjs",
+    "build": "nuxt build",
+    "test": "node --test *.test.mjs",
+    "dev": "nuxt dev"
+  },
+  "dependencies": {
+    "nuxt": "3.21.11",
+    "vue": "3.5.45",
+    "vue-router": "4.6.4",
+    "sample-esm-catalog": "file:packages/esm-catalog"
+  }
+}

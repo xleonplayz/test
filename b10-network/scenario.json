@@ -1,0 +1,23 @@
+{
+  "case": "B10",
+  "source": "SOURCE-USE-CASES.md",
+  "description": "Monorepo mit 4 bis 6 Apps gemischter Sprachen",
+  "expected": "alle live, alle Kanten getragen oder gemeldet",
+  "priority": "P0",
+  "fixture": "b10-network",
+  "platform_result": "not_run",
+  "observation": "HTTP status AND response body; deployment status alone is insufficient",
+  "regression_control": "Run the same scenario against the affected pre-fix compiler/platform and retain the failing observation. No pre-fix deployment has been performed.",
+  "private_sources": "Synthetic fixtures only; no private repositories cloned",
+  "steps": [
+    "Deploy all six topology.json apps; declare every portal edge.",
+    "GET /api/services must contain five successful dependency responses.",
+    "Create, reserve and ship an order through the portal; read back from orders."
+  ],
+  "negative_control": {
+    "method": "same scenario against the known affected pre-fix platform/compiler",
+    "status": "not_run",
+    "required_evidence": "failing HTTP status, response body, or explicit diagnostic; no inferred success"
+  },
+  "local_fixture_scope": "Native/upstream build and HTTP functionality; no assertion of Lily deployment, placement, billing or isolation."
+}

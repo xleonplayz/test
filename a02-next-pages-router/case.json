@@ -1,0 +1,10 @@
+{
+  "id": "A2",
+  "directory": "a02-next-pages-router",
+  "description": "Next.js Pages Router",
+  "expected": "geht auf Node, läuft, `/api/*` 200",
+  "origin": "slug121",
+  "priority": "P0",
+  "port": 5101,
+  "platform_validation": "not_run"
+}

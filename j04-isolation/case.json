@@ -1,0 +1,25 @@
+{
+  "id": "J4",
+  "directory": "j04-isolation",
+  "description": "Admin und Wiki nur über VPN",
+  "expected": "von außen zu",
+  "origin": "SECREVIEW",
+  "priority": "P1",
+  "port": 5196,
+  "platform_validation": "not_run",
+  "template": "node-campus",
+  "persistence": "sqlite",
+  "capabilities": [
+    "full-domain-workflow",
+    "health",
+    "version",
+    "readiness-delay",
+    "start-failure",
+    "peer-fetch",
+    "bounded-egress",
+    "byte-stream",
+    "secret-proof",
+    "metrics",
+    "append-journal"
+  ]
+}

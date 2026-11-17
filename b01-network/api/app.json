@@ -1,0 +1,8 @@
+{
+  "name": "api",
+  "requested_runtime": "wasm",
+  "role": "backend",
+  "project_marker": "B1-project-a",
+  "exposed": false,
+  "port": 8080
+}

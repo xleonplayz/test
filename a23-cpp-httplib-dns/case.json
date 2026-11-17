@@ -1,0 +1,10 @@
+{
+  "id": "A23",
+  "directory": "a23-cpp-httplib-dns",
+  "description": "C++ cpp-httplib, statisch, mit `getaddrinfo` (Linker-Warnung NSS)",
+  "expected": "startet, Bind und Antwort 200",
+  "origin": "c107",
+  "priority": "P0",
+  "port": 5122,
+  "platform_validation": "not_run"
+}

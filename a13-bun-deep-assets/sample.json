@@ -1,0 +1,12 @@
+{
+  "path": "a13-bun-deep-assets",
+  "framework": "bun",
+  "install": "npm ci",
+  "build": "npm run build",
+  "start": [
+    "npm",
+    "start"
+  ],
+  "test": "npm test",
+  "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+}

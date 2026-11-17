@@ -1,0 +1,10 @@
+{
+  "id": "A15",
+  "directory": "a15-bun-lockfiles",
+  "description": "Bun-Projekt mit `bun.lock` (Install über bun) und mit `package-lock.json`",
+  "expected": "beide Wege bauen gleich",
+  "origin": "BUNCOMPAT (offen)",
+  "priority": "P1",
+  "port": 5114,
+  "platform_validation": "not_run"
+}

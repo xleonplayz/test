@@ -1,0 +1,10 @@
+{
+  "id": "B10",
+  "directory": "b10-network",
+  "description": "Monorepo mit 4 bis 6 Apps gemischter Sprachen",
+  "expected": "alle live, alle Kanten getragen oder gemeldet",
+  "origin": "commerce-03, polyglot",
+  "priority": "P0",
+  "port": 5139,
+  "platform_validation": "not_run"
+}

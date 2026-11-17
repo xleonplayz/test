@@ -1,0 +1,2 @@
+node workbench.mjs
+The platform must reject this package: no scripts.start and no main.

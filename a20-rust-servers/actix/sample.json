@@ -1,0 +1,11 @@
+{
+  "path": "a20-rust-servers/actix",
+  "framework": "rust",
+  "install": null,
+  "build": "cargo build --locked",
+  "start": [
+    "./target/debug/funkraum"
+  ],
+  "test": "cargo test --locked",
+  "workflow": "Support-Desk mit Kunden, Tickets, Antworten, Zuständigkeiten, Fristen und Audit"
+}

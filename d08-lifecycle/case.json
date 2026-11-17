@@ -1,0 +1,25 @@
+{
+  "id": "D8",
+  "directory": "d08-lifecycle",
+  "description": "Neue Version stürzt beim Start ab",
+  "expected": "alte Version bedient weiter, Meldung sichtbar",
+  "origin": "Nachfolger Fall 5",
+  "priority": "P0",
+  "port": 5156,
+  "platform_validation": "not_run",
+  "template": "node-campus",
+  "persistence": "memory",
+  "capabilities": [
+    "full-domain-workflow",
+    "health",
+    "version",
+    "readiness-delay",
+    "start-failure",
+    "peer-fetch",
+    "bounded-egress",
+    "byte-stream",
+    "secret-proof",
+    "metrics",
+    "append-journal"
+  ]
+}

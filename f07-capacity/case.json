@@ -1,0 +1,25 @@
+{
+  "id": "F7",
+  "directory": "f07-capacity",
+  "description": "Dial-Socket bzw. Overlay-Konfiguration",
+  "expected": "Cap bootet",
+  "origin": "MIXEDGE-HALT",
+  "priority": "P0",
+  "port": 5177,
+  "platform_validation": "not_run",
+  "template": "node-depot",
+  "persistence": "memory",
+  "capabilities": [
+    "full-domain-workflow",
+    "health",
+    "version",
+    "readiness-delay",
+    "start-failure",
+    "peer-fetch",
+    "bounded-egress",
+    "byte-stream",
+    "secret-proof",
+    "metrics",
+    "append-journal"
+  ]
+}

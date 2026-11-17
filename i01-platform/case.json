@@ -1,0 +1,25 @@
+{
+  "id": "I1",
+  "directory": "i01-platform",
+  "description": "Secrets und Env im UI (siehe C1 bis C3)",
+  "expected": "–",
+  "origin": "Milan",
+  "priority": "P0",
+  "port": 5189,
+  "platform_validation": "not_run",
+  "template": "node-buehne",
+  "persistence": "sqlite",
+  "capabilities": [
+    "full-domain-workflow",
+    "health",
+    "version",
+    "readiness-delay",
+    "start-failure",
+    "peer-fetch",
+    "bounded-egress",
+    "byte-stream",
+    "secret-proof",
+    "metrics",
+    "append-journal"
+  ]
+}

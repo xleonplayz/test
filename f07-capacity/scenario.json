@@ -1,0 +1,23 @@
+{
+  "case": "F7",
+  "source": "SOURCE-USE-CASES.md",
+  "description": "Dial-Socket bzw. Overlay-Konfiguration",
+  "expected": "Cap bootet",
+  "priority": "P0",
+  "fixture": "f07-capacity",
+  "platform_result": "not_run",
+  "observation": "HTTP status AND response body; deployment status alone is insufficient",
+  "regression_control": "Run the same scenario against the affected pre-fix compiler/platform and retain the failing observation. No pre-fix deployment has been performed.",
+  "private_sources": "Synthetic fixtures only; no private repositories cloned",
+  "steps": [
+    "Dial-Socket bzw. Overlay-Konfiguration",
+    "Exercise this transition against the real test platform while observing the fixture externally.",
+    "Assert: Cap bootet"
+  ],
+  "negative_control": {
+    "method": "same scenario against the known affected pre-fix platform/compiler",
+    "status": "not_run",
+    "required_evidence": "failing HTTP status, response body, or explicit diagnostic; no inferred success"
+  },
+  "local_fixture_scope": "Native/upstream build and HTTP functionality; no assertion of Lily deployment, placement, billing or isolation."
+}

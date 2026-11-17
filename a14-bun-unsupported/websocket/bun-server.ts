@@ -1,0 +1,2 @@
+import page from './index.html';import {createService} from './service.mjs';const handle=createService();const special=(request,server)=>server.upgrade(request)?undefined:new Response('WebSocket upgrade required',{status:426});
+Bun.serve({port:Number(process.env.PORT??8080),hostname:process.env.HOST??'127.0.0.1',routes:{'/':page},fetch(request,server){if(new URL(request.url).pathname==='/api/special')return special(request,server);return handle(request);},websocket:{message(ws,message){ws.send(message);}}});

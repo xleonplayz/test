@@ -1,0 +1,25 @@
+{
+  "id": "B8",
+  "directory": "b08-network",
+  "description": "Fetch auf öffentliche `*.lilylabs.app` bzw. das Internet aus einer App mit und ohne Egress",
+  "expected": "Vertrag erfüllt; Ablehnung kommt als Exception im Handler, nie als Hängen",
+  "origin": "Jan L1",
+  "priority": "P0",
+  "port": 5137,
+  "platform_validation": "not_run",
+  "template": "node-campus",
+  "persistence": "sqlite",
+  "capabilities": [
+    "full-domain-workflow",
+    "health",
+    "version",
+    "readiness-delay",
+    "start-failure",
+    "peer-fetch",
+    "bounded-egress",
+    "byte-stream",
+    "secret-proof",
+    "metrics",
+    "append-journal"
+  ]
+}

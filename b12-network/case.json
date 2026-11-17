@@ -1,0 +1,10 @@
+{
+  "id": "B12",
+  "directory": "b12-network",
+  "description": "App mit Datenbank (dbd, Postgres, `DATABASE_URL`, `PG*`)",
+  "expected": "verbindet per TLS, Daten bleiben über Redeploy",
+  "origin": "2 DB-Apps",
+  "priority": "P0",
+  "port": 5141,
+  "platform_validation": "not_run"
+}

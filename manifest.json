@@ -1,0 +1,3034 @@
+{
+  "source": "SOURCE-USE-CASES.md",
+  "cases": [
+    {
+      "id": "A1",
+      "directory": "a01-next-app-router",
+      "description": "Next.js App Router, statisch und dynamisch, auf Wasm",
+      "expected": "`/`, dynamische Route, API-Route 200",
+      "origin": "Grundfall",
+      "priority": "P0",
+      "port": 5100,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a01-next-app-router",
+          "framework": "next",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A2",
+      "directory": "a02-next-pages-router",
+      "description": "Next.js Pages Router",
+      "expected": "geht auf Node, läuft, `/api/*` 200",
+      "origin": "slug121",
+      "priority": "P0",
+      "port": 5101,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a02-next-pages-router",
+          "framework": "next",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A3",
+      "directory": "a03-next-proxy-login",
+      "description": "Next.js mit Middleware bzw. Proxy, Redirect auf `/login`",
+      "expected": "307 auf `/login`, Login-Seite 200",
+      "origin": "Milans Dataroom",
+      "priority": "P0",
+      "port": 5102,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a03-next-proxy-login",
+          "framework": "next",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A4",
+      "directory": "a04-next-static-image",
+      "description": "Next.js mit statischem Bild-Import aus `public/` (`import x from \"@/public/a.png\"`, auch `next/image` mit statischem Import)",
+      "expected": "Wasm-Build ok, Seite rendert",
+      "origin": "Milan (`public_obelisk::default is not defined`)",
+      "priority": "P0",
+      "port": 5103,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a04-next-static-image",
+          "framework": "next",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A5",
+      "directory": "a05-next-async-finally",
+      "description": "Next.js mit `try { await } catch { await } finally {}` (z. B. `@supabase/auth-js`)",
+      "expected": "Wasm-Build ok",
+      "origin": "sapphirelark",
+      "priority": "P0",
+      "port": 5104,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a05-next-async-finally",
+          "framework": "next",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A6",
+      "directory": "a06-next-runtime-files",
+      "description": "Next.js mit `fs/promises`-Lesezugriff zur Laufzeit (JSON-Dateien)",
+      "expected": "geht auf Node, liefert Daten (kein 500)",
+      "origin": "slug116",
+      "priority": "P0",
+      "port": 5105,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a06-next-runtime-files",
+          "framework": "next",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A7",
+      "directory": "a07-next-public-env",
+      "description": "Next.js mit `NEXT_PUBLIC_*` als normale Variable und als Secret",
+      "expected": "Wert beim Build eingebettet, im Log maskiert, Warnhinweis bei Secret",
+      "origin": "sapphirelark",
+      "priority": "P0",
+      "port": 5106,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a07-next-public-env",
+          "framework": "next",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A8",
+      "directory": "a08-next-hash-navigation",
+      "description": "Next.js Hash-Navigation: Klick `#anker`, Zurück/Vor zwischen Ankern, Direktaufruf `/#faq`, Soft-Navigation `/seite#abschnitt`",
+      "expected": "kein Neuladen, scrollt zum Ziel, Client-Zustand bleibt",
+      "origin": "Jan wolfrock",
+      "priority": "P0",
+      "port": 5107,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a08-next-hash-navigation",
+          "framework": "next",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A9",
+      "directory": "a09-next-turbopack",
+      "description": "Next.js 16 mit Turbopack-Ausgabe",
+      "expected": "baut und läuft",
+      "origin": "Jan tally",
+      "priority": "P1",
+      "port": 5108,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a09-next-turbopack",
+          "framework": "next",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "a09-next-turbopack/large-catalog",
+          "framework": "next",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 2
+    },
+    {
+      "id": "A10",
+      "directory": "a10-nuxt-nitro",
+      "description": "Nuxt 3/4 (Nitro-Ausgabe, ESM-only `node_modules` in `.output/server`)",
+      "expected": "Startprüfung findet die Pakete, läuft",
+      "origin": "canary17 c046",
+      "priority": "P0",
+      "port": 5109,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a10-nuxt-nitro/nuxt3",
+          "framework": "nuxt",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "a10-nuxt-nitro/nuxt4",
+          "framework": "nuxt",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 2
+    },
+    {
+      "id": "A11",
+      "directory": "a11-vite-astro-static",
+      "description": "Vite-SPA statisch, Astro statisch",
+      "expected": "wird statisch ausgeliefert",
+      "origin": "`static_shipping`",
+      "priority": "P1",
+      "port": 5110,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a11-vite-astro-static/vite",
+          "framework": "vite",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "a11-vite-astro-static/astro",
+          "framework": "astro",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 2
+    },
+    {
+      "id": "A12",
+      "directory": "a12-bun-routes",
+      "description": "Bun-Server mit `Bun.serve` (`fetch`, `routes`, `:params`, Wildcards, HTML-Import, Tailwind über `bun-plugin-tailwind`)",
+      "expected": "läuft auf Node, `/`, Unterpfad, API GET/PUT/Param 200, CSS und JS laden",
+      "origin": "Robin testapp",
+      "priority": "P0",
+      "port": 5111,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a12-bun-routes",
+          "framework": "bun",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A13",
+      "directory": "a13-bun-deep-assets",
+      "description": "Bun-Server: Assets auf Unterpfaden (`/a/b/c` lädt `chunk-*.css`)",
+      "expected": "Assets 200 (absolute URLs)",
+      "origin": "Robin walnutbrook",
+      "priority": "P0",
+      "port": 5112,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a13-bun-deep-assets",
+          "framework": "bun",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A14",
+      "directory": "a14-bun-unsupported",
+      "description": "Bun mit nicht abgedeckter API (`bun:sqlite`, `Bun.spawn`, `$` aus `bun`, WebSocket)",
+      "expected": "Build scheitert mit klarer Meldung, die die API nennt",
+      "origin": "BUNCOMPAT",
+      "priority": "P1",
+      "port": 5113,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a14-bun-unsupported/websocket",
+          "framework": "bun",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "a14-bun-unsupported/shell",
+          "framework": "bun",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "a14-bun-unsupported/spawn",
+          "framework": "bun",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "a14-bun-unsupported/sqlite",
+          "framework": "bun",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 4
+    },
+    {
+      "id": "A15",
+      "directory": "a15-bun-lockfiles",
+      "description": "Bun-Projekt mit `bun.lock` (Install über bun) und mit `package-lock.json`",
+      "expected": "beide Wege bauen gleich",
+      "origin": "BUNCOMPAT (offen)",
+      "priority": "P1",
+      "port": 5114,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a15-bun-lockfiles/bun-lock",
+          "framework": "bun",
+          "install": "bun install --frozen-lockfile",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "a15-bun-lockfiles/npm-lock",
+          "framework": "bun",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 2
+    },
+    {
+      "id": "A16",
+      "directory": "a16-tsx-server",
+      "description": "TypeScript-Server über `tsx` (Start-Skript `NODE_ENV=production tsx src/index.ts`)",
+      "expected": "`tsx` samt esbuild im Paket, Start ok",
+      "origin": "Robin cacher",
+      "priority": "P0",
+      "port": 5115,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a16-tsx-server",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A17",
+      "directory": "a17-node-frameworks",
+      "description": "Express, Koa, Hono, Fastify, Node-HTTP (`node server.js`)",
+      "expected": "200",
+      "origin": "canary c002, c018",
+      "priority": "P1",
+      "port": 5116,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a17-node-frameworks/hono",
+          "framework": "hono",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "a17-node-frameworks/koa",
+          "framework": "koa",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "a17-node-frameworks/fastify",
+          "framework": "fastify",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "a17-node-frameworks/express",
+          "framework": "express",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "a17-node-frameworks/node-http",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 5
+    },
+    {
+      "id": "A18",
+      "directory": "a18-node-missing-start",
+      "description": "Node-App ohne Startbefehl (kein `scripts.start`, kein `main`)",
+      "expected": "Build scheitert mit klarer Meldung",
+      "origin": "slug40",
+      "priority": "P1",
+      "port": 5117,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a18-node-missing-start",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "node",
+            "workbench.mjs"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A19",
+      "directory": "a19-node-file-journal",
+      "description": "Node-App mit `appendFileSync` bzw. Dateischreiben",
+      "expected": "geht auf Node, nicht auf Wasm",
+      "origin": "lily-multiapp-demo db",
+      "priority": "P1",
+      "port": 5118,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a19-node-file-journal",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A20",
+      "directory": "a20-rust-servers",
+      "description": "Rust (axum, actix) auf Wasm; Rust, das auf Wasm scheitert, fällt auf Node zurück",
+      "expected": "200",
+      "origin": "timberbell, summitrunner",
+      "priority": "P0",
+      "port": 5119,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a20-rust-servers/native-fallback",
+          "framework": "rust",
+          "install": null,
+          "build": "cargo build --locked",
+          "start": [
+            "./target/debug/funkraum"
+          ],
+          "test": "cargo test --locked",
+          "workflow": "Support-Desk mit Kunden, Tickets, Antworten, Zuständigkeiten, Fristen und Audit"
+        },
+        {
+          "path": "a20-rust-servers/axum-memory",
+          "framework": "rust",
+          "install": null,
+          "build": "cargo build --locked",
+          "start": [
+            "./target/debug/fokus"
+          ],
+          "test": "cargo test --locked",
+          "workflow": "Aufgaben mit Prioritäten und Fortschritt"
+        },
+        {
+          "path": "a20-rust-servers/actix-memory",
+          "framework": "rust",
+          "install": null,
+          "build": "cargo build --locked",
+          "start": [
+            "./target/debug/fokus"
+          ],
+          "test": "cargo test --locked",
+          "workflow": "Aufgaben mit Prioritäten und Fortschritt"
+        },
+        {
+          "path": "a20-rust-servers/axum",
+          "framework": "rust",
+          "install": null,
+          "build": "cargo build --locked",
+          "start": [
+            "./target/debug/funkraum"
+          ],
+          "test": "cargo test --locked",
+          "workflow": "Support-Desk mit Kunden, Tickets, Antworten, Zuständigkeiten, Fristen und Audit"
+        },
+        {
+          "path": "a20-rust-servers/actix",
+          "framework": "rust",
+          "install": null,
+          "build": "cargo build --locked",
+          "start": [
+            "./target/debug/funkraum"
+          ],
+          "test": "cargo test --locked",
+          "workflow": "Support-Desk mit Kunden, Tickets, Antworten, Zuständigkeiten, Fristen und Audit"
+        }
+      ],
+      "app_count": 5
+    },
+    {
+      "id": "A21",
+      "directory": "a21-cpp-postgres-static",
+      "description": "C++ mit CMake, statisch, mit `libpq` (`find_package(PostgreSQL)`)",
+      "expected": "statisch gelinkt, 200",
+      "origin": "Jan L2 statisch",
+      "priority": "P0",
+      "port": 5120,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a21-cpp-postgres-static",
+          "framework": "cpp",
+          "install": "sh prepare-libpq.sh",
+          "build": "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release\ncmake --build build -j 2",
+          "start": [
+            "./build/sample_server"
+          ],
+          "test": "ctest --test-dir build --output-on-failure",
+          "workflow": "Produktionsplanung, Wartung, drei Heuristiken, Kapazitätsvergleich, Gantt, SVG/CSV/JSON und CLI"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A22",
+      "directory": "a22-cpp-shared-library",
+      "description": "C++ mit CMake, Shared-Fallback (eine Bibliothek ohne `.a`)",
+      "expected": "startet mit gebündelten `.so`, kein „failed to map segment“",
+      "origin": "Jan L2 shared",
+      "priority": "P0",
+      "port": 5121,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a22-cpp-shared-library",
+          "framework": "cpp",
+          "install": null,
+          "build": "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release\ncmake --build build -j 2",
+          "start": [
+            "./build/sample_server"
+          ],
+          "test": "ctest --test-dir build --output-on-failure",
+          "workflow": "Produktionsplanung, Wartung, drei Heuristiken, Kapazitätsvergleich, Gantt, SVG/CSV/JSON und CLI"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A23",
+      "directory": "a23-cpp-httplib-dns",
+      "description": "C++ cpp-httplib, statisch, mit `getaddrinfo` (Linker-Warnung NSS)",
+      "expected": "startet, Bind und Antwort 200",
+      "origin": "c107",
+      "priority": "P0",
+      "port": 5122,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a23-cpp-httplib-dns",
+          "framework": "cpp",
+          "install": null,
+          "build": "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release\ncmake --build build -j 2",
+          "start": [
+            "./build/sample_server"
+          ],
+          "test": "ctest --test-dir build --output-on-failure",
+          "workflow": "Produktionsplanung, Wartung, drei Heuristiken, Kapazitätsvergleich, Gantt, SVG/CSV/JSON und CLI"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A24",
+      "directory": "a24-cpp-backend-layout",
+      "description": "C++-Layout `backend/CMakeLists.txt` + `backend/src/main.cpp`",
+      "expected": "Root ist `backend`",
+      "origin": "Jan L7",
+      "priority": "P1",
+      "port": 5123,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a24-cpp-backend-layout/backend",
+          "framework": "cpp",
+          "install": null,
+          "build": "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release\ncmake --build build -j 2",
+          "start": [
+            "./build/sample_server"
+          ],
+          "test": "ctest --test-dir build --output-on-failure",
+          "workflow": "Produktionsplanung, Wartung, drei Heuristiken, Kapazitätsvergleich, Gantt, SVG/CSV/JSON und CLI"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A25",
+      "directory": "a25-c-build-layouts",
+      "description": "C ohne Build-System, Makefile-Projekt",
+      "expected": "baut und läuft",
+      "origin": "Abnahme c-Apps",
+      "priority": "P1",
+      "port": 5124,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a25-c-build-layouts/plain",
+          "framework": "c",
+          "install": null,
+          "build": "sh compile.sh",
+          "start": [
+            "./fokus"
+          ],
+          "test": "python3 test.py",
+          "workflow": "Aufgaben anlegen, priorisieren, filtern, abschließen, wieder öffnen und löschen"
+        },
+        {
+          "path": "a25-c-build-layouts/makefile",
+          "framework": "c",
+          "install": null,
+          "build": "make",
+          "start": [
+            "./fokus"
+          ],
+          "test": "python3 test.py",
+          "workflow": "Aufgaben anlegen, priorisieren, filtern, abschließen, wieder öffnen und löschen"
+        }
+      ],
+      "app_count": 2
+    },
+    {
+      "id": "A26",
+      "directory": "a26-prisma-databases",
+      "description": "Prisma mit SQLite (relativer Pfad) und mit Postgres",
+      "expected": "Schema-Engine startet (OpenSSL 3 erkannt, kein Download ins Paket)",
+      "origin": "slug117",
+      "priority": "P0",
+      "port": 5125,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a26-prisma-databases/sqlite",
+          "framework": "prisma",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "a26-prisma-databases/postgres",
+          "framework": "prisma",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 2
+    },
+    {
+      "id": "A27",
+      "directory": "a27-puppeteer-reports",
+      "description": "Puppeteer bzw. Headless-Chrome-App",
+      "expected": "entweder läuft sie, oder es kommt eine klare Meldung",
+      "origin": "slug117 (Teil)",
+      "priority": "P2",
+      "port": 5126,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a27-puppeteer-reports",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A28",
+      "directory": "a28-node-large-package",
+      "description": "Node-App über 128 MiB (vollständig 500+ MiB, getrimmt passt)",
+      "expected": "läuft oder klare Meldung, nie ein stiller Fehlstart",
+      "origin": "NODEBIG, mesacliff",
+      "priority": "P0",
+      "port": 5127,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a28-node-large-package",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A29",
+      "directory": "a29-node-start-incomplete",
+      "description": "Node-App, die getrimmt eine Startvoraussetzung verliert",
+      "expected": "Build scheitert mit „START INCOMPLETE“, nicht erst beim Start",
+      "origin": "NODETRACE",
+      "priority": "P0",
+      "port": 5128,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a29-node-start-incomplete",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "A30",
+      "directory": "a30-unsupported-languages",
+      "description": "Python, Go, Java",
+      "expected": "klare Ablehnung „nicht unterstützt“",
+      "origin": "05.11.",
+      "priority": "P1",
+      "port": 5129,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "a30-unsupported-languages/python",
+          "framework": "python",
+          "install": null,
+          "build": "python3 -m py_compile server.py",
+          "start": [
+            "python3",
+            "server.py"
+          ],
+          "test": "python3 test.py",
+          "workflow": "Aufgaben anlegen, priorisieren, filtern, abschließen, wieder öffnen und löschen"
+        },
+        {
+          "path": "a30-unsupported-languages/java",
+          "framework": "java",
+          "install": null,
+          "build": "javac Main.java",
+          "start": [
+            "java",
+            "Main"
+          ],
+          "test": "python3 test.py",
+          "workflow": "Aufgaben anlegen, priorisieren, filtern, abschließen, wieder öffnen und löschen"
+        },
+        {
+          "path": "a30-unsupported-languages/go",
+          "framework": "go",
+          "install": null,
+          "build": "go build -o fokus .",
+          "start": [
+            "./fokus"
+          ],
+          "test": "python3 test.py",
+          "workflow": "Aufgaben anlegen, priorisieren, filtern, abschließen, wieder öffnen und löschen"
+        }
+      ],
+      "app_count": 3
+    },
+    {
+      "id": "B1",
+      "directory": "b01-network",
+      "description": "Frontend Wasm → Backend Wasm über Kante",
+      "expected": "`/api` 200",
+      "origin": "Grundfall",
+      "priority": "P0",
+      "port": 5130,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "b01-network/api",
+          "framework": "next",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "b01-network/web",
+          "framework": "next",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 2
+    },
+    {
+      "id": "B2",
+      "directory": "b02-network",
+      "description": "Frontend Wasm → Backend Node (gleiche Cap) über Kante",
+      "expected": "`/api` 200 (mit Schalter), sonst ehrliche Meldung „not carried“",
+      "origin": "Jan tally",
+      "priority": "P0",
+      "port": 5131,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "b02-network/api",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "b02-network/web",
+          "framework": "next",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 2
+    },
+    {
+      "id": "B3",
+      "directory": "b03-network",
+      "description": "Frontend Node → Backend Node auf derselben Cap",
+      "expected": "200",
+      "origin": "Jan nach Umstellung",
+      "priority": "P0",
+      "port": 5132,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "b03-network/api",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "b03-network/web",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 2
+    },
+    {
+      "id": "B4",
+      "directory": "b04-network",
+      "description": "Node-Peers landen auf verschiedenen Caps",
+      "expected": "Platzierung zieht nach oder scheitert sichtbar",
+      "origin": "m126c, Jan",
+      "priority": "P0",
+      "port": 5133,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "b04-network/api",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "b04-network/web",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 2
+    },
+    {
+      "id": "B5",
+      "directory": "b05-network",
+      "description": "Node → Wasm",
+      "expected": "200",
+      "origin": "caec2625",
+      "priority": "P1",
+      "port": 5134,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "b05-network/api",
+          "framework": "next",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "b05-network/web",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 2
+    },
+    {
+      "id": "B6",
+      "directory": "b06-network",
+      "description": "Fremdes Projekt ruft ein Backend unter demselben Namen",
+      "expected": "abgewiesen",
+      "origin": "MIXEDGE",
+      "priority": "P0",
+      "port": 5135,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "b06-network/project-a/api",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "b06-network/project-a/web",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "b06-network/project-b/api",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 3
+    },
+    {
+      "id": "B7",
+      "directory": "b07-network",
+      "description": "Name aus `lily.toml` (`name = \"api\"`) als Peer-Name `http://api:8080`",
+      "expected": "löst auf oder ein klarer Hinweis steht im Build-Log",
+      "origin": "Jan L5",
+      "priority": "P1",
+      "port": 5136,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "b07-network/api",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "b07-network/web",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 2
+    },
+    {
+      "id": "B8",
+      "directory": "b08-network",
+      "description": "Fetch auf öffentliche `*.lilylabs.app` bzw. das Internet aus einer App mit und ohne Egress",
+      "expected": "Vertrag erfüllt; Ablehnung kommt als Exception im Handler, nie als Hängen",
+      "origin": "Jan L1",
+      "priority": "P0",
+      "port": 5137,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "b08-network",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "B9",
+      "directory": "b09-network",
+      "description": "Handler gibt eigenes 502 bzw. 504 JSON zurück",
+      "expected": "Nutzer sieht den eigenen Inhalt (Cloudflare-Thema)",
+      "origin": "Jan L1",
+      "priority": "P1",
+      "port": 5138,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "b09-network",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "B10",
+      "directory": "b10-network",
+      "description": "Monorepo mit 4 bis 6 Apps gemischter Sprachen",
+      "expected": "alle live, alle Kanten getragen oder gemeldet",
+      "origin": "commerce-03, polyglot",
+      "priority": "P0",
+      "port": 5139,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "b10-network/planning",
+          "framework": "cpp",
+          "install": null,
+          "build": "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release\ncmake --build build -j 2",
+          "start": [
+            "./build/sample_server"
+          ],
+          "test": "ctest --test-dir build --output-on-failure",
+          "workflow": "Produktionsplanung, Wartung, drei Heuristiken, Kapazitätsvergleich, Gantt, SVG/CSV/JSON und CLI"
+        },
+        {
+          "path": "b10-network/orders",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "b10-network/portal",
+          "framework": "next",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "b10-network/support",
+          "framework": "rust",
+          "install": null,
+          "build": "cargo build --locked",
+          "start": [
+            "./target/debug/funkraum"
+          ],
+          "test": "cargo test --locked",
+          "workflow": "Support-Desk mit Kunden, Tickets, Antworten, Zuständigkeiten, Fristen und Audit"
+        },
+        {
+          "path": "b10-network/warehouse",
+          "framework": "node",
+          "install": "npm ci",
+          "build": null,
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        },
+        {
+          "path": "b10-network/academy",
+          "framework": "node",
+          "install": "npm ci",
+          "build": null,
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 6
+    },
+    {
+      "id": "B11",
+      "directory": "b11-network",
+      "description": "Öffentliche und private App (`exposed:false`)",
+      "expected": "privat ist von außen 404, intern erreichbar",
+      "origin": "slug41",
+      "priority": "P1",
+      "port": 5140,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "b11-network/api",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "b11-network/web",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 2
+    },
+    {
+      "id": "B12",
+      "directory": "b12-network",
+      "description": "App mit Datenbank (dbd, Postgres, `DATABASE_URL`, `PG*`)",
+      "expected": "verbindet per TLS, Daten bleiben über Redeploy",
+      "origin": "2 DB-Apps",
+      "priority": "P0",
+      "port": 5141,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "b12-network/prisma-postgres",
+          "framework": "prisma",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "b12-network/pg",
+          "framework": "pg",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 2
+    },
+    {
+      "id": "C1",
+      "directory": "c01-configuration",
+      "description": "Secret im Platform-UI ändern, während die App läuft",
+      "expected": "geht; App startet mit neuem Wert neu; UI sagt es",
+      "origin": "Milan",
+      "priority": "P0",
+      "port": 5142,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "c01-configuration",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "C2",
+      "directory": "c02-configuration",
+      "description": "Env per `lly env set` bei laufender App",
+      "expected": "wie C1",
+      "origin": "Owner",
+      "priority": "P0",
+      "port": 5143,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "c02-configuration",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "C3",
+      "directory": "c03-configuration",
+      "description": "`NEXT_PUBLIC_*` ändern bei laufender App",
+      "expected": "UI bzw. CLI bietet Rebuild an, neuer Wert danach im Client",
+      "origin": "C1 und A7",
+      "priority": "P0",
+      "port": 5144,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "c03-configuration",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        },
+        {
+          "path": "c03-configuration/public-client",
+          "framework": "next",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 2
+    },
+    {
+      "id": "C4",
+      "directory": "c04-configuration",
+      "description": "Re-Scan bzw. Rebuild überschreibt keinen gesetzten Nutzerwert, kein leerer Default über einem gesetzten Wert",
+      "expected": "Nutzerwert bleibt",
+      "origin": "Jan L3",
+      "priority": "P0",
+      "port": 5145,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "c04-configuration",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "C5",
+      "directory": "c05-configuration",
+      "description": "Reservierte Namen (`NODE_ENV`, `PORT`)",
+      "expected": "dokumentiertes Verhalten, sichtbare Warnung, `NODE_ENV=production` gesetzt",
+      "origin": "Milan",
+      "priority": "P0",
+      "port": 5146,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "c05-configuration",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "C6",
+      "directory": "c06-configuration",
+      "description": "Abgeleitete Geschwister-Adresse (`API_URL` auf `app-<id>`) vs. Nutzerwert",
+      "expected": "Nutzerwert gewinnt",
+      "origin": "JANREPORT",
+      "priority": "P1",
+      "port": 5147,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "c06-configuration",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "C7",
+      "directory": "c07-configuration",
+      "description": "Secret-Werte erscheinen nie in Build- bzw. App-Logs",
+      "expected": "maskiert",
+      "origin": "335b11bb",
+      "priority": "P0",
+      "port": 5148,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "c07-configuration",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "D1",
+      "directory": "d01-lifecycle",
+      "description": "Erst-Deploy aus GitHub mit Branch, mit `HEAD` (Repo ohne auflösbares HEAD), mit Tag und Commit",
+      "expected": "geht bzw. klare Meldung bei `HEAD`",
+      "origin": "Robin cacher 404",
+      "priority": "P0",
+      "port": 5149,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "d01-lifecycle",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "D2",
+      "directory": "d02-lifecycle",
+      "description": "Redeploy mit neuer Ref",
+      "expected": "aktualisiert bestehende Apps, keine neuen",
+      "origin": "Jan L6",
+      "priority": "P0",
+      "port": 5150,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "d02-lifecycle",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "D3",
+      "directory": "d03-lifecycle",
+      "description": "`lly deploy` ohne `--ref` bei pausiertem altem Flow",
+      "expected": "setzt nicht stumm mit altem Scan fort",
+      "origin": "Jan L6",
+      "priority": "P1",
+      "port": 5151,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "d03-lifecycle",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "D4",
+      "directory": "d04-lifecycle",
+      "description": "„done“ erst, wenn die Route steht",
+      "expected": "erster Abruf nach „done“ ist 200",
+      "origin": "c107",
+      "priority": "P0",
+      "port": 5152,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "d04-lifecycle",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "D5",
+      "directory": "d05-lifecycle",
+      "description": "Redeploy und Restart einer Node-App ohne Lücke (Nachfolger ein)",
+      "expected": "durchgehend 200",
+      "origin": "Nachfolger",
+      "priority": "P0",
+      "port": 5153,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "d05-lifecycle",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "D6",
+      "directory": "d06-lifecycle",
+      "description": "wie D5 mit Schalter aus",
+      "expected": "höchstens kurz 503, nie 404",
+      "origin": "8855cd12",
+      "priority": "P0",
+      "port": 5154,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "d06-lifecycle",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "D7",
+      "directory": "d07-lifecycle",
+      "description": "App mit Volume, SQLite oder `/app-data`",
+      "expected": "kein Nachfolger, Stop-dann-Start, Daten bleiben",
+      "origin": "Nachfolger-Bedingung",
+      "priority": "P0",
+      "port": 5155,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "d07-lifecycle",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "D8",
+      "directory": "d08-lifecycle",
+      "description": "Neue Version stürzt beim Start ab",
+      "expected": "alte Version bedient weiter, Meldung sichtbar",
+      "origin": "Nachfolger Fall 5",
+      "priority": "P0",
+      "port": 5156,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "d08-lifecycle",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "D9",
+      "directory": "d09-lifecycle",
+      "description": "Wechsel Wasm → Node auf derselben Cap",
+      "expected": "kein `command_conflict`, keine 60-min-Queue, kein 404",
+      "origin": "demo-1611, 40b24ac5",
+      "priority": "P0",
+      "port": 5157,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "d09-lifecycle",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "D10",
+      "directory": "d10-lifecycle",
+      "description": "Wechsel auf andere Cap",
+      "expected": "alte Kopie wird nach Drain entfernt, nicht vorher; Bestand stimmig",
+      "origin": "08c88e21, b4cf3c3d",
+      "priority": "P0",
+      "port": 5158,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "d10-lifecycle",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "D11",
+      "directory": "d11-lifecycle",
+      "description": "Netzregel-Aufräumung vs. Edge-Drain",
+      "expected": "alte Kopie bleibt bis `switched_at + SOURCE_DRAIN`",
+      "origin": "32b81b14",
+      "priority": "P1",
+      "port": 5159,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "d11-lifecycle",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "D12",
+      "directory": "d12-lifecycle",
+      "description": "Projekt bzw. App löschen",
+      "expected": "alle Deployments auf allen Caps weg, Slug frei, Lösch-Protokoll mit Auftraggeber",
+      "origin": "orchidwatch-Rest, APPGONE",
+      "priority": "P0",
+      "port": 5160,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "d12-lifecycle",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "D13",
+      "directory": "d13-lifecycle",
+      "description": "Löschen einer App, deren Kopie auf einer langsamen Cap liegt",
+      "expected": "Löschen schließt ab, hängt nicht halb",
+      "origin": "test7 slug83",
+      "priority": "P1",
+      "port": 5161,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "d13-lifecycle",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "D14",
+      "directory": "d14-lifecycle",
+      "description": "Abgelaufene GitHub-Verbindung des Nutzers beim Redeploy",
+      "expected": "klare Meldung „GitHub neu verbinden“",
+      "origin": "Robin 401",
+      "priority": "P1",
+      "port": 5162,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "d14-lifecycle",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "D15",
+      "directory": "d15-lifecycle",
+      "description": "Plan-Limits (Projekte, Apps, Repos je Projekt) mit `PAYMENTD_ENFORCE` an und aus",
+      "expected": "an: klare Ablehnung; aus: nur Log",
+      "origin": "„would refuse“",
+      "priority": "P1",
+      "port": 5163,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "d15-lifecycle",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "D16",
+      "directory": "d16-lifecycle",
+      "description": "Betreiber-Redeploy einer Nutzer-App aus öffentlichem Repo ohne Nutzer-Token",
+      "expected": "geht, Quell-URL unverändert",
+      "origin": "Robin, Jan",
+      "priority": "P1",
+      "port": 5164,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "d16-lifecycle",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "D17",
+      "directory": "d17-lifecycle",
+      "description": "Zwei Quellen bzw. Generationen in einem Projekt",
+      "expected": "CLI fragt nach, keine Doppel-Apps",
+      "origin": "Jan orchidwatch/cloudflame",
+      "priority": "P1",
+      "port": 5165,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "d17-lifecycle",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "E1",
+      "directory": "e01-routing",
+      "description": "Slug alt (`--dev`) und neu (Wortname)",
+      "expected": "beide erreichbar",
+      "origin": "Tausch",
+      "priority": "P0",
+      "port": 5166,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "e01-routing",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "E2",
+      "directory": "e02-routing",
+      "description": "Slug bleibt über Raptor-Neustart, Föderation und Store-Lücke",
+      "expected": "kein Verlust",
+      "origin": "SLUGCLAIM, STOREGAP",
+      "priority": "P0",
+      "port": 5167,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "e02-routing",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "E3",
+      "directory": "e03-routing",
+      "description": "`void.lilylabs.io` von allen drei Raptoren, während einer getauscht wird",
+      "expected": "nie dauerhaft 502",
+      "origin": "Tausch",
+      "priority": "P0",
+      "port": 5168,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "e03-routing",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "E4",
+      "directory": "e04-routing",
+      "description": "Gangway-Signatur v2 auf BM-Caps",
+      "expected": "keine 401",
+      "origin": "GANGWAYV2",
+      "priority": "P1",
+      "port": 5169,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "e04-routing",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "E5",
+      "directory": "e05-routing",
+      "description": "Custom Domain",
+      "expected": "Zertifikat und Routing",
+      "origin": "SaaS-Fallback",
+      "priority": "P2",
+      "port": 5170,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "e05-routing",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "F1",
+      "directory": "f01-capacity",
+      "description": "Cap mit langer Historie (300+ Installationen), Deploy-Welle",
+      "expected": "runtime-data unter 1 s, Cap bleibt erreichbar, `controller_step` p90 unter 2 s",
+      "origin": "Cap E/F",
+      "priority": "P0",
+      "port": 5171,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "f01-capacity",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "F2",
+      "directory": "f02-capacity",
+      "description": "Raptor meldet Cap erst nach drei Fehlschlägen unerreichbar",
+      "expected": "kein Flattern",
+      "origin": "SLOWREAD",
+      "priority": "P0",
+      "port": 5172,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "f02-capacity",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "F3",
+      "directory": "f03-capacity",
+      "description": "Volles Artefaktlager",
+      "expected": "GC räumt, kein 429 bzw. „Cap not ready“",
+      "origin": "slug121, ARTCLEAR",
+      "priority": "P0",
+      "port": 5173,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "f03-capacity",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "F4",
+      "directory": "f04-capacity",
+      "description": "Cap voll an Node-Zellen bzw. Speicher",
+      "expected": "sichtbare Ablehnung bzw. Umplatzierung",
+      "origin": "11/12 Zellen",
+      "priority": "P0",
+      "port": 5174,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "f04-capacity",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "F5",
+      "directory": "f05-capacity",
+      "description": "Carrier-Update einer Cap (GCP und BM)",
+      "expected": "Apps zurück, Host-Regeln sofort, kein Fehlstart wegen Marke",
+      "origin": "Rollout 16./17.11.",
+      "priority": "P0",
+      "port": 5175,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "f05-capacity",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "F6",
+      "directory": "f06-capacity",
+      "description": "Cap-Neustart mit Node-Zellen",
+      "expected": "alle Node-Apps wieder live",
+      "origin": "summitmoor 503",
+      "priority": "P0",
+      "port": 5176,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "f06-capacity",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "F7",
+      "directory": "f07-capacity",
+      "description": "Dial-Socket bzw. Overlay-Konfiguration",
+      "expected": "Cap bootet",
+      "origin": "MIXEDGE-HALT",
+      "priority": "P0",
+      "port": 5177,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "f07-capacity",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "F8",
+      "directory": "f08-capacity",
+      "description": "Leerlauf-CPU und Speicher je App gemessen",
+      "expected": "Werte plausibel",
+      "origin": "IDLE2",
+      "priority": "P2",
+      "port": 5178,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "f08-capacity",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "G1",
+      "directory": "g01-metering",
+      "description": "Requests und Egress je App gemessen und gebucht",
+      "expected": "stimmt mit Last überein, keine Doppelbuchung",
+      "origin": "TRAFFIC2, e71e98ae",
+      "priority": "P0",
+      "port": 5179,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "g01-metering",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "G2",
+      "directory": "g02-metering",
+      "description": "paymentd kurz weg",
+      "expected": "Meldungen werden nachgeholt, nichts geht verloren",
+      "origin": "13:34 Ausfall",
+      "priority": "P0",
+      "port": 5180,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "g02-metering",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "G3",
+      "directory": "g03-metering",
+      "description": "Pause bzw. Resume",
+      "expected": "ab Pause 0 gebucht",
+      "origin": "PAUSEBILL",
+      "priority": "P1",
+      "port": 5181,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "g03-metering",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "G4",
+      "directory": "g04-metering",
+      "description": "Raptor-Neustart",
+      "expected": "Requests einmal gebucht",
+      "origin": "TRAFFIC2",
+      "priority": "P1",
+      "port": 5182,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "g04-metering",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "G5",
+      "directory": "g05-metering",
+      "description": "`on_hold` bzw. `credits_exhausted` mit Enforce an",
+      "expected": "App pausiert, nicht gelöscht; UI sagt warum",
+      "origin": "APPGONE",
+      "priority": "P1",
+      "port": 5183,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "g05-metering",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "H1",
+      "directory": "h01-cli",
+      "description": "Fortschrittsanzeige, wenn sich die App-Zahl ändert",
+      "expected": "kein Absturz (`ui.rs:145`)",
+      "origin": "Jan L8",
+      "priority": "P1",
+      "port": 5184,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "h01-cli",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "H2",
+      "directory": "h02-cli",
+      "description": "`lly apps -p`",
+      "expected": "zeigt alle Apps",
+      "origin": "Jan L8",
+      "priority": "P1",
+      "port": 5185,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "h02-cli",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "H3",
+      "directory": "h03-cli",
+      "description": "`lly app` nach `redeploy --ref`",
+      "expected": "zeigt neue Commit-Angabe",
+      "origin": "Jan L8",
+      "priority": "P2",
+      "port": 5186,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "h03-cli",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "H4",
+      "directory": "h04-cli",
+      "description": "`redeploy --detach`",
+      "expected": "gibt Rückmeldung",
+      "origin": "Jan L8",
+      "priority": "P2",
+      "port": 5187,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "h04-cli",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "H5",
+      "directory": "h05-cli",
+      "description": "Profile `prod` und `dev`, Login gegen `void.lilylabs.io`",
+      "expected": "geht",
+      "origin": "CLEANENV",
+      "priority": "P1",
+      "port": 5188,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "h05-cli",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "I1",
+      "directory": "i01-platform",
+      "description": "Secrets und Env im UI (siehe C1 bis C3)",
+      "expected": "–",
+      "origin": "Milan",
+      "priority": "P0",
+      "port": 5189,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "i01-platform",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        },
+        {
+          "path": "i01-platform/public-client",
+          "framework": "next",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 2
+    },
+    {
+      "id": "I2",
+      "directory": "i02-platform",
+      "description": "Deploy-Fehler im UI sichtbar, mit Grund",
+      "expected": "kein „failed“ ohne Text",
+      "origin": "Robin",
+      "priority": "P0",
+      "port": 5190,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "i02-platform",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "I3",
+      "directory": "i03-platform",
+      "description": "Statusmonitor: ausgefallene App rot, gelöschte grau, nie gelaufene gelb, einzelne Aussetzer nicht rot",
+      "expected": "–",
+      "origin": "STATUSAPPS",
+      "priority": "P1",
+      "port": 5191,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "i03-platform",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "I4",
+      "directory": "i04-platform",
+      "description": "Admin unter Prod-Namen, Login, Alarme der lebenden Flotte kommen an",
+      "expected": "–",
+      "origin": "ADMINMOVE",
+      "priority": "P1",
+      "port": 5192,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "i04-platform",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "J1",
+      "directory": "j01-isolation",
+      "description": "Projekt A erreicht nichts von Projekt B (Wasm und Node)",
+      "expected": "abgewiesen",
+      "origin": "MIXEDGE",
+      "priority": "P0",
+      "port": 5193,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "j01-isolation/project-a/node",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "j01-isolation/project-a/wasm",
+          "framework": "next",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "j01-isolation/project-b/node",
+          "framework": "node",
+          "install": null,
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        },
+        {
+          "path": "j01-isolation/project-b/wasm",
+          "framework": "next",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Katalog, Suche, Kunden, Aufträge, Reservierung, Versand, Retouren, Audit, CSV/JSON"
+        }
+      ],
+      "app_count": 4
+    },
+    {
+      "id": "J2",
+      "directory": "j02-isolation",
+      "description": "Kein öffentliches DNS auf private Adressen",
+      "expected": "Prüfung über alle Zonen",
+      "origin": "SECREVIEW",
+      "priority": "P1",
+      "port": 5194,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "j02-isolation",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "J3",
+      "directory": "j03-isolation",
+      "description": "Auth-Cookie für `.lilylabs.io` und `safeNext` nur auf eigene Hosts",
+      "expected": "kein Token-Abfluss über fremde Subdomain",
+      "origin": "SECREVIEW H2",
+      "priority": "P1",
+      "port": 5195,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "j03-isolation",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "J4",
+      "directory": "j04-isolation",
+      "description": "Admin und Wiki nur über VPN",
+      "expected": "von außen zu",
+      "origin": "SECREVIEW",
+      "priority": "P1",
+      "port": 5196,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "j04-isolation",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "K1",
+      "directory": "k01-operations",
+      "description": "Raptor-Tausch mit hängendem `in_flight`",
+      "expected": "sauberer Abbruch bzw. Lösung",
+      "origin": "14.11. Geist",
+      "priority": "P1",
+      "port": 5197,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "k01-operations",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "K2",
+      "directory": "k02-operations",
+      "description": "Canary bzw. Abnahme werten `503 app_stopped` kurz nach „done“ als „kommt noch“",
+      "expected": "–",
+      "origin": "canary17",
+      "priority": "P1",
+      "port": 5198,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "k02-operations",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "K3",
+      "directory": "k03-operations",
+      "description": "Canary-Werkzeug mit Prod-Profil",
+      "expected": "–",
+      "origin": "canary16 rot",
+      "priority": "P1",
+      "port": 5199,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "k03-operations",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "K4",
+      "directory": "k04-operations",
+      "description": "Rollout-Gates: Staging je Cap frisch, Sicherungs-Volume vorher geprüft, jeder STOP gemeldet",
+      "expected": "–",
+      "origin": "Nacht 16./17.11.",
+      "priority": "P0",
+      "port": 5200,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "k04-operations",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "K5",
+      "directory": "k05-operations",
+      "description": "Überwachung meldet jede neue ausgefallene App, nicht nur den ersten Wechsel",
+      "expected": "–",
+      "origin": "prodwatch 14:01",
+      "priority": "P1",
+      "port": 5201,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "k05-operations",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    },
+    {
+      "id": "K6",
+      "directory": "k06-operations",
+      "description": "Aufräumen: Altersprüfung, die bei Fehler abbricht statt löscht",
+      "expected": "–",
+      "origin": "bfs-Vorfall",
+      "priority": "P0",
+      "port": 5202,
+      "platform_validation": "not_run",
+      "apps": [
+        {
+          "path": "k06-operations",
+          "framework": "node",
+          "install": "npm ci",
+          "build": "npm run build",
+          "start": [
+            "npm",
+            "start"
+          ],
+          "test": "npm test",
+          "workflow": "Vollständige Fachanwendung; Details in DOMAIN.md bzw. der bisherigen README"
+        }
+      ],
+      "app_count": 1
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "path": "a25-c-build-layouts/plain",
+  "framework": "c",
+  "install": null,
+  "build": "sh compile.sh",
+  "start": [
+    "./fokus"
+  ],
+  "test": "python3 test.py",
+  "workflow": "Aufgaben anlegen, priorisieren, filtern, abschließen, wieder öffnen und löschen"
+}

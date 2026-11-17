@@ -1,0 +1,25 @@
+{
+  "id": "C7",
+  "directory": "c07-configuration",
+  "description": "Secret-Werte erscheinen nie in Build- bzw. App-Logs",
+  "expected": "maskiert",
+  "origin": "335b11bb",
+  "priority": "P0",
+  "port": 5148,
+  "platform_validation": "not_run",
+  "template": "node-depot",
+  "persistence": "sqlite",
+  "capabilities": [
+    "full-domain-workflow",
+    "health",
+    "version",
+    "readiness-delay",
+    "start-failure",
+    "peer-fetch",
+    "bounded-egress",
+    "byte-stream",
+    "secret-proof",
+    "metrics",
+    "append-journal"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "case": "C1",
+  "source": "SOURCE-USE-CASES.md",
+  "description": "Secret im Platform-UI ändern, während die App läuft",
+  "expected": "geht; App startet mit neuem Wert neu; UI sagt es",
+  "priority": "P0",
+  "fixture": "c01-configuration",
+  "platform_result": "not_run",
+  "observation": "HTTP status AND response body; deployment status alone is insufficient",
+  "regression_control": "Run the same scenario against the affected pre-fix compiler/platform and retain the failing observation. No pre-fix deployment has been performed.",
+  "private_sources": "Synthetic fixtures only; no private repositories cloned",
+  "steps": [
+    "Set FIXTURE_SECRET to a synthetic value via Platform UI.",
+    "Request /__fixture/proof?nonce=sample-proof-nonce and verify HMAC independently.",
+    "Change value while running, verify changed instance/proof and visible restart notice."
+  ],
+  "negative_control": {
+    "method": "same scenario against the known affected pre-fix platform/compiler",
+    "status": "not_run",
+    "required_evidence": "failing HTTP status, response body, or explicit diagnostic; no inferred success"
+  },
+  "local_fixture_scope": "Native/upstream build and HTTP functionality; no assertion of Lily deployment, placement, billing or isolation."
+}

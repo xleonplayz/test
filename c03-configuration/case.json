@@ -1,0 +1,25 @@
+{
+  "id": "C3",
+  "directory": "c03-configuration",
+  "description": "`NEXT_PUBLIC_*` ändern bei laufender App",
+  "expected": "UI bzw. CLI bietet Rebuild an, neuer Wert danach im Client",
+  "origin": "C1 und A7",
+  "priority": "P0",
+  "port": 5144,
+  "platform_validation": "not_run",
+  "template": "node-depot",
+  "persistence": "sqlite",
+  "capabilities": [
+    "full-domain-workflow",
+    "health",
+    "version",
+    "readiness-delay",
+    "start-failure",
+    "peer-fetch",
+    "bounded-egress",
+    "byte-stream",
+    "secret-proof",
+    "metrics",
+    "append-journal"
+  ]
+}

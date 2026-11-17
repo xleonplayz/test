@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Wissen wird Können" />
+    <title>Campus</title>
+    <link rel="stylesheet" href="/app.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Zum Inhalt</a>
+    <aside id="sidebar">
+      <a class="brand" href="/">campus<span>.</span></a>
+      <p class="brand-note">Wissen wird Können</p>
+      <div class="nav-label">Dein Arbeitsbereich</div>
+      <nav id="navigation" aria-label="Hauptnavigation"></nav>
+      <div class="side-note">
+        <strong>Wissen wird Können</strong>Lernen in kleinen Schritten. Mit
+        einem klaren Ziel.
+        <p>● Lokal gespeichert</p>
+      </div>
+    </aside>
+    <div class="shell">
+      <header>
+        <span>Campus / <strong id="breadcrumb">Übersicht</strong></span>
+        <div class="header-actions">
+          <a href="/api/report.csv" download>Bericht als CSV ↗</a
+          ><button id="refresh" type="button">Aktualisieren ↻</button
+          ><span class="avatar">DU</span>
+        </div>
+      </header>
+      <main id="main" tabindex="-1">
+        <p class="eyebrow">NEUGIER BLEIBT. WISSEN WÄCHST.</p>
+        <div class="page-head">
+          <div>
+            <h1 id="title">Dein Arbeitsbereich</h1>
+            <p id="subtitle">Daten werden geladen …</p>
+          </div>
+          <div id="page-actions" class="actions"></div>
+        </div>
+        <div id="error" class="error" role="alert" hidden></div>
+        <div id="content"></div>
+      </main>
+      <footer>
+        <span>Campus / Ein Lernpfad. Viele neue Perspektiven.</span
+        ><a href="/api/export" download>Alle Daten exportieren ↗</a>
+      </footer>
+    </div>
+    <dialog
+      id="dialog"
+      aria-labelledby="dialog-title"
+      aria-describedby="dialog-description"
+    >
+      <div class="dialog-heading">
+        <h2 id="dialog-title"></h2>
+        <button id="close-dialog" aria-label="Dialog schließen" type="button">
+          ×
+        </button>
+      </div>
+      <p id="dialog-description"></p>
+      <form id="modal-form">
+        <div id="form-fields"></div>
+        <div id="form-error" class="error" role="alert" hidden></div>
+        <div class="actions">
+          <button id="submit" type="submit" class="primary">Speichern</button>
+        </div>
+      </form>
+    </dialog>
+    <div id="toast" role="status" hidden></div>
+  </body>
+</html>

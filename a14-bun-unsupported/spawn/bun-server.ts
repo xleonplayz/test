@@ -1,0 +1,2 @@
+import page from './index.html';import {createService} from './service.mjs';const handle=createService();const special=async()=>{const child=Bun.spawn(['bun','--version'],{stdout:'pipe'});return Response.json({version:await new Response(child.stdout).text(),exitCode:await child.exited});};
+Bun.serve({port:Number(process.env.PORT??8080),hostname:process.env.HOST??'127.0.0.1',routes:{'/':page},fetch(request,server){if(new URL(request.url).pathname==='/api/special')return special(request,server);return handle(request);}});

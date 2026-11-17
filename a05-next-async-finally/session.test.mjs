@@ -1,0 +1,1 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {refreshSession} from './lib/session.mjs';test('await in try, catch and finally',async()=>{assert.deepEqual((await refreshSession(true)).events,['try','catch','finally']);assert.deepEqual((await refreshSession(false)).events,['try','finally']);});

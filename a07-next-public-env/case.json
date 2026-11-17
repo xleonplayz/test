@@ -1,0 +1,10 @@
+{
+  "id": "A7",
+  "directory": "a07-next-public-env",
+  "description": "Next.js mit `NEXT_PUBLIC_*` als normale Variable und als Secret",
+  "expected": "Wert beim Build eingebettet, im Log maskiert, Warnhinweis bei Secret",
+  "origin": "sapphirelark",
+  "priority": "P0",
+  "port": 5106,
+  "platform_validation": "not_run"
+}

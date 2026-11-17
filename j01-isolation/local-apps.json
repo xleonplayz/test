@@ -1,0 +1,30 @@
+[
+  {
+    "path": "project-a/node",
+    "start": [
+      "npm",
+      "start"
+    ]
+  },
+  {
+    "path": "project-a/wasm",
+    "start": [
+      "npm",
+      "start"
+    ]
+  },
+  {
+    "path": "project-b/node",
+    "start": [
+      "npm",
+      "start"
+    ]
+  },
+  {
+    "path": "project-b/wasm",
+    "start": [
+      "npm",
+      "start"
+    ]
+  }
+]

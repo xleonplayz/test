@@ -1,0 +1,25 @@
+{
+  "id": "D16",
+  "directory": "d16-lifecycle",
+  "description": "Betreiber-Redeploy einer Nutzer-App aus öffentlichem Repo ohne Nutzer-Token",
+  "expected": "geht, Quell-URL unverändert",
+  "origin": "Robin, Jan",
+  "priority": "P1",
+  "port": 5164,
+  "platform_validation": "not_run",
+  "template": "node-campus",
+  "persistence": "sqlite",
+  "capabilities": [
+    "full-domain-workflow",
+    "health",
+    "version",
+    "readiness-delay",
+    "start-failure",
+    "peer-fetch",
+    "bounded-egress",
+    "byte-stream",
+    "secret-proof",
+    "metrics",
+    "append-journal"
+  ]
+}
